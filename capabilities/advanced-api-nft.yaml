@@ -1,0 +1,187 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Ankr Advanced API — NFT
+  description: 'Ankr Advanced API NFT methods. Self-contained Naftiko capability covering NFT ownership, metadata, holders, and transfer history across 19 EVM mainnets.'
+  tags:
+  - Ankr
+  - NFT
+  - Web3
+  - Multichain
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    ANKR_API_KEY: ANKR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: advanced-api-nft
+    baseUri: https://rpc.ankr.com
+    description: Ankr Advanced API NFT methods via JSON-RPC.
+    resources:
+    - name: multichain
+      path: /multichain/{{env.ANKR_API_KEY}}
+      operations:
+      - name: getnftsbyowner
+        method: POST
+        description: Ankr Get NFTs By Owner
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: JSON-RPC body with method=ankr_getNFTsByOwner and params.
+          required: true
+      - name: getnftmetadata
+        method: POST
+        description: Ankr Get NFT Metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: getnftholders
+        method: POST
+        description: Ankr Get NFT Holders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: getnfttransfers
+        method: POST
+        description: Ankr Get NFT Transfers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: advanced-api-nft-rest
+    port: 8080
+    description: REST adapter for Ankr Advanced API NFT methods.
+    resources:
+    - path: /v1/advanced-api/nft/owner
+      name: nft-owner
+      description: NFTs owned by a wallet.
+      operations:
+      - method: POST
+        name: getnftsbyowner
+        description: Ankr Get NFTs By Owner
+        call: advanced-api-nft.getnftsbyowner
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/nft/metadata
+      name: nft-metadata
+      operations:
+      - method: POST
+        name: getnftmetadata
+        description: Ankr Get NFT Metadata
+        call: advanced-api-nft.getnftmetadata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/nft/holders
+      name: nft-holders
+      operations:
+      - method: POST
+        name: getnftholders
+        description: Ankr Get NFT Holders
+        call: advanced-api-nft.getnftholders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/nft/transfers
+      name: nft-transfers
+      operations:
+      - method: POST
+        name: getnfttransfers
+        description: Ankr Get NFT Transfers
+        call: advanced-api-nft.getnfttransfers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: advanced-api-nft-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Ankr Advanced API NFT methods.
+    tools:
+    - name: ankr-get-nfts-by-owner
+      description: Ankr Get NFTs By Owner
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-nft.getnftsbyowner
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-nft-metadata
+      description: Ankr Get NFT Metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-nft.getnftmetadata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-nft-holders
+      description: Ankr Get NFT Holders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-nft.getnftholders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-nft-transfers
+      description: Ankr Get NFT Transfers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-nft.getnfttransfers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

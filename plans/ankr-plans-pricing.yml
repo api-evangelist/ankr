@@ -1,0 +1,116 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Ankr
+providerId: ankr
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Web3
+  - RPC
+  - Multichain
+  - Staking
+description: |
+  Reconciled plans for the Ankr Web3 API platform — Node API (RPC) and Advanced API. Ankr operates a free
+  Public tier, a credit-based Premium tier, and dedicated Enterprise contracts. Liquid staking is a non-paid
+  developer surface; revenue accrues from validator fees and exchange-ratio mechanics, not from API access.
+sources:
+  - https://www.ankr.com/rpc/pricing/
+  - https://www.ankr.com/docs/rpc-service/service-plans/
+  - https://www.ankr.com/docs/advanced-api/overview/
+plans:
+  - id: ankr-public
+    name: Public Plan
+    type: free
+    description: |
+      Free, anonymous access to Ankr's Node API across 80+ public RPC endpoints at rpc.ankr.com/{chain}.
+      No project, no API key, no statistics dashboard. Subject to a global IP-level throttle and a limited
+      set of methods (no archive, no debug_*, no eth_getLogs over large ranges).
+    entries:
+      - label: Public Node API calls
+        name: public_node_api
+        type: included
+        metric: requests
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+  - id: ankr-premium
+    name: Premium Plan
+    type: usage-based
+    description: |
+      Project-scoped API keys, x50 higher rate limits for Node API and x30 for Advanced API,
+      three projects, multi-project statistics dashboard, WebSocket (WSS) connectivity, IP whitelisting,
+      and access to all 80+ Premium RPC endpoints plus Advanced API methods.
+    entries:
+      - label: Premium Node API calls
+        name: premium_node_api
+        type: metered
+        metric: requests
+        limit: -1
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 'pay-as-you-go'
+        userMultiplied: false
+      - label: Premium Advanced API calls
+        name: premium_advanced_api
+        type: metered
+        metric: requests
+        limit: -1
+        timeFrame: monthly
+        geo: global
+        unit: 1
+        price: 'pay-as-you-go'
+        userMultiplied: false
+      - label: Projects
+        name: projects
+        type: included
+        metric: count
+        limit: 3
+        timeFrame: account
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+  - id: ankr-enterprise
+    name: Enterprise Plan
+    type: contract
+    description: |
+      Dedicated SLA, archive nodes, unsupported-method access (debug_*, trace_*), private endpoints,
+      higher concurrency, custom regional routing across Ankr's 30+ region DePIN. Pricing negotiated.
+    entries:
+      - label: Enterprise contract
+        name: enterprise_contract
+        type: contract
+        metric: contract
+        limit: -1
+        timeFrame: contract
+        geo: global
+        unit: 1
+        price: 'contact-sales'
+        userMultiplied: false
+  - id: ankr-raas
+    name: Rollup-as-a-Service
+    type: contract
+    description: |
+      Ankr-managed rollups, sidechains, and appchains (OP Stack, Polygon CDK, Arbitrum Orbit variants).
+      End-to-end engineering and DePIN-backed node operation. Pricing negotiated per chain.
+    entries:
+      - label: RaaS contract
+        name: raas_contract
+        type: contract
+        metric: contract
+        limit: -1
+        timeFrame: contract
+        geo: global
+        unit: 1
+        price: 'contact-sales'
+        userMultiplied: false
+notes:
+  - Public Plan endpoints are appropriate for development and low-volume reads; production workloads should use Premium.
+  - Premium plan pricing is credit-based and quoted in the project dashboard at the time of purchase.
+  - Ankr does not publish a fixed dollar list price for Premium; the limit multiplier (x50 Node / x30 Advanced) is the reconciled commitment.

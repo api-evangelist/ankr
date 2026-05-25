@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ankr/refs/heads/main/json-schema/ankr-nft-asset-schema.json",
+  "title": "Ankr NFT Asset",
+  "description": "A single NFT asset as returned by Ankr Advanced API NFT methods (ankr_getNFTsByOwner, ankr_getNFTMetadata).",
+  "type": "object",
+  "required": ["blockchain", "contractAddress", "tokenId"],
+  "properties": {
+    "blockchain": {
+      "type": "string",
+      "description": "Ankr chain identifier (eth, bsc, polygon, arbitrum, ...)."
+    },
+    "name": { "type": "string" },
+    "tokenId": { "type": "string" },
+    "tokenUrl": { "type": "string", "format": "uri" },
+    "imageUrl": { "type": "string", "format": "uri" },
+    "collectionName": { "type": "string" },
+    "symbol": { "type": "string" },
+    "contractType": {
+      "type": "string",
+      "enum": ["ERC721", "ERC1155"]
+    },
+    "contractAddress": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$"
+    },
+    "traits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "trait_type": { "type": "string" },
+          "value": {}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://rpc.ankr.com/multichain/{API_KEY}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "method": "ankr_getAccountBalance",
+      "id": 1,
+      "params": {
+        "blockchain": ["eth", "polygon", "bsc"],
+        "walletAddress": "0xF977814e90dA44bFA03b6295A0616a897441aceC",
+        "onlyWhitelisted": true
+      }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "totalBalanceUsd": "1245783.17",
+      "assets": [
+        {
+          "blockchain": "eth",
+          "tokenName": "Ether",
+          "tokenSymbol": "ETH",
+          "tokenDecimals": 18,
+          "tokenType": "NATIVE",
+          "holderAddress": "0xF977814e90dA44bFA03b6295A0616a897441aceC",
+          "balance": "210.4123",
+          "balanceRawInteger": "210412300000000000000",
+          "balanceUsd": "740123.85",
+          "tokenPrice": "3517.20",
+          "thumbnail": "https://ankrscan.io/static/eth.png"
+        },
+        {
+          "blockchain": "polygon",
+          "tokenName": "Polygon Ecosystem Token",
+          "tokenSymbol": "POL",
+          "tokenDecimals": 18,
+          "tokenType": "NATIVE",
+          "holderAddress": "0xF977814e90dA44bFA03b6295A0616a897441aceC",
+          "balance": "812.9",
+          "balanceRawInteger": "812900000000000000000",
+          "balanceUsd": "382.10",
+          "tokenPrice": "0.47"
+        }
+      ]
+    }
+  }
+}

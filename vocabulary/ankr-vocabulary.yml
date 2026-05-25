@@ -1,0 +1,87 @@
+vocabulary: ankr
+version: 1.0.0
+description: Vocabulary mapping operational and capability dimensions for Ankr's multi-chain RPC, Advanced API, liquid staking, and contract automation surfaces.
+domain: Web3 Infrastructure
+operational:
+  - dimension: Endpoint
+    terms:
+      - PublicRPC      # rpc.ankr.com/{chain} — no auth required
+      - PremiumRPC     # rpc.ankr.com/{chain}/{API_KEY}
+      - EnterpriseRPC  # dedicated SLA endpoint
+      - WebSocket      # wss://rpc.ankr.com/{chain}/ws
+  - dimension: Plan
+    terms:
+      - PublicPlan
+      - PremiumPlan
+      - EnterprisePlan
+  - dimension: RateLimit
+    terms:
+      - PublicLimit
+      - PremiumLimit
+      - EnterpriseLimit
+  - dimension: Region
+    terms:
+      - GlobalDePIN     # bare-metal nodes in 30+ regions
+capability:
+  - dimension: Chain
+    terms:
+      - Ethereum
+      - BNBSmartChain
+      - Polygon
+      - Arbitrum
+      - Optimism
+      - Base
+      - Avalanche
+      - Fantom
+      - Gnosis
+      - Linea
+      - Scroll
+      - Taiko
+      - Solana
+      - Aptos
+      - Stellar
+      - TRON
+      - Polkadot
+      - Flow
+      - HyperEVM
+      - Unichain
+      - Kite
+      - ABChain
+  - dimension: API
+    terms:
+      - NodeAPI        # JSON-RPC
+      - AdvancedAPI    # ankr_* indexed methods
+      - StakingAPI     # REST + smart contract
+      - AutomationAPI  # contract triggers
+  - dimension: AdvancedAPIGroup
+    terms:
+      - NFT
+      - Token
+      - Query
+  - dimension: StakingToken
+    terms:
+      - ankrETH
+      - ankrBNB
+      - ankrPOL
+      - ankrAVAX
+      - ankrFTM
+      - ankrDOT
+      - ankrFLOW
+  - dimension: Trigger
+    terms:
+      - TimeTrigger    # CRON
+      - EventTrigger   # IAutomateCompatible
+  - dimension: Product
+    terms:
+      - Web3API
+      - StakingSolutions
+      - RollupAsAService
+      - BitcoinSecuredInfrastructure
+      - AppChains
+      - BlockExplorer
+mappings:
+  Endpoint.PublicRPC: NodeAPI@PublicPlan
+  Endpoint.PremiumRPC: NodeAPI@PremiumPlan
+  API.AdvancedAPI: PremiumPlan+APIKey
+  Trigger.TimeTrigger: AutomationAPI
+  Trigger.EventTrigger: AutomationAPI

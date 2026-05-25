@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ankr/refs/heads/main/json-schema/ankr-staking-metrics-schema.json",
+  "title": "Ankr Liquid Staking Metrics",
+  "description": "Liquid staking metrics surfaced by Ankr's Staking RESTful API (https://api.staking.ankr.com/v1.0/metrics).",
+  "type": "object",
+  "required": ["token", "tvlUsd", "apr"],
+  "properties": {
+    "token": {
+      "type": "string",
+      "enum": ["ankrETH", "ankrBNB", "ankrPOL", "ankrAVAX", "ankrFTM", "ankrDOT", "ankrFLOW"]
+    },
+    "tvlUsd": { "type": "string" },
+    "apr": { "type": "string", "description": "Annual percentage rate (e.g. \"3.2\")." },
+    "supply": { "type": "string" },
+    "holders": { "type": "integer" },
+    "exchangeRatio": {
+      "type": "string",
+      "description": "Trustless ratio between native asset and the liquid staking token."
+    }
+  }
+}

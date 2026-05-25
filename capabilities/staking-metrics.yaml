@@ -1,0 +1,130 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Ankr Liquid Staking — Metrics
+  description: 'Ankr Liquid Staking RESTful metrics: TVL, APR, holders, supply, and trustless exchange ratio across ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, ankrFLOW.'
+  tags:
+  - Ankr
+  - Staking
+  - LiquidStaking
+  - Metrics
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds: []
+capability:
+  consumes:
+  - type: http
+    namespace: staking-metrics
+    baseUri: https://api.staking.ankr.com
+    description: Ankr Liquid Staking RESTful metrics endpoint.
+    resources:
+    - name: metrics
+      path: /v1.0/metrics
+      operations:
+      - name: getstakingmetrics
+        method: GET
+        description: Ankr Get Staking Metrics
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: array
+          value: $.
+    - name: metrics-by-token
+      path: /v1.0/metrics/{token}
+      operations:
+      - name: getstakingmetricsbytoken
+        method: GET
+        description: Ankr Get Staking Metrics By Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          required: true
+    - name: ratio-by-token
+      path: /v1.0/ratio/{token}
+      operations:
+      - name: gettrustlessratio
+        method: GET
+        description: Ankr Get Trustless Ratio
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: token
+          in: path
+          type: string
+          required: true
+  exposes:
+  - type: rest
+    namespace: staking-metrics-rest
+    port: 8080
+    description: REST adapter for Ankr Liquid Staking metrics.
+    resources:
+    - path: /v1/staking/metrics
+      name: staking-metrics
+      operations:
+      - method: GET
+        name: getstakingmetrics
+        description: Ankr Get Staking Metrics
+        call: staking-metrics.getstakingmetrics
+        outputParameters:
+        - type: array
+          mapping: $.
+    - path: /v1/staking/metrics/{token}
+      name: staking-metrics-by-token
+      operations:
+      - method: GET
+        name: getstakingmetricsbytoken
+        description: Ankr Get Staking Metrics By Token
+        call: staking-metrics.getstakingmetricsbytoken
+        with:
+          token: rest.path.token
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/staking/ratio/{token}
+      name: staking-ratio
+      operations:
+      - method: GET
+        name: gettrustlessratio
+        description: Ankr Get Trustless Ratio
+        call: staking-metrics.gettrustlessratio
+        with:
+          token: rest.path.token
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: staking-metrics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Ankr Liquid Staking metrics.
+    tools:
+    - name: ankr-get-staking-metrics
+      description: Ankr Get Staking Metrics
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: staking-metrics.getstakingmetrics
+      outputParameters:
+      - type: array
+        mapping: $.
+    - name: ankr-get-trustless-ratio
+      description: Ankr Get Trustless Ratio
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: staking-metrics.gettrustlessratio
+      with:
+        token: tools.token
+      outputParameters:
+      - type: object
+        mapping: $.

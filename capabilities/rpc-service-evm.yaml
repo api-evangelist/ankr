@@ -1,0 +1,77 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Ankr RPC Service — EVM
+  description: 'Ankr Node API EVM JSON-RPC capability. Single capability covering the standard Ethereum JSON-RPC surface for any EVM chain at https://rpc.ankr.com/{chain}.'
+  tags:
+  - Ankr
+  - RPC
+  - EVM
+  - Web3
+  - NodeAPI
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    ANKR_API_KEY: ANKR_API_KEY
+    ANKR_CHAIN: ANKR_CHAIN
+capability:
+  consumes:
+  - type: http
+    namespace: rpc-service-evm
+    baseUri: https://rpc.ankr.com
+    description: Ankr Node API EVM JSON-RPC endpoint.
+    resources:
+    - name: chain
+      path: /{{env.ANKR_CHAIN}}/{{env.ANKR_API_KEY}}
+      operations:
+      - name: callrpc
+        method: POST
+        description: Ankr Execute JSON-RPC Call
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+          description: JSON-RPC 2.0 request (or batch).
+  exposes:
+  - type: rest
+    namespace: rpc-service-evm-rest
+    port: 8080
+    description: REST adapter for Ankr Node API EVM JSON-RPC.
+    resources:
+    - path: /v1/rpc/{{env.ANKR_CHAIN}}
+      name: chain-rpc
+      operations:
+      - method: POST
+        name: callrpc
+        description: Ankr Execute JSON-RPC Call
+        call: rpc-service-evm.callrpc
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rpc-service-evm-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter exposing the EVM JSON-RPC envelope as a single tool.
+    tools:
+    - name: ankr-evm-rpc-call
+      description: Ankr Execute JSON-RPC Call against an EVM chain at rpc.ankr.com/{chain}.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rpc-service-evm.callrpc
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

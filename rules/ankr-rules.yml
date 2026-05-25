@@ -1,0 +1,49 @@
+extends: [[spectral:oas, all]]
+documentationUrl: https://github.com/api-evangelist/ankr
+functions: []
+rules:
+  ankr-operation-summary-title-case:
+    description: Ankr operation summaries must use Title Case and begin with "Ankr ".
+    severity: warn
+    given: "$.paths.*[get,post,put,delete,patch].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^Ankr [A-Z][A-Za-z0-9]*( [A-Z][A-Za-z0-9]*)*$'
+
+  ankr-jsonrpc-envelope-method-naming:
+    description: Advanced API operationIds mirror the underlying JSON-RPC method (ankr_xxx) in camelCase.
+    severity: warn
+    given: "$.paths.*[post].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^(ankr|call)[A-Z][a-zA-Z]*$'
+
+  ankr-server-uses-rpc-base:
+    description: At least one server entry should be under rpc.ankr.com or api.staking.ankr.com.
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: '^https://(rpc|api\.staking|www)\.ankr\.com'
+
+  ankr-tags-required:
+    description: Every operation must declare a tag (NFT, Token, Query, EVM, Metrics, Ratio, Validators, Tasks).
+    severity: error
+    given: "$.paths.*[get,post,put,delete,patch]"
+    then:
+      field: tags
+      function: truthy
+
+  ankr-multichain-blockchain-enum:
+    description: When a request schema references a `blockchain` field, it should use the Ankr chain enum.
+    severity: hint
+    given: "$.components.schemas.AnkrBlockchain.enum"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: array
+          minItems: 10

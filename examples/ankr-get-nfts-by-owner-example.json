@@ -1,0 +1,44 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://rpc.ankr.com/multichain/{API_KEY}",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "method": "ankr_getNFTsByOwner",
+      "id": 1,
+      "params": {
+        "blockchain": ["eth", "polygon"],
+        "walletAddress": "vitalik.eth",
+        "pageSize": 10
+      }
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": {
+      "owner": "0xd8da6bf26964af9d7eed9e03e53415d37aa96045",
+      "assets": [
+        {
+          "blockchain": "eth",
+          "name": "CryptoPunk #2890",
+          "tokenId": "2890",
+          "tokenUrl": "https://www.larvalabs.com/cryptopunks/details/2890",
+          "imageUrl": "https://www.larvalabs.com/cryptopunks/cryptopunk2890.png",
+          "collectionName": "CryptoPunks",
+          "symbol": "PUNK",
+          "contractType": "ERC721",
+          "contractAddress": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+          "traits": [
+            { "trait_type": "type", "value": "Alien" },
+            { "trait_type": "accessory", "value": "Cap Forward" }
+          ]
+        }
+      ],
+      "nextPageToken": ""
+    }
+  }
+}

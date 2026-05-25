@@ -1,0 +1,53 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ankr": "https://www.ankr.com/vocab#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Asset": "ankr:Asset",
+    "NFTAsset": "ankr:NFTAsset",
+    "TokenAsset": "ankr:TokenAsset",
+    "LiquidStakingToken": "ankr:LiquidStakingToken",
+    "Blockchain": "ankr:Blockchain",
+    "Block": "ankr:Block",
+    "Transaction": "ankr:Transaction",
+    "AutomationTask": "ankr:AutomationTask",
+    "blockchain": {
+      "@id": "ankr:blockchain",
+      "@type": "@id"
+    },
+    "contractAddress": "ankr:contractAddress",
+    "tokenId": "ankr:tokenId",
+    "tokenSymbol": "ankr:tokenSymbol",
+    "tokenName": "schema:name",
+    "tokenDecimals": {
+      "@id": "ankr:tokenDecimals",
+      "@type": "xsd:integer"
+    },
+    "balance": "ankr:balance",
+    "balanceUsd": "ankr:balanceUsd",
+    "tokenPrice": "ankr:tokenPrice",
+    "tvlUsd": "ankr:tvlUsd",
+    "apr": "ankr:apr",
+    "exchangeRatio": "ankr:exchangeRatio",
+    "trustlessRatio": "ankr:trustlessRatio",
+    "holders": {
+      "@id": "ankr:holders",
+      "@type": "xsd:integer"
+    },
+    "supply": "ankr:supply",
+    "blockNumber": {
+      "@id": "ankr:blockNumber",
+      "@type": "xsd:integer"
+    },
+    "transactionHash": "ankr:transactionHash",
+    "walletAddress": "ankr:walletAddress",
+    "trigger": "ankr:trigger",
+    "schedule": "ankr:schedule",
+    "status": "schema:status",
+    "created": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

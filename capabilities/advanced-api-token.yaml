@@ -1,0 +1,249 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Ankr Advanced API — Token
+  description: 'Ankr Advanced API Token methods. Self-contained Naftiko capability covering token balances, prices (current + historical), holders, currencies, and transfers across 19 EVM mainnets.'
+  tags:
+  - Ankr
+  - Token
+  - Web3
+  - Multichain
+  - Pricing
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    ANKR_API_KEY: ANKR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: advanced-api-token
+    baseUri: https://rpc.ankr.com
+    description: Ankr Advanced API Token methods via JSON-RPC.
+    resources:
+    - name: multichain
+      path: /multichain/{{env.ANKR_API_KEY}}
+      operations:
+      - name: getaccountbalance
+        method: POST
+        description: Ankr Get Account Balance
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: getcurrencies
+        method: POST
+        description: Ankr Get Currencies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: gettokenprice
+        method: POST
+        description: Ankr Get Token Price
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: gettokenpricehistory
+        method: POST
+        description: Ankr Get Token Price History
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: gettokenholders
+        method: POST
+        description: Ankr Get Token Holders
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: gettokenholderscount
+        method: POST
+        description: Ankr Get Token Holders Count
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+      - name: gettokentransfers
+        method: POST
+        description: Ankr Get Token Transfers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.result
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          required: true
+  exposes:
+  - type: rest
+    namespace: advanced-api-token-rest
+    port: 8080
+    description: REST adapter for Ankr Advanced API Token methods.
+    resources:
+    - path: /v1/advanced-api/token/balance
+      name: token-balance
+      operations:
+      - method: POST
+        name: getaccountbalance
+        description: Ankr Get Account Balance
+        call: advanced-api-token.getaccountbalance
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/token/price
+      name: token-price
+      operations:
+      - method: POST
+        name: gettokenprice
+        description: Ankr Get Token Price
+        call: advanced-api-token.gettokenprice
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/token/price-history
+      name: token-price-history
+      operations:
+      - method: POST
+        name: gettokenpricehistory
+        description: Ankr Get Token Price History
+        call: advanced-api-token.gettokenpricehistory
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/token/holders
+      name: token-holders
+      operations:
+      - method: POST
+        name: gettokenholders
+        description: Ankr Get Token Holders
+        call: advanced-api-token.gettokenholders
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/advanced-api/token/transfers
+      name: token-transfers
+      operations:
+      - method: POST
+        name: gettokentransfers
+        description: Ankr Get Token Transfers
+        call: advanced-api-token.gettokentransfers
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: advanced-api-token-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Ankr Advanced API Token methods.
+    tools:
+    - name: ankr-get-account-balance
+      description: Ankr Get Account Balance
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-token.getaccountbalance
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-token-price
+      description: Ankr Get Token Price
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-token.gettokenprice
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-token-price-history
+      description: Ankr Get Token Price History
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-token.gettokenpricehistory
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-token-holders
+      description: Ankr Get Token Holders
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-token.gettokenholders
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: ankr-get-token-transfers
+      description: Ankr Get Token Transfers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: advanced-api-token.gettokentransfers
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

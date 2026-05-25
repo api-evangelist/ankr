@@ -1,0 +1,83 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Ankr
+providerId: ankr
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Web3
+  - RPC
+  - Rate Limiting
+description: |
+  Reconciled rate limits for Ankr's Node API (RPC) and Advanced API across Public, Premium, and Enterprise
+  plans. Public limits are IP-scoped and shared. Premium limits are project-scoped (API-key bound) and
+  documented as multipliers over Public.
+sources:
+  - https://www.ankr.com/rpc/pricing/
+  - https://www.ankr.com/docs/rpc-service/service-plans/
+  - https://www.ankr.com/docs/advanced-api/overview/
+headers:
+  responseCodes:
+    throttled: 429
+algorithm: leaky-bucket
+limits:
+  - plan: Public
+    api: Node API
+    scope: ip
+    rps: 30
+    notes: |
+      Shared per-IP across all chains. Spikes above 30 rps return HTTP 429.
+      Eth_getLogs filtered ranges are clamped; archive methods are not exposed.
+  - plan: Public
+    api: Advanced API
+    scope: ip
+    rps: 1
+    notes: |
+      Advanced API on Public is heavily rate-limited and intended for evaluation only.
+  - plan: Premium
+    api: Node API
+    scope: api-key
+    multiplier: x50
+    notes: |
+      Premium multiplies Public Node API throughput by 50. Per-chain caps may vary.
+      WebSocket subscriptions count against the same project budget.
+  - plan: Premium
+    api: Advanced API
+    scope: api-key
+    multiplier: x30
+    notes: |
+      Premium multiplies Public Advanced API throughput by 30.
+  - plan: Enterprise
+    api: Node API + Advanced API
+    scope: contract
+    rps: custom
+    notes: |
+      Dedicated capacity, archive access, private endpoints, custom concurrency negotiated in contract.
+limitsByEndpointFamily:
+  evm-rpc:
+    - method: eth_getLogs
+      publicBlockRangeCap: 3000
+      premiumBlockRangeCap: 5000
+      notes: Larger ranges return -32600.
+    - method: debug_*
+      availability: Enterprise only
+    - method: trace_*
+      availability: Enterprise only
+projects:
+  publicPlan: 0
+  premiumPlan: 3
+  enterprisePlan: custom
+quotas:
+  premiumStatistics:
+    dashboard: multi-project
+    metrics:
+      - totalRequests
+      - topChains
+      - successRate
+      - failureRate
+notes:
+  - Ankr expresses Premium throughput as a multiplier over Public rather than an absolute RPS.
+  - Premium API keys can be IP-whitelisted; off-allowlist requests return 403.
+  - Rate limits are enforced at the regional edge across Ankr's 30+ region DePIN.

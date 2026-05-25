@@ -1,0 +1,26 @@
+{
+  "$id": "https://raw.githubusercontent.com/api-evangelist/ankr/refs/heads/main/json-structure/ankr-account-balance-structure.json",
+  "title": "Ankr Account Balance Structure",
+  "description": "Documented structure of the ankr_getAccountBalance response surface.",
+  "structure": {
+    "totalBalanceUsd": {
+      "type": "string",
+      "description": "Aggregate USD value across the assets array, summed by Ankr's price indexer."
+    },
+    "assets[]": {
+      "blockchain": "Ankr chain id (eth, bsc, polygon, ...).",
+      "tokenSymbol": "ERC-20 symbol or native ticker.",
+      "tokenType": "NATIVE | ERC20",
+      "contractAddress": "ERC-20 contract address; empty for native asset.",
+      "balance": "Human-readable balance (decimal-shifted).",
+      "balanceRawInteger": "Raw uint256 balance, decimal=tokenDecimals.",
+      "balanceUsd": "USD value at current Ankr price.",
+      "tokenPrice": "USD spot price reported by Ankr."
+    }
+  },
+  "notes": [
+    "When `onlyWhitelisted` is true (default), Ankr filters out spam/airdrop tokens.",
+    "When the `blockchain` param is an array, results are merged across all requested chains.",
+    "Pagination is not used; all balances are returned in one response."
+  ]
+}

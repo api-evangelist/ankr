@@ -1,0 +1,21 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://rpc.ankr.com/eth",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "jsonrpc": "2.0",
+      "id": 1,
+      "method": "eth_blockNumber",
+      "params": []
+    }
+  },
+  "response": {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "result": "0x14d2c8a"
+  },
+  "notes": "Public Plan endpoint — no API key. For Premium throughput call https://rpc.ankr.com/eth/{API_KEY}."
+}

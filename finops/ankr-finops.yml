@@ -1,0 +1,86 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Ankr
+providerId: ankr
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Web3
+  - RPC
+description: |
+  FOCUS-aligned FinOps definition for Ankr's Web3 API platform. Request-metered billing on the Premium tier
+  with contract-priced Enterprise and Rollup-as-a-Service offerings. Public plan is non-billable.
+sources:
+  - https://www.ankr.com/rpc/pricing/
+  - https://www.ankr.com/docs/rpc-service/service-plans/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Ankr
+serviceCategory: Blockchain Infrastructure
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Credit
+    - Adjustment
+  primaryUnit: request
+  secondaryUnits:
+    - chain
+    - project
+    - websocket-hour
+focusColumns:
+  ServiceName: Ankr Web3 API
+  ServiceCategory: Blockchain Infrastructure
+  ProviderName: Ankr
+  PublisherName: Ankr
+  InvoiceIssuerName: Ankr
+  PricingCategory: Usage-Based
+  PricingUnit: request
+  PricingQuantity: integer
+  BillingCurrency: USD
+  ConsumedUnit: request
+  ConsumedQuantity: integer
+costAllocation:
+  dimensions:
+    - account
+    - project
+    - chain
+    - apiKey
+    - region
+  tags:
+    supported: false
+    notes: Ankr exposes project-level breakdowns in the dashboard; tag-based allocation is not native.
+billing:
+  prepay:
+    method: credit-purchase
+    notes: Premium customers prepay credits that drain against per-request pricing.
+  postpay:
+    method: contract-invoice
+    notes: Enterprise and RaaS customers receive monthly invoices.
+  discounts:
+    - name: Volume commit
+      type: tiered
+      notes: Enterprise contracts may include committed-use discounts.
+reporting:
+  dashboardUrl: https://www.ankr.com/rpc/projects/
+  statistics:
+    - totalRequests
+    - topChains
+    - successRate
+    - failureRate
+    - usageHistory
+notes:
+  - Token-staking products generate revenue from validator fees and exchange ratios, not from API invoicing.
+  - Rollup-as-a-Service and Bitcoin Secured Infrastructure are sold as engineering+infra contracts, not metered APIs.
