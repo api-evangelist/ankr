@@ -1,0 +1,847 @@
+asyncapi: '2.6.0'
+id: 'urn:com:ankr:rpc-service:websocket'
+info:
+  title: Ankr RPC Service — WebSocket Subscriptions
+  version: '2026.05'
+  description: |
+    AsyncAPI description of Ankr's WebSocket JSON-RPC surface for blockchain
+    subscriptions. Ankr exposes a single multichain WSS endpoint at
+    `wss://rpc.ankr.com/{chain_slug}/{apiKey}` for every chain its
+    `chains-list` documentation marks as `HTTPS and WSS`.
+
+    WebSocket access requires the Freemium or Premium service plan, per
+    https://www.ankr.com/docs/rpc-service/service-plans/. WebSocket traffic is
+    metered as two actions — Subscription (establishing a WSS connection +
+    subscribing to events) and Notification (receiving a server-pushed update).
+    Pricing as of 2026-05: Solana Subscription/Notification 500 credits each
+    (~$0.00005), EVM-compatible Subscription 200 credits (~$0.00002), and
+    non-Solana Notification 100 credits (~$0.00001).
+
+    For each chain, Ankr commits to supporting "all the applicable methods
+    except for those listed as unsupported" (see
+    https://www.ankr.com/docs/rpc-service/chains/chains-list/). For EVM chains,
+    the WSS-only unsupported list is uniformly `txpool_content`, `txpool_inspect`,
+    `txpool_status`, `txpool_contentFrom`. For Solana, the only unsupported
+    method is `getLargestAccounts` (no subscribe methods are flagged as
+    unsupported).
+
+    Ankr's own documentation does NOT enumerate specific subscription type
+    names (newHeads, logs, newPendingTransactions, syncing for EVM;
+    accountSubscribe, logsSubscribe, programSubscribe, signatureSubscribe,
+    slotSubscribe, blockSubscribe, rootSubscribe, voteSubscribe,
+    slotsUpdatesSubscribe for Solana). To stay faithful to the source, this
+    spec models the JSON-RPC method surface that Ankr commits to
+    (`eth_subscribe` / `eth_unsubscribe` for EVM and the Solana subscribe
+    namespace) without inventing specific subscription type strings. The
+    canonical taxonomy of subscription types is delegated to the upstream
+    standards Ankr itself references:
+      * Ethereum execution-apis: https://github.com/ethereum/execution-apis
+      * Solana RPC websocket: https://solana.com/docs/rpc/websocket
+
+    See asyncapi/review.yml for the full documentation-gap log.
+  termsOfService: https://www.ankr.com/terms/
+  contact:
+    name: Ankr Support
+    url: https://www.ankr.com/docs/
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+  x-source:
+    pages:
+    - https://www.ankr.com/docs/rpc-service/chains/chains-list/
+    - https://www.ankr.com/docs/rpc-service/service-plans/
+    - https://www.ankr.com/docs/rpc-service/pricing/
+    - https://www.ankr.com/docs/rpc-service/chains/chains-api/ethereum/
+    - https://www.ankr.com/docs/rpc-service/chains/chains-api/solana/
+    github_repo: https://github.com/Ankr-network/ankr-docs
+    github_ref: stage
+
+defaultContentType: application/json
+
+servers:
+  # EVM chains documented as supporting WSS in chains-list.mdx.
+  # URL pattern `wss://rpc.ankr.com/{chain_slug}/{apiKey}` mirrors the documented
+  # HTTPS pattern; Ankr does not publish a literal wss:// example, but the
+  # service-plans page confirms WSS is the transport on the same per-chain
+  # endpoint surface.
+  ethereum:
+    url: rpc.ankr.com/eth/{apiKey}
+    protocol: wss
+    description: Ethereum Mainnet (plus Holesky / Sepolia via separate slugs)
+    variables:
+      apiKey:
+        description: Ankr project API key (Freemium or Premium plan required for WSS)
+        default: ''
+  ethereum-sepolia:
+    url: rpc.ankr.com/eth_sepolia/{apiKey}
+    protocol: wss
+    description: Ethereum Sepolia testnet
+    variables:
+      apiKey: { default: '' }
+  ethereum-holesky:
+    url: rpc.ankr.com/eth_holesky/{apiKey}
+    protocol: wss
+    description: Ethereum Holesky testnet
+    variables:
+      apiKey: { default: '' }
+  bnb-smart-chain:
+    url: rpc.ankr.com/bsc/{apiKey}
+    protocol: wss
+    description: BNB Smart Chain Mainnet
+    variables:
+      apiKey: { default: '' }
+  bnb-smart-chain-testnet:
+    url: rpc.ankr.com/bsc_testnet_chapel/{apiKey}
+    protocol: wss
+    description: BNB Smart Chain Chapel testnet
+    variables:
+      apiKey: { default: '' }
+  polygon:
+    url: rpc.ankr.com/polygon/{apiKey}
+    protocol: wss
+    description: Polygon Mainnet
+    variables:
+      apiKey: { default: '' }
+  polygon-amoy:
+    url: rpc.ankr.com/polygon_amoy/{apiKey}
+    protocol: wss
+    description: Polygon Amoy testnet
+    variables:
+      apiKey: { default: '' }
+  arbitrum:
+    url: rpc.ankr.com/arbitrum/{apiKey}
+    protocol: wss
+    description: Arbitrum One Mainnet
+    variables:
+      apiKey: { default: '' }
+  arbitrum-nova:
+    url: rpc.ankr.com/arbitrumnova/{apiKey}
+    protocol: wss
+    description: Arbitrum Nova Mainnet
+    variables:
+      apiKey: { default: '' }
+  optimism:
+    url: rpc.ankr.com/optimism/{apiKey}
+    protocol: wss
+    description: Optimism Mainnet (+ Sepolia documented)
+    variables:
+      apiKey: { default: '' }
+  base:
+    url: rpc.ankr.com/base/{apiKey}
+    protocol: wss
+    description: Base Mainnet (+ Sepolia documented)
+    variables:
+      apiKey: { default: '' }
+  avalanche:
+    url: rpc.ankr.com/avalanche/{apiKey}
+    protocol: wss
+    description: Avalanche Standard EVM API
+    variables:
+      apiKey: { default: '' }
+  fantom:
+    url: rpc.ankr.com/fantom/{apiKey}
+    protocol: wss
+    description: Fantom Mainnet
+    variables:
+      apiKey: { default: '' }
+  fantom-testnet:
+    url: rpc.ankr.com/fantom_testnet/{apiKey}
+    protocol: wss
+    description: Fantom testnet
+    variables:
+      apiKey: { default: '' }
+  gnosis:
+    url: rpc.ankr.com/gnosis/{apiKey}
+    protocol: wss
+    description: Gnosis Mainnet
+    variables:
+      apiKey: { default: '' }
+  celo:
+    url: rpc.ankr.com/celo/{apiKey}
+    protocol: wss
+    description: Celo Mainnet
+    variables:
+      apiKey: { default: '' }
+  moonbeam:
+    url: rpc.ankr.com/moonbeam/{apiKey}
+    protocol: wss
+    description: Moonbeam Mainnet
+    variables:
+      apiKey: { default: '' }
+  linea:
+    url: rpc.ankr.com/linea/{apiKey}
+    protocol: wss
+    description: Linea Mainnet
+    variables:
+      apiKey: { default: '' }
+  scroll:
+    url: rpc.ankr.com/scroll/{apiKey}
+    protocol: wss
+    description: Scroll Mainnet
+    variables:
+      apiKey: { default: '' }
+  zksync-era:
+    url: rpc.ankr.com/zksync_era/{apiKey}
+    protocol: wss
+    description: zkSync Era Mainnet
+    variables:
+      apiKey: { default: '' }
+  blast:
+    url: rpc.ankr.com/blast_testnet_sepolia/{apiKey}
+    protocol: wss
+    description: Blast Mainnet / Sepolia testnet
+    variables:
+      apiKey: { default: '' }
+  mantle:
+    url: rpc.ankr.com/mantle/{apiKey}
+    protocol: wss
+    description: Mantle Mainnet
+    variables:
+      apiKey: { default: '' }
+  metis:
+    url: rpc.ankr.com/metis/{apiKey}
+    protocol: wss
+    description: Metis Mainnet
+    variables:
+      apiKey: { default: '' }
+  filecoin:
+    url: rpc.ankr.com/filecoin/{apiKey}
+    protocol: wss
+    description: Filecoin Mainnet
+    variables:
+      apiKey: { default: '' }
+  flare:
+    url: rpc.ankr.com/flare/{apiKey}
+    protocol: wss
+    description: Flare Standard EVM Mainnet
+    variables:
+      apiKey: { default: '' }
+  harmony:
+    url: rpc.ankr.com/harmony/{apiKey}
+    protocol: wss
+    description: Harmony Mainnet
+    variables:
+      apiKey: { default: '' }
+  iotex:
+    url: rpc.ankr.com/iotex/{apiKey}
+    protocol: wss
+    description: IoTeX Mainnet
+    variables:
+      apiKey: { default: '' }
+  iota-evm:
+    url: rpc.ankr.com/iota_evm/{apiKey}
+    protocol: wss
+    description: IOTA EVM Mainnet
+    variables:
+      apiKey: { default: '' }
+  kaia:
+    url: rpc.ankr.com/kaia/{apiKey}
+    protocol: wss
+    description: Kaia Mainnet
+    variables:
+      apiKey: { default: '' }
+  kava-evm:
+    url: rpc.ankr.com/kava_evm/{apiKey}
+    protocol: wss
+    description: Kava EVM Mainnet
+    variables:
+      apiKey: { default: '' }
+  sei-evm:
+    url: rpc.ankr.com/sei_evm/{apiKey}
+    protocol: wss
+    description: Sei EVM Mainnet
+    variables:
+      apiKey: { default: '' }
+  heco:
+    url: rpc.ankr.com/heco/{apiKey}
+    protocol: wss
+    description: Huobi ECO Chain Mainnet
+    variables:
+      apiKey: { default: '' }
+  horizen-eon:
+    url: rpc.ankr.com/horizen_eon/{apiKey}
+    protocol: wss
+    description: Horizen EON Mainnet
+    variables:
+      apiKey: { default: '' }
+  rollux:
+    url: rpc.ankr.com/rollux/{apiKey}
+    protocol: wss
+    description: Rollux Mainnet
+    variables:
+      apiKey: { default: '' }
+  syscoin:
+    url: rpc.ankr.com/syscoin/{apiKey}
+    protocol: wss
+    description: Syscoin Mainnet
+    variables:
+      apiKey: { default: '' }
+  telos:
+    url: rpc.ankr.com/telos/{apiKey}
+    protocol: wss
+    description: Telos Mainnet
+    variables:
+      apiKey: { default: '' }
+  xai:
+    url: rpc.ankr.com/xai/{apiKey}
+    protocol: wss
+    description: Xai Mainnet
+    variables:
+      apiKey: { default: '' }
+  xdc:
+    url: rpc.ankr.com/xdc/{apiKey}
+    protocol: wss
+    description: XDC Network Mainnet
+    variables:
+      apiKey: { default: '' }
+  xlayer:
+    url: rpc.ankr.com/xlayer/{apiKey}
+    protocol: wss
+    description: X Layer Mainnet
+    variables:
+      apiKey: { default: '' }
+  monad:
+    url: rpc.ankr.com/monad_testnet/{apiKey}
+    protocol: wss
+    description: Monad Mainnet / Testnet
+    variables:
+      apiKey: { default: '' }
+  sonic:
+    url: rpc.ankr.com/sonic_mainnet/{apiKey}
+    protocol: wss
+    description: Sonic Mainnet
+    variables:
+      apiKey: { default: '' }
+  story:
+    url: rpc.ankr.com/story_mainnet/{apiKey}
+    protocol: wss
+    description: Story Mainnet
+    variables:
+      apiKey: { default: '' }
+  swell:
+    url: rpc.ankr.com/swell/{apiKey}
+    protocol: wss
+    description: Swell Mainnet / Sepolia
+    variables:
+      apiKey: { default: '' }
+  taiko:
+    url: rpc.ankr.com/taiko_hekla/{apiKey}
+    protocol: wss
+    description: Taiko Hekla testnet
+    variables:
+      apiKey: { default: '' }
+  kite:
+    url: rpc.ankr.com/kite_mainnet/{apiKey}
+    protocol: wss
+    description: Kite AI Mainnet
+    variables:
+      apiKey: { default: '' }
+  bahamut:
+    url: rpc.ankr.com/bahamut/{apiKey}
+    protocol: wss
+    description: Bahamut Mainnet
+    variables:
+      apiKey: { default: '' }
+  b2-network:
+    url: rpc.ankr.com/b2/{apiKey}
+    protocol: wss
+    description: B2 Network Mainnet
+    variables:
+      apiKey: { default: '' }
+  bitlayer:
+    url: rpc.ankr.com/bitlayer/{apiKey}
+    protocol: wss
+    description: Bitlayer Mainnet
+    variables:
+      apiKey: { default: '' }
+  botanix:
+    url: rpc.ankr.com/botanix_testnet/{apiKey}
+    protocol: wss
+    description: Botanix Mainnet / Testnet
+    variables:
+      apiKey: { default: '' }
+  chiliz:
+    url: rpc.ankr.com/chiliz/{apiKey}
+    protocol: wss
+    description: Chiliz Mainnet
+    variables:
+      apiKey: { default: '' }
+  core:
+    url: rpc.ankr.com/core/{apiKey}
+    protocol: wss
+    description: Core Mainnet
+    variables:
+      apiKey: { default: '' }
+  corn:
+    url: rpc.ankr.com/corn_maizenet/{apiKey}
+    protocol: wss
+    description: Corn Mainnet
+    variables:
+      apiKey: { default: '' }
+  electroneum:
+    url: rpc.ankr.com/electroneum/{apiKey}
+    protocol: wss
+    description: Electroneum Mainnet
+    variables:
+      apiKey: { default: '' }
+  etherlink:
+    url: rpc.ankr.com/etherlink_mainnet/{apiKey}
+    protocol: wss
+    description: Etherlink Mainnet
+    variables:
+      apiKey: { default: '' }
+  goat:
+    url: rpc.ankr.com/goat_testnet/{apiKey}
+    protocol: wss
+    description: GOAT testnet
+    variables:
+      apiKey: { default: '' }
+  gravity:
+    url: rpc.ankr.com/gravity/{apiKey}
+    protocol: wss
+    description: Gravity Mainnet
+    variables:
+      apiKey: { default: '' }
+  kinto:
+    url: rpc.ankr.com/kinto/{apiKey}
+    protocol: wss
+    description: Kinto Mainnet
+    variables:
+      apiKey: { default: '' }
+  matchain:
+    url: rpc.ankr.com/matchain_mainnet/{apiKey}
+    protocol: wss
+    description: Matchain Mainnet
+    variables:
+      apiKey: { default: '' }
+  neura:
+    url: rpc.ankr.com/neura_testnet/{apiKey}
+    protocol: wss
+    description: Neura testnet
+    variables:
+      apiKey: { default: '' }
+  somnia:
+    url: rpc.ankr.com/somnia_testnet/{apiKey}
+    protocol: wss
+    description: Somnia testnet
+    variables:
+      apiKey: { default: '' }
+  tac:
+    url: rpc.ankr.com/tac_turin/{apiKey}
+    protocol: wss
+    description: TAC Mainnet / SPB / Turin
+    variables:
+      apiKey: { default: '' }
+  tenet:
+    url: rpc.ankr.com/tenet_evm/{apiKey}
+    protocol: wss
+    description: Tenet Mainnet Beta
+    variables:
+      apiKey: { default: '' }
+  xphere:
+    url: rpc.ankr.com/xphere_mainnet/{apiKey}
+    protocol: wss
+    description: Xphere Mainnet / Testnet
+    variables:
+      apiKey: { default: '' }
+
+  # Non-EVM chains documented as supporting WSS.
+  solana:
+    url: rpc.ankr.com/solana/{apiKey}
+    protocol: wss
+    description: |
+      Solana Mainnet WebSocket endpoint. Per chains-list.mdx, the only Solana
+      method Ankr flags as unsupported is `getLargestAccounts`; the subscribe
+      method taxonomy follows the upstream Solana RPC websocket spec
+      (https://solana.com/docs/rpc/websocket). Ankr does not enumerate
+      individual *Subscribe methods in its docs.
+    variables:
+      apiKey: { default: '' }
+  solana-devnet:
+    url: rpc.ankr.com/solana_devnet/{apiKey}
+    protocol: wss
+    description: Solana Devnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  xrp:
+    url: rpc.ankr.com/xrp_mainnet/{apiKey}
+    protocol: wss
+    description: XRP Mainnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  ton:
+    url: rpc.ankr.com/ton_api_v2/{apiKey}
+    protocol: wss
+    description: TON JSON-RPC Mainnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  polkadot:
+    url: rpc.ankr.com/polkadot/{apiKey}
+    protocol: wss
+    description: Polkadot Mainnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  kusama:
+    url: rpc.ankr.com/kusama/{apiKey}
+    protocol: wss
+    description: Kusama Mainnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  sui:
+    url: rpc.ankr.com/sui/{apiKey}
+    protocol: wss
+    description: Sui Mainnet / Testnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  nervos:
+    url: rpc.ankr.com/nervos/{apiKey}
+    protocol: wss
+    description: Nervos CKB Mainnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  zero-g-evm:
+    url: rpc.ankr.com/0g_galileo_testnet_evm/{apiKey}
+    protocol: wss
+    description: 0G Galileo EVM testnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  zero-g-tendermint:
+    url: rpc.ankr.com/0g_galileo_testnet_tendermint/{apiKey}
+    protocol: wss
+    description: 0G Galileo Tendermint testnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  allora:
+    url: rpc.ankr.com/allora_testnet/{apiKey}
+    protocol: wss
+    description: Allora Tendermint testnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  atleta:
+    url: rpc.ankr.com/atleta_olympia/{apiKey}
+    protocol: wss
+    description: Atleta Olympia WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  avail:
+    url: rpc.ankr.com/avail_turing_testnet/{apiKey}
+    protocol: wss
+    description: Avail Turing testnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  secret-network:
+    url: rpc.ankr.com/scrt/{apiKey}
+    protocol: wss
+    description: Secret Network Tendermint Mainnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+  midnight:
+    url: rpc.ankr.com/midnight_testnet/{apiKey}
+    protocol: wss
+    description: Midnight testnet WebSocket endpoint
+    variables:
+      apiKey: { default: '' }
+
+channels:
+  # ---- EVM JSON-RPC subscription channels ----
+  #
+  # Ankr documents support for the standard Ethereum execution-apis JSON-RPC
+  # surface over WSS. The unsupported list for every WSS-enabled EVM chain
+  # is the same four methods: txpool_content, txpool_inspect, txpool_status,
+  # txpool_contentFrom. eth_subscribe / eth_unsubscribe are NOT on the
+  # unsupported list and therefore are committed-to surfaces.
+  #
+  # Ankr does NOT enumerate which subscription type strings eth_subscribe
+  # accepts. Per the canonical execution-apis spec, the standard set is
+  # newHeads, logs, newPendingTransactions, syncing — but those are not
+  # named in Ankr's docs and so are intentionally not enumerated here.
+
+  /evm/eth_subscribe:
+    description: |
+      Client invokes `eth_subscribe` to subscribe to a stream of
+      server-pushed events. The first parameter is a subscription-type
+      string; the optional second parameter is a type-specific options
+      object. Ankr does not enumerate accepted subscription-type strings —
+      consult the upstream Ethereum execution-apis spec.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: ethSubscribe
+      summary: Subscribe to an EVM event stream
+      message:
+        $ref: '#/components/messages/EthSubscribeRequest'
+    subscribe:
+      operationId: ethSubscribeNotifications
+      summary: Receive eth_subscription notifications
+      message:
+        $ref: '#/components/messages/EthSubscriptionNotification'
+
+  /evm/eth_unsubscribe:
+    description: |
+      Client invokes `eth_unsubscribe` with a previously-returned subscription
+      ID to cancel a stream.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: ethUnsubscribe
+      summary: Cancel an existing EVM subscription
+      message:
+        $ref: '#/components/messages/EthUnsubscribeRequest'
+
+  # ---- Solana JSON-RPC subscription channels ----
+  #
+  # Per chains-list.mdx, Ankr supports all "applicable" Solana RPC methods on
+  # both HTTPS and WSS except `getLargestAccounts`. Ankr's Solana
+  # documentation page documents only HTTP methods; subscription methods
+  # are not individually named. The canonical Solana RPC websocket spec
+  # (https://solana.com/docs/rpc/websocket) defines the subscribe namespace.
+  # Rather than fabricate a per-method enumeration Ankr has not itself
+  # committed to, this channel models the subscribe namespace generically.
+
+  /solana/subscribe:
+    description: |
+      Client invokes one of Solana's `*Subscribe` JSON-RPC methods to open a
+      stream (e.g. `accountSubscribe`, `logsSubscribe`, `slotSubscribe`,
+      `programSubscribe`, `signatureSubscribe`, `blockSubscribe`,
+      `rootSubscribe`, `voteSubscribe`, `slotsUpdatesSubscribe`).
+      Per Ankr's chains-list documentation, Ankr commits to all standard
+      Solana RPC methods except `getLargestAccounts`. Ankr does not
+      individually document any *Subscribe method.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: solanaSubscribe
+      summary: Open a Solana subscription stream
+      message:
+        $ref: '#/components/messages/SolanaSubscribeRequest'
+    subscribe:
+      operationId: solanaNotifications
+      summary: Receive Solana subscription notifications
+      message:
+        $ref: '#/components/messages/SolanaSubscriptionNotification'
+
+  /solana/unsubscribe:
+    description: |
+      Client invokes one of Solana's `*Unsubscribe` JSON-RPC methods to close
+      a stream.
+    bindings:
+      ws:
+        bindingVersion: '0.1.0'
+    publish:
+      operationId: solanaUnsubscribe
+      summary: Cancel an existing Solana subscription
+      message:
+        $ref: '#/components/messages/SolanaUnsubscribeRequest'
+
+components:
+  messages:
+    EthSubscribeRequest:
+      name: EthSubscribeRequest
+      title: eth_subscribe JSON-RPC request
+      summary: |
+        Client → server JSON-RPC 2.0 request opening an EVM subscription.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EthSubscribeRequest'
+
+    EthUnsubscribeRequest:
+      name: EthUnsubscribeRequest
+      title: eth_unsubscribe JSON-RPC request
+      summary: |
+        Client → server JSON-RPC 2.0 request closing an EVM subscription.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EthUnsubscribeRequest'
+
+    EthSubscriptionNotification:
+      name: EthSubscriptionNotification
+      title: eth_subscription notification
+      summary: |
+        Server → client JSON-RPC notification delivered while the subscription
+        is open. The shape of `params.result` is governed by the upstream
+        Ethereum execution-apis spec for the requested subscription type.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/EthSubscriptionNotification'
+
+    SolanaSubscribeRequest:
+      name: SolanaSubscribeRequest
+      title: Solana *Subscribe JSON-RPC request
+      summary: |
+        Client → server JSON-RPC 2.0 request opening a Solana subscription.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SolanaSubscribeRequest'
+
+    SolanaUnsubscribeRequest:
+      name: SolanaUnsubscribeRequest
+      title: Solana *Unsubscribe JSON-RPC request
+      summary: |
+        Client → server JSON-RPC 2.0 request closing a Solana subscription.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SolanaUnsubscribeRequest'
+
+    SolanaSubscriptionNotification:
+      name: SolanaSubscriptionNotification
+      title: Solana subscription notification
+      summary: |
+        Server → client JSON-RPC notification delivered while the subscription
+        is open. The shape of `params.result` is governed by the upstream
+        Solana RPC websocket spec for the requested subscription method.
+      contentType: application/json
+      payload:
+        $ref: '#/components/schemas/SolanaSubscriptionNotification'
+
+  schemas:
+    JsonRpcId:
+      description: JSON-RPC 2.0 request id
+      oneOf:
+        - type: string
+        - type: integer
+        - type: 'null'
+
+    EthSubscribeRequest:
+      type: object
+      required: [jsonrpc, id, method, params]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ['2.0']
+        id:
+          $ref: '#/components/schemas/JsonRpcId'
+        method:
+          type: string
+          enum: [eth_subscribe]
+        params:
+          type: array
+          minItems: 1
+          maxItems: 2
+          description: |
+            First element is the subscription-type string; second optional
+            element is a type-specific options object. Ankr does not enumerate
+            accepted type strings; consult the Ethereum execution-apis spec
+            (https://github.com/ethereum/execution-apis) for the canonical set.
+          items:
+            oneOf:
+              - type: string
+              - type: object
+
+    EthUnsubscribeRequest:
+      type: object
+      required: [jsonrpc, id, method, params]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ['2.0']
+        id:
+          $ref: '#/components/schemas/JsonRpcId'
+        method:
+          type: string
+          enum: [eth_unsubscribe]
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: string
+            description: Subscription ID returned by the original eth_subscribe call
+
+    EthSubscriptionNotification:
+      type: object
+      required: [jsonrpc, method, params]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ['2.0']
+        method:
+          type: string
+          enum: [eth_subscription]
+        params:
+          type: object
+          required: [subscription, result]
+          properties:
+            subscription:
+              type: string
+              description: ID returned by the original eth_subscribe request
+            result:
+              description: |
+                Type-specific event payload. Schema is determined by the
+                subscription-type string used at subscribe time; not enumerated
+                by Ankr.
+
+    SolanaSubscribeRequest:
+      type: object
+      required: [jsonrpc, id, method]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ['2.0']
+        id:
+          $ref: '#/components/schemas/JsonRpcId'
+        method:
+          type: string
+          description: |
+            One of Solana's subscribe methods. Ankr does not individually
+            document these; the canonical taxonomy is defined by the Solana
+            RPC websocket spec (https://solana.com/docs/rpc/websocket).
+        params:
+          type: array
+          description: Method-specific positional parameters
+
+    SolanaUnsubscribeRequest:
+      type: object
+      required: [jsonrpc, id, method, params]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ['2.0']
+        id:
+          $ref: '#/components/schemas/JsonRpcId'
+        method:
+          type: string
+          description: |
+            One of Solana's unsubscribe methods (paired with a subscribe
+            method, e.g. accountUnsubscribe).
+        params:
+          type: array
+          minItems: 1
+          maxItems: 1
+          items:
+            type: integer
+            description: Subscription ID returned by the original subscribe call
+
+    SolanaSubscriptionNotification:
+      type: object
+      required: [jsonrpc, method, params]
+      properties:
+        jsonrpc:
+          type: string
+          enum: ['2.0']
+        method:
+          type: string
+          description: |
+            Notification method name. Schema is defined by the upstream Solana
+            RPC websocket spec for each subscribe method.
+        params:
+          type: object
+          required: [subscription, result]
+          properties:
+            subscription:
+              type: integer
+              description: ID returned by the original subscribe request
+            result:
+              description: Method-specific event payload
+
+  securitySchemes:
+    apiKey:
+      type: apiKey
+      in: user
+      description: |
+        Ankr authenticates WebSocket connections by embedding the project
+        API key as the last URL path segment (server `apiKey` variable).
+        Obtain a key from https://www.ankr.com/rpc/projects/. The Freemium
+        or Premium plan is required to use the WSS transport.

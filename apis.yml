@@ -18,6 +18,8 @@ apis:
     type: Documentation
   - url: openapi/ankr-rpc-service-openapi.yml
     type: OpenAPI
+  - url: asyncapi/ankr-asyncapi.yml
+    type: AsyncAPI
   - url: json-ld/ankr-context.jsonld
     type: JSONLD
   - type: NaftikoCapability
@@ -246,7 +248,7 @@ common:
   - https://github.com/Ankr-network
   updated: '2026-05-25'
 created: '2026-05-25'
-modified: '2026-05-25'
+modified: '2026-05-29'
 position: Consuming
 description: |
   Ankr is a Web3 infrastructure provider whose multichain RPC, Advanced API, liquid staking,

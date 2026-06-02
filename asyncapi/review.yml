@@ -1,0 +1,324 @@
+aid: ankr
+generated: '2026-05-29'
+target: AsyncAPI 2.6 spec for Ankr's WebSocket-based RPC subscriptions
+status: partial
+summary: |
+  Ankr publicly documents that WSS is supported on ~50 EVM/EVM-adjacent chains and on
+  Solana, and that WebSocket traffic is metered as Subscription + Notification actions.
+  However, Ankr's documentation does NOT enumerate the specific subscription types
+  (e.g. newHeads, logs, newPendingTransactions, syncing for EVM; accountSubscribe,
+  logsSubscribe, programSubscribe, signatureSubscribe, slotSubscribe, blockSubscribe,
+  rootSubscribe, voteSubscribe, slotsUpdatesSubscribe for Solana).
+  Per the hard rule "every subscription from official Ankr docs — no fabrication",
+  the resulting AsyncAPI spec is intentionally conservative: it models the
+  JSON-RPC-over-WebSocket envelope and the eth_subscribe / eth_unsubscribe operations
+  Ankr commits to, plus the Solana subscribe/unsubscribe namespace, without
+  enumerating individual subscription types Ankr has not itself named.
+
+sources_consulted:
+- url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  github_path: pages/rpc-service/chains/chains-list.mdx
+  status: fetched
+  notes: |
+    Authoritative source for which chains/networks expose WSS. Lists 50+ EVM chains
+    and Solana Mainnet+Devnet as `HTTPS and WSS`. For each chain's WSS surface, the
+    only explicitly unsupported methods are `txpool_content`, `txpool_inspect`,
+    `txpool_status`, `txpool_contentFrom`. Confirms Solana WSS support; only
+    `getLargestAccounts` is listed as unsupported for Solana (no subscribe methods
+    enumerated).
+- url: https://www.ankr.com/docs/rpc-service/service-plans/
+  github_path: pages/rpc-service/service-plans.mdx
+  status: fetched
+  notes: |
+    Confirms WSS connection requires Freemium/Premium plan. Documents WebSocket
+    interaction as two actions: Subscription (establishing WSS + subscribing to
+    events) and Notification (receiving events). Prices Solana subscriptions at
+    500 credits and EVM-compatible at 200 credits; Solana notifications at 500
+    credits, "Other" notifications at 100 credits.
+- url: https://www.ankr.com/docs/rpc-service/pricing/
+  github_path: pages/rpc-service/pricing.mdx
+  status: fetched
+  notes: Same WSS pricing table as service-plans.mdx.
+- url: https://www.ankr.com/docs/rpc-service/chains/chains-api/ethereum/
+  github_path: pages/rpc-service/chains/chains-api/ethereum.mdx
+  status: fetched
+  notes: |
+    Documents standard Ethereum JSON-RPC methods (web3_*, net_*, eth_*) over
+    HTTPS. Does NOT document eth_subscribe, eth_unsubscribe, or any specific
+    subscription type (newHeads, logs, newPendingTransactions, syncing). The
+    docs implicitly cover them via the "all applicable methods except those
+    listed as unsupported" statement on chains-list.mdx.
+- url: https://www.ankr.com/docs/rpc-service/chains/chains-api/solana/
+  github_path: pages/rpc-service/chains/chains-api/solana.mdx
+  status: fetched
+  notes: |
+    Documents 50 Solana HTTP JSON-RPC methods (getAccountInfo, getBalance, getBlock,
+    sendTransaction, simulateTransaction, etc.). Does NOT document any *Subscribe
+    method (accountSubscribe, logsSubscribe, programSubscribe, signatureSubscribe,
+    slotSubscribe, blockSubscribe, rootSubscribe, voteSubscribe,
+    slotsUpdatesSubscribe). The chains-list page asserts WSS is supported on
+    Solana Mainnet and Devnet without enumerating subscription types.
+- url: https://www.ankr.com/docs/rpc-service/chains/chains-api/websocket/
+  status: not_found
+  notes: |
+    No dedicated WebSocket subscriptions page exists in the Ankr documentation
+    repository (Ankr-network/ankr-docs on branch `stage`). A repository-wide
+    search for `websocket|subscribe|wss://` produced no dedicated reference page
+    for eth_subscribe types or Solana subscription methods.
+
+documentation_gaps:
+- gap: Ankr publishes no canonical wss:// URL example anywhere in its docs
+  decision: |
+    Followed the implicit Web3 convention used by the documented HTTPS endpoints
+    — wss://rpc.ankr.com/{chain_slug}/{apiKey} — and called this assumption out
+    explicitly in spec comments. Chain slugs reused from documented HTTPS URLs.
+- gap: |
+    Ankr does not enumerate which specific eth_subscribe types it accepts
+    (newHeads, logs, newPendingTransactions, syncing).
+  decision: |
+    The AsyncAPI spec does NOT enumerate specific subscription type strings to
+    avoid fabrication. It models eth_subscribe / eth_unsubscribe as the request
+    methods with the first param being a `subscription_type` string, leaving
+    the type taxonomy to upstream Ethereum execution-API spec
+    (https://github.com/ethereum/execution-apis), which Ankr's chains-list page
+    references as the canonical surface ("we support blockchain interaction via
+    all the applicable methods except for those listed as unsupported").
+- gap: |
+    Ankr's Solana page does not list any *Subscribe method by name.
+  decision: |
+    AsyncAPI spec defers to the canonical Solana RPC websocket spec
+    (https://solana.com/docs/rpc/websocket) for the subscribe method taxonomy and
+    does not enumerate individual methods Ankr has not itself documented.
+
+chains_with_documented_wss_support:
+  source: pages/rpc-service/chains/chains-list.mdx
+  evm_compatible:
+  - chain: Arbitrum
+    slug: arbitrum
+    networks: [Mainnet, Testnet]
+  - chain: Arbitrum Nova
+    slug: arbitrumnova
+    networks: [Mainnet]
+  - chain: Atleta
+    slug: atleta_olympia
+    networks: [Olympia]
+  - chain: Avalanche
+    slug: avalanche
+    networks: [Standard EVM Mainnet]
+  - chain: B2 Network
+    slug: b2
+    networks: [Mainnet, Testnet]
+  - chain: Bahamut
+    slug: bahamut
+    networks: [Mainnet, Testnet]
+  - chain: Base
+    slug: base
+    networks: [Mainnet, Sepolia]
+  - chain: Bitlayer
+    slug: bitlayer
+    networks: [Mainnet, Testnet]
+  - chain: Blast
+    slug: blast_testnet_sepolia
+    networks: [Mainnet, Sepolia Testnet]
+  - chain: BNB Smart Chain
+    slug: bsc
+    networks: [Mainnet, Chapel Testnet]
+  - chain: Botanix
+    slug: botanix_testnet
+    networks: [Mainnet, Testnet]
+  - chain: Celo
+    slug: celo
+    networks: [Mainnet, Testnet]
+  - chain: Chiliz
+    slug: chiliz
+    networks: [Mainnet]
+  - chain: Core
+    slug: core
+    networks: [Mainnet]
+  - chain: Corn
+    slug: corn_maizenet
+    networks: [Mainnet, Testnet]
+  - chain: Electroneum
+    slug: electroneum
+    networks: [Mainnet, Testnet]
+  - chain: Ethereum
+    slug: eth
+    networks: [Mainnet, Holesky, Sepolia]
+  - chain: Etherlink
+    slug: etherlink_mainnet
+    networks: [Mainnet, Testnet]
+  - chain: Fantom
+    slug: fantom
+    networks: [Mainnet, Testnet]
+  - chain: Filecoin
+    slug: filecoin
+    networks: [Mainnet, Testnet]
+  - chain: Flare
+    slug: flare
+    networks: [Standard EVM Mainnet]
+  - chain: Gnosis
+    slug: gnosis
+    networks: [Mainnet, Testnet]
+  - chain: GOAT
+    slug: goat_testnet
+    networks: [Testnet]
+  - chain: Gravity
+    slug: gravity
+    networks: [Mainnet]
+  - chain: Linea
+    slug: linea
+    networks: [Mainnet]
+  - chain: Harmony
+    slug: harmony
+    networks: [Mainnet]
+  - chain: Huobi ECO Chain
+    slug: heco
+    networks: [Mainnet]
+  - chain: Horizen EON
+    slug: horizen_eon
+    networks: [Mainnet, Gobi Testnet]
+  - chain: IOTA EVM
+    slug: iota_evm
+    networks: [Mainnet, Testnet]
+  - chain: IoTeX
+    slug: iotex
+    networks: [Mainnet, Testnet]
+  - chain: Kaia
+    slug: kaia
+    networks: [Mainnet, Testnet]
+  - chain: Kava
+    slug: kava_evm
+    networks: [EVM Mainnet]
+  - chain: Kinto
+    slug: kinto
+    networks: [Mainnet]
+  - chain: Mantle
+    slug: mantle
+    networks: [Mainnet, Sepolia Testnet]
+  - chain: Matchain
+    slug: matchain_mainnet
+    networks: [Mainnet]
+  - chain: Metis
+    slug: metis
+    networks: [Mainnet]
+  - chain: Monad
+    slug: monad_testnet
+    networks: [Mainnet, Testnet]
+  - chain: Moonbeam
+    slug: moonbeam
+    networks: [Mainnet]
+  - chain: Neura
+    slug: neura_testnet
+    networks: [Testnet]
+  - chain: Optimism
+    slug: optimism
+    networks: [Mainnet, Sepolia]
+  - chain: Polygon
+    slug: polygon
+    networks: [Mainnet, Amoy Testnet]
+  - chain: Rollux
+    slug: rollux
+    networks: [Mainnet, Testnet]
+  - chain: Scroll
+    slug: scroll
+    networks: [Mainnet, Sepolia Testnet]
+  - chain: Sei
+    slug: sei_evm
+    networks: [EVM Mainnet]
+  - chain: Somnia
+    slug: somnia_testnet
+    networks: [Testnet]
+  - chain: Sonic
+    slug: sonic_mainnet
+    networks: [Mainnet, Testnet]
+  - chain: Story
+    slug: story_mainnet
+    networks: [Mainnet, Testnet]
+  - chain: Swell
+    slug: swell
+    networks: [Mainnet, Sepolia]
+  - chain: Syscoin
+    slug: syscoin
+    networks: [Mainnet]
+  - chain: TAC
+    slug: tac_turin
+    networks: [Mainnet, SPB, Turin]
+  - chain: Taiko
+    slug: taiko_hekla
+    networks: [Hekla Testnet]
+  - chain: Kite AI
+    slug: kite_mainnet
+    networks: [Mainnet]
+  - chain: Telos
+    slug: telos
+    networks: [Mainnet, Testnet]
+  - chain: Tenet
+    slug: tenet_evm
+    networks: [Mainnet Beta]
+  - chain: Xai
+    slug: xai
+    networks: [Mainnet, Testnet]
+  - chain: XDC Network
+    slug: xdc
+    networks: [Mainnet, Testnet]
+  - chain: X Layer
+    slug: xlayer
+    networks: [Mainnet, Testnet]
+  - chain: Xphere
+    slug: xphere_mainnet
+    networks: [Mainnet, Testnet]
+  - chain: zkSync Era
+    slug: zksync_era
+    networks: [Mainnet, Testnet]
+  non_evm:
+  - chain: Solana
+    slug: solana
+    networks: [Mainnet, Devnet]
+  - chain: XRP
+    slug: xrp_mainnet
+    networks: [Mainnet]
+  - chain: TON
+    slug: ton_api_v2
+    networks: [JSON-RPC Mainnet]
+  - chain: Polkadot
+    slug: polkadot
+    networks: [Mainnet]
+  - chain: Kusama
+    slug: kusama
+    networks: [Mainnet]
+  - chain: Sui
+    slug: sui
+    networks: [Mainnet, Testnet]
+  - chain: Nervos
+    slug: nervos
+    networks: [Nervos CKB Mainnet]
+  - chain: Allora
+    slug: allora_testnet
+    networks: [Tendermint RPC Testnet]
+  - chain: 0G
+    slug: 0g_galileo_testnet_evm
+    networks: [EVM Testnet, Tendermint Testnet]
+  - chain: Atleta
+    slug: atleta_olympia
+    networks: [Olympia]
+  - chain: Avail
+    slug: avail_turing_testnet
+    networks: [Turing Testnet]
+  - chain: Secret Network
+    slug: scrt
+    networks: [Tendermint Mainnet]
+  - chain: Midnight
+    slug: midnight_testnet
+    networks: [Testnet]
+
+what_was_produced:
+- file: asyncapi/ankr-asyncapi.yml
+  scope: |
+    AsyncAPI 2.6 spec covering the JSON-RPC-over-WebSocket envelope Ankr commits
+    to via the chains-list and service-plans pages. Servers include the EVM
+    chains and Solana documented as `HTTPS and WSS`. Channels are scoped to
+    eth_subscribe / eth_unsubscribe (EVM) and the Solana subscribe/unsubscribe
+    method namespace, with a `subscription_type` parameter intentionally left
+    unenumerated so the spec does not invent commitments Ankr has not made.
+- file: asyncapi/review.yml
+  scope: This file. Documents what the docs do and do not commit to.
