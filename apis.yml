@@ -132,6 +132,36 @@ apis:
     AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
     UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/ankr-block-log-inspection-workflow.yml
+    name: Ankr Block And Log Inspection
+    summary: Read full blocks for a range, then pull event logs from the same range.
+  - url: arazzo/ankr-chain-overview-workflow.yml
+    name: Ankr Chain Overview
+    summary: Read a chain's aggregate stats, then its supported currency catalog.
+  - url: arazzo/ankr-nft-collection-audit-workflow.yml
+    name: Ankr NFT Collection Audit
+    summary: Pull a collection's holders and then its transfer history.
+  - url: arazzo/ankr-nft-inventory-workflow.yml
+    name: Ankr Wallet NFT Inventory
+    summary: List the NFTs owned by a wallet, then enrich one with full metadata.
+  - url: arazzo/ankr-token-holder-distribution-workflow.yml
+    name: Ankr Token Holder Distribution
+    summary: Count an ERC-20 token's holders, then list them and read its price.
+  - url: arazzo/ankr-token-price-and-history-workflow.yml
+    name: Ankr Token Price And History
+    summary: Read a token's current price, then its historical price series.
+  - url: arazzo/ankr-transaction-deep-dive-workflow.yml
+    name: Ankr Transaction Deep Dive
+    summary: Pull a wallet's transactions, then decode the most recent one in full.
+  - url: arazzo/ankr-wallet-cross-chain-activity-workflow.yml
+    name: Ankr Wallet Cross-Chain Activity
+    summary: Discover the chains a wallet uses, then pull its transaction history.
+  - url: arazzo/ankr-wallet-portfolio-workflow.yml
+    name: Ankr Wallet Portfolio Snapshot
+    summary: Read a wallet's token balances and then its recent ERC-20 transfer history.
 - url: https://www.ankr.com
   type: Portal
 - url: https://www.ankr.com/docs/

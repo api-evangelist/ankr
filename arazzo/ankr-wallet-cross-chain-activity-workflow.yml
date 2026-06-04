@@ -1,0 +1,82 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Wallet Cross-Chain Activity
+  summary: Discover the chains a wallet uses, then pull its transaction history.
+  description: >-
+    Maps a wallet's cross-chain footprint by first discovering which chains it has
+    interacted with via ankr_getInteractions and then pulling its full transaction
+    history with ankr_getTransactionsByAddress across the supplied chains. Each
+    step is written out inline as a JSON-RPC call so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: wallet-cross-chain-activity
+  summary: Discover a wallet's active chains, then read its transaction history.
+  description: >-
+    Discovers the set of chains a wallet has interacted with and then retrieves
+    the full transaction history for that wallet across the supplied chains.
+  inputs:
+    type: object
+    required:
+    - walletAddress
+    - blockchain
+    properties:
+      walletAddress:
+        type: string
+        description: The wallet address to profile.
+      blockchain:
+        type: array
+        items:
+          type: string
+        description: One or more chain names to pull transaction history from.
+      pageSize:
+        type: integer
+        description: Maximum number of transactions to return per page.
+      descOrder:
+        type: boolean
+        description: Return transactions newest-first when true.
+  steps:
+  - stepId: getInteractions
+    description: >-
+      Discover the chains the wallet has interacted with.
+    operationId: ankrGetInteractions
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getInteractions
+        params:
+          walletAddress: $inputs.walletAddress
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      interactions: $response.body#/result
+  - stepId: getTransactions
+    description: >-
+      Retrieve the full transaction history for the wallet across the supplied
+      chains.
+    operationId: ankrGetTransactionsByAddress
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTransactionsByAddress
+        params:
+          address:
+          - $inputs.walletAddress
+          blockchain: $inputs.blockchain
+          pageSize: $inputs.pageSize
+          descOrder: $inputs.descOrder
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactions: $response.body#/result
+  outputs:
+    interactions: $steps.getInteractions.outputs.interactions
+    transactions: $steps.getTransactions.outputs.transactions

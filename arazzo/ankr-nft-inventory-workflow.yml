@@ -1,0 +1,97 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Wallet NFT Inventory
+  summary: List the NFTs owned by a wallet, then enrich one with full metadata.
+  description: >-
+    Inventories the NFTs held by a wallet with ankr_getNFTsByOwner, then drills
+    into a single asset by pulling its detailed metadata with ankr_getNFTMetadata.
+    When the wallet owns no NFTs the flow ends after the listing step. Each step
+    is written out inline as a JSON-RPC call so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: nft-inventory
+  summary: List a wallet's NFTs and fetch metadata for the first asset.
+  description: >-
+    Lists the NFTs owned by a wallet across the supplied chains and, when at
+    least one asset is returned, retrieves the full metadata for the first asset.
+  inputs:
+    type: object
+    required:
+    - walletAddress
+    - blockchain
+    properties:
+      walletAddress:
+        type: string
+        description: The wallet address whose NFTs are listed.
+      blockchain:
+        type: array
+        items:
+          type: string
+        description: One or more chain names to scan for NFTs.
+      pageSize:
+        type: integer
+        description: Maximum number of NFTs to return per page.
+  steps:
+  - stepId: listNfts
+    description: >-
+      Retrieve the list of NFTs owned by the wallet across the supplied chains.
+    operationId: ankrGetNFTsByOwner
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getNFTsByOwner
+        params:
+          walletAddress: $inputs.walletAddress
+          blockchain: $inputs.blockchain
+          pageSize: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      owner: $response.body#/result/owner
+      assets: $response.body#/result/assets
+      firstBlockchain: $response.body#/result/assets/0/blockchain
+      firstContractAddress: $response.body#/result/assets/0/contractAddress
+      firstTokenId: $response.body#/result/assets/0/tokenId
+    onSuccess:
+    - name: hasAssets
+      type: goto
+      stepId: getMetadata
+      criteria:
+      - context: $response.body
+        condition: $.result.assets.length > 0
+        type: jsonpath
+    - name: noAssets
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.result.assets.length == 0
+        type: jsonpath
+  - stepId: getMetadata
+    description: >-
+      Retrieve the full metadata for the first NFT returned by the listing step.
+    operationId: ankrGetNFTMetadata
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getNFTMetadata
+        params:
+          blockchain: $steps.listNfts.outputs.firstBlockchain
+          contractAddress: $steps.listNfts.outputs.firstContractAddress
+          tokenId: $steps.listNfts.outputs.firstTokenId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      metadata: $response.body#/result
+  outputs:
+    owner: $steps.listNfts.outputs.owner
+    assets: $steps.listNfts.outputs.assets
+    metadata: $steps.getMetadata.outputs.metadata

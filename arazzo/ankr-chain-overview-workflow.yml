@@ -1,0 +1,65 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Chain Overview
+  summary: Read a chain's aggregate stats, then its supported currency catalog.
+  description: >-
+    Builds an at-a-glance overview of a blockchain by reading aggregate chain
+    statistics with ankr_getBlockchainStats and then the catalog of supported
+    currencies for the same chain with ankr_getCurrencies. Each step is written
+    out inline as a JSON-RPC call so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: chain-overview
+  summary: Read a chain's aggregate statistics and supported currency catalog.
+  description: >-
+    Retrieves aggregate statistics for a blockchain and then the catalog of
+    currencies supported by that same chain.
+  inputs:
+    type: object
+    required:
+    - blockchain
+    properties:
+      blockchain:
+        type: string
+        description: The chain to summarize (e.g. "eth").
+  steps:
+  - stepId: getStats
+    description: >-
+      Retrieve aggregate statistics for the blockchain.
+    operationId: ankrGetBlockchainStats
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getBlockchainStats
+        params:
+          blockchain: $inputs.blockchain
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stats: $response.body#/result
+  - stepId: getCurrencies
+    description: >-
+      Retrieve the catalog of currencies supported by the same chain.
+    operationId: ankrGetCurrencies
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getCurrencies
+        params:
+          blockchain: $inputs.blockchain
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      currencies: $response.body#/result
+  outputs:
+    stats: $steps.getStats.outputs.stats
+    currencies: $steps.getCurrencies.outputs.currencies

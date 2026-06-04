@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Transaction Deep Dive
+  summary: Pull a wallet's transactions, then decode the most recent one in full.
+  description: >-
+    Drills from a wallet's transaction history into a single transaction by first
+    pulling the history with ankr_getTransactionsByAddress and then, when at least
+    one transaction is returned, fetching that transaction in full with decoded
+    logs and input data via ankr_getTransactionsByHash. When the wallet has no
+    transactions the flow ends after the history step. Each step is written out
+    inline as a JSON-RPC call so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: transaction-deep-dive
+  summary: Read a wallet's transactions, then decode the first one by hash.
+  description: >-
+    Retrieves a wallet's transaction history and, when a transaction is present,
+    fetches the first transaction in full with decoded logs and input data.
+  inputs:
+    type: object
+    required:
+    - walletAddress
+    - blockchain
+    properties:
+      walletAddress:
+        type: string
+        description: The wallet address whose transactions are pulled.
+      blockchain:
+        type: array
+        items:
+          type: string
+        description: One or more chain names to pull transaction history from.
+      pageSize:
+        type: integer
+        description: Maximum number of transactions to return per page.
+  steps:
+  - stepId: getTransactions
+    description: >-
+      Retrieve the wallet's transaction history, newest-first.
+    operationId: ankrGetTransactionsByAddress
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTransactionsByAddress
+        params:
+          address:
+          - $inputs.walletAddress
+          blockchain: $inputs.blockchain
+          pageSize: $inputs.pageSize
+          descOrder: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transactions: $response.body#/result/transactions
+      firstHash: $response.body#/result/transactions/0/hash
+      firstBlockchain: $response.body#/result/transactions/0/blockchain
+    onSuccess:
+    - name: hasTransactions
+      type: goto
+      stepId: getTransactionByHash
+      criteria:
+      - context: $response.body
+        condition: $.result.transactions.length > 0
+        type: jsonpath
+    - name: noTransactions
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.result.transactions.length == 0
+        type: jsonpath
+  - stepId: getTransactionByHash
+    description: >-
+      Fetch the first transaction in full, with decoded logs and decoded input
+      data.
+    operationId: ankrGetTransactionsByHash
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTransactionsByHash
+        params:
+          transactionHash: $steps.getTransactions.outputs.firstHash
+          blockchain: $steps.getTransactions.outputs.firstBlockchain
+          includeLogs: true
+          decodeLogs: true
+          decodeTxData: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transaction: $response.body#/result
+  outputs:
+    transactions: $steps.getTransactions.outputs.transactions
+    transaction: $steps.getTransactionByHash.outputs.transaction

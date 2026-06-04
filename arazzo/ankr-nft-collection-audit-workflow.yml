@@ -1,0 +1,86 @@
+arazzo: 1.0.1
+info:
+  title: Ankr NFT Collection Audit
+  summary: Pull a collection's holders and then its transfer history.
+  description: >-
+    Audits an NFT contract by first listing the current holders with
+    ankr_getNFTHolders, then pulling the contract's transfer history with
+    ankr_getNftTransfers over a block window so a caller can correlate who holds
+    the collection now with how it changed hands. Each step is written out inline
+    as a JSON-RPC call so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: nft-collection-audit
+  summary: List an NFT contract's holders, then its transfer history.
+  description: >-
+    Lists the current holders of an NFT contract and then retrieves the transfer
+    history for the same contract over the supplied block window.
+  inputs:
+    type: object
+    required:
+    - blockchain
+    - contractAddress
+    properties:
+      blockchain:
+        type: string
+        description: The chain the NFT contract lives on.
+      contractAddress:
+        type: string
+        description: The NFT contract address to audit.
+      fromBlock:
+        type: integer
+        description: First block of the transfer history window.
+      toBlock:
+        type: integer
+        description: Last block of the transfer history window.
+      pageSize:
+        type: integer
+        description: Maximum number of holders/transfers to return per page.
+  steps:
+  - stepId: getHolders
+    description: >-
+      Retrieve the current holders of the NFT contract.
+    operationId: ankrGetNFTHolders
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getNFTHolders
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+          pageSize: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      holders: $response.body#/result
+  - stepId: getTransfers
+    description: >-
+      Retrieve the transfer history for the same NFT contract over the supplied
+      block window.
+    operationId: ankrGetNftTransfers
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getNftTransfers
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+          fromBlock: $inputs.fromBlock
+          toBlock: $inputs.toBlock
+          pageSize: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      transfers: $response.body#/result
+  outputs:
+    holders: $steps.getHolders.outputs.holders
+    transfers: $steps.getTransfers.outputs.transfers

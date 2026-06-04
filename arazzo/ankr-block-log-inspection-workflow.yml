@@ -1,0 +1,87 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Block And Log Inspection
+  summary: Read full blocks for a range, then pull event logs from the same range.
+  description: >-
+    Inspects on-chain activity for a block range by first pulling the full blocks
+    with ankr_getBlocks and then the event logs emitted in the same range with
+    ankr_getLogs, optionally filtered to a set of contract addresses. Each step is
+    written out inline as a JSON-RPC call so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: block-log-inspection
+  summary: Read blocks for a range, then the event logs from that range.
+  description: >-
+    Retrieves full block data for a block range on a chain and then the event
+    logs emitted over the same range, optionally scoped to specific contracts.
+  inputs:
+    type: object
+    required:
+    - blockchain
+    - fromBlock
+    - toBlock
+    properties:
+      blockchain:
+        type: string
+        description: The chain to inspect.
+      fromBlock:
+        type: integer
+        description: First block of the range.
+      toBlock:
+        type: integer
+        description: Last block of the range.
+      address:
+        type: array
+        items:
+          type: string
+        description: Optional list of contract addresses to scope log results to.
+  steps:
+  - stepId: getBlocks
+    description: >-
+      Retrieve the full block data for the supplied block range, including
+      transactions and logs.
+    operationId: ankrGetBlocks
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getBlocks
+        params:
+          blockchain: $inputs.blockchain
+          fromBlock: $inputs.fromBlock
+          toBlock: $inputs.toBlock
+          includeLogs: true
+          includeTxs: true
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      blocks: $response.body#/result
+  - stepId: getLogs
+    description: >-
+      Retrieve the event logs emitted over the same block range, scoped to the
+      supplied contract addresses when provided.
+    operationId: ankrGetLogs
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getLogs
+        params:
+          blockchain: $inputs.blockchain
+          fromBlock: $inputs.fromBlock
+          toBlock: $inputs.toBlock
+          address: $inputs.address
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      logs: $response.body#/result
+  outputs:
+    blocks: $steps.getBlocks.outputs.blocks
+    logs: $steps.getLogs.outputs.logs

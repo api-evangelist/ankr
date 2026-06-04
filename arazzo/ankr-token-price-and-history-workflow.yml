@@ -1,0 +1,88 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Token Price And History
+  summary: Read a token's current price, then its historical price series.
+  description: >-
+    Prices a token by first reading its current USD price with ankr_getTokenPrice,
+    then pulling the historical price series over a time window with
+    ankr_getTokenPriceHistory so a caller can place the current price in context.
+    Each step is written out inline as a JSON-RPC call so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: token-price-and-history
+  summary: Read a token's current price and then its historical price series.
+  description: >-
+    Retrieves the current USD price for a token contract and then the historical
+    price series for the same token over the supplied time window.
+  inputs:
+    type: object
+    required:
+    - blockchain
+    - contractAddress
+    properties:
+      blockchain:
+        type: string
+        description: The chain the token contract lives on.
+      contractAddress:
+        type: string
+        description: The token contract address to price.
+      fromTimestamp:
+        type: integer
+        description: Start of the historical window (unix seconds).
+      toTimestamp:
+        type: integer
+        description: End of the historical window (unix seconds).
+      interval:
+        type: integer
+        description: Sampling interval for the historical series (seconds).
+      limit:
+        type: integer
+        description: Maximum number of historical data points to return.
+  steps:
+  - stepId: getPrice
+    description: >-
+      Retrieve the current USD price for the token contract.
+    operationId: ankrGetTokenPrice
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTokenPrice
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      price: $response.body#/result
+  - stepId: getPriceHistory
+    description: >-
+      Retrieve the historical price series for the same token over the supplied
+      time window.
+    operationId: ankrGetTokenPriceHistory
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTokenPriceHistory
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+          fromTimestamp: $inputs.fromTimestamp
+          toTimestamp: $inputs.toTimestamp
+          interval: $inputs.interval
+          limit: $inputs.limit
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      history: $response.body#/result
+  outputs:
+    price: $steps.getPrice.outputs.price
+    history: $steps.getPriceHistory.outputs.history

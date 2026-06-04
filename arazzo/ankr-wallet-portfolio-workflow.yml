@@ -1,0 +1,96 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Wallet Portfolio Snapshot
+  summary: Read a wallet's token balances and then its recent ERC-20 transfer history.
+  description: >-
+    Builds a portfolio snapshot for a wallet by first pulling its native and
+    ERC-20 balances across the supplied chains with ankr_getAccountBalance, then
+    pulling the wallet's recent ERC-20 transfer history with ankr_getTokenTransfers
+    so a caller can see both current holdings and the movements that produced them.
+    Each step is written out inline as a JSON-RPC call so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: wallet-portfolio-snapshot
+  summary: Pull a wallet's balances and then its token transfer history.
+  description: >-
+    Resolves the current token balances for a wallet, then retrieves the ERC-20
+    transfer history for the same wallet over the supplied block window.
+  inputs:
+    type: object
+    required:
+    - walletAddress
+    - blockchain
+    properties:
+      walletAddress:
+        type: string
+        description: The wallet address to inspect (0x-prefixed EVM address).
+      blockchain:
+        type: array
+        items:
+          type: string
+        description: One or more chain names (e.g. ["eth","polygon"]).
+      onlyWhitelisted:
+        type: boolean
+        description: Restrict balances to whitelisted tokens only.
+        default: true
+      fromBlock:
+        type: integer
+        description: First block of the transfer history window.
+      toBlock:
+        type: integer
+        description: Last block of the transfer history window.
+      pageSize:
+        type: integer
+        description: Maximum number of transfers to return per page.
+  steps:
+  - stepId: getBalances
+    description: >-
+      Retrieve the native and ERC-20 balances held by the wallet across the
+      supplied chains, including USD valuation.
+    operationId: ankrGetAccountBalance
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getAccountBalance
+        params:
+          walletAddress: $inputs.walletAddress
+          blockchain: $inputs.blockchain
+          onlyWhitelisted: $inputs.onlyWhitelisted
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalBalanceUsd: $response.body#/result/totalBalanceUsd
+      assets: $response.body#/result/assets
+  - stepId: getTransfers
+    description: >-
+      Retrieve the ERC-20 transfer history for the same wallet over the supplied
+      block window.
+    operationId: ankrGetTokenTransfers
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTokenTransfers
+        params:
+          blockchain: $inputs.blockchain
+          address:
+          - $inputs.walletAddress
+          fromBlock: $inputs.fromBlock
+          toBlock: $inputs.toBlock
+          pageSize: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      result: $response.body#/result
+  outputs:
+    totalBalanceUsd: $steps.getBalances.outputs.totalBalanceUsd
+    assets: $steps.getBalances.outputs.assets
+    transfers: $steps.getTransfers.outputs.result

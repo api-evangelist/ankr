@@ -1,0 +1,95 @@
+arazzo: 1.0.1
+info:
+  title: Ankr Token Holder Distribution
+  summary: Count an ERC-20 token's holders, then list them and read its price.
+  description: >-
+    Profiles the holder base of an ERC-20 token by first reading the total holder
+    count with ankr_getTokenHoldersCount, then listing the holders with
+    ankr_getTokenHolders, and finally reading the token's current USD price with
+    ankr_getTokenPrice so the distribution can be valued. Each step is written out
+    inline as a JSON-RPC call so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: advancedApi
+  url: ../openapi/ankr-advanced-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: token-holder-distribution
+  summary: Count, list, and value an ERC-20 token's holders.
+  description: >-
+    Reads the total holder count for a token contract, lists the holders, and
+    reads the token's current USD price to value the distribution.
+  inputs:
+    type: object
+    required:
+    - blockchain
+    - contractAddress
+    properties:
+      blockchain:
+        type: string
+        description: The chain the token contract lives on.
+      contractAddress:
+        type: string
+        description: The ERC-20 token contract address.
+      pageSize:
+        type: integer
+        description: Maximum number of holders to return per page.
+  steps:
+  - stepId: getHoldersCount
+    description: >-
+      Retrieve the total number of holders for the token contract.
+    operationId: ankrGetTokenHoldersCount
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTokenHoldersCount
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      holdersCount: $response.body#/result
+  - stepId: getHolders
+    description: >-
+      List the holders of the token contract.
+    operationId: ankrGetTokenHolders
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTokenHolders
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+          pageSize: $inputs.pageSize
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      holders: $response.body#/result
+  - stepId: getPrice
+    description: >-
+      Retrieve the current USD price for the token so the holder distribution can
+      be valued.
+    operationId: ankrGetTokenPrice
+    requestBody:
+      contentType: application/json
+      payload:
+        jsonrpc: "2.0"
+        id: 1
+        method: ankr_getTokenPrice
+        params:
+          blockchain: $inputs.blockchain
+          contractAddress: $inputs.contractAddress
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      price: $response.body#/result
+  outputs:
+    holdersCount: $steps.getHoldersCount.outputs.holdersCount
+    holders: $steps.getHolders.outputs.holders
+    price: $steps.getPrice.outputs.price
