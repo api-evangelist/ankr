@@ -1,0 +1,578 @@
+{
+  "info": {
+    "_postman_id": "0eddb618-0fa2-40b5-ad15-ab04ddbc0aa7",
+    "name": "Ankr Liquid Staking API",
+    "description": "The Ankr Liquid Staking RESTful API surfaces staking metrics, the trustless\nexchange ratio, and validator metadata across Ankr's liquid staking tokens\n(ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, etc.). It complements\nthe on-chain Smart Contract API exposed on Avalanche, Binance Smart Chain,\nEthereum, Fantom, and Polygon.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:22.000Z",
+    "updatedAt": "2026-06-05T15:05:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0eddb618-0fa2-40b5-ad15-ab04ddbc0aa7"
+  },
+  "item": [
+    {
+      "name": "v1.0",
+      "item": [
+        {
+          "name": "metrics",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Ankr Get Staking Metrics By Token",
+                  "id": "f6f8e90d-1919-4e5b-b8e0-0a54634d3519",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1.0/metrics/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1.0",
+                        "metrics",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4675b9cb-2c03-4069-947d-18f69406e238",
+                          "key": "token",
+                          "value": "ankrFTM",
+                          "description": "(Required) Liquid staking token symbol."
+                        }
+                      ]
+                    },
+                    "description": "Returns staking metrics for a single liquid staking token."
+                  },
+                  "response": [
+                    {
+                      "id": "208d93a2-16b5-4118-9010-cb6016f577f7",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/metrics/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "metrics",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"token\": \"<string>\",\n  \"tvlUsd\": \"<string>\",\n  \"apr\": \"<string>\",\n  \"supply\": \"<string>\",\n  \"holders\": \"<integer>\",\n  \"exchangeRatio\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:23.000Z",
+                      "updatedAt": "2026-06-05T15:05:23.000Z",
+                      "uid": "35240-208d93a2-16b5-4118-9010-cb6016f577f7"
+                    },
+                    {
+                      "id": "0a46f5b3-9e3b-49e6-956b-9479284a65e3",
+                      "name": "Error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/metrics/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "metrics",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:23.000Z",
+                      "updatedAt": "2026-06-05T15:05:23.000Z",
+                      "uid": "35240-0a46f5b3-9e3b-49e6-956b-9479284a65e3"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:23.000Z",
+                  "updatedAt": "2026-06-05T15:05:23.000Z",
+                  "uid": "35240-f6f8e90d-1919-4e5b-b8e0-0a54634d3519"
+                }
+              ],
+              "id": "b7ecbc4e-ad50-4a4a-a125-7a604a10849a",
+              "createdAt": "2026-06-05T15:05:23.000Z",
+              "updatedAt": "2026-06-05T15:05:23.000Z",
+              "uid": "35240-b7ecbc4e-ad50-4a4a-a125-7a604a10849a"
+            },
+            {
+              "name": "Ankr Get Staking Metrics",
+              "id": "d8a8423f-91d6-426d-a08a-5ad5437b76d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1.0/metrics",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1.0",
+                    "metrics"
+                  ]
+                },
+                "description": "Returns Ankr Liquid Staking metrics across all supported tokens."
+              },
+              "response": [
+                {
+                  "id": "d50e9699-f071-4cd6-addb-58c8dbcb1b1b",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1.0/metrics",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1.0",
+                        "metrics"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"token\": \"<string>\",\n    \"tvlUsd\": \"<string>\",\n    \"apr\": \"<string>\",\n    \"supply\": \"<string>\",\n    \"holders\": \"<integer>\",\n    \"exchangeRatio\": \"<string>\"\n  },\n  {\n    \"token\": \"<string>\",\n    \"tvlUsd\": \"<string>\",\n    \"apr\": \"<string>\",\n    \"supply\": \"<string>\",\n    \"holders\": \"<integer>\",\n    \"exchangeRatio\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:05:23.000Z",
+                  "updatedAt": "2026-06-05T15:05:23.000Z",
+                  "uid": "35240-d50e9699-f071-4cd6-addb-58c8dbcb1b1b"
+                },
+                {
+                  "id": "d0babcc7-bcda-4d16-bfc0-77861d809452",
+                  "name": "Error response.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1.0/metrics",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1.0",
+                        "metrics"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:05:23.000Z",
+                  "updatedAt": "2026-06-05T15:05:23.000Z",
+                  "uid": "35240-d0babcc7-bcda-4d16-bfc0-77861d809452"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:23.000Z",
+              "updatedAt": "2026-06-05T15:05:23.000Z",
+              "uid": "35240-d8a8423f-91d6-426d-a08a-5ad5437b76d7"
+            }
+          ],
+          "id": "a039861f-ce9b-452a-89a4-bb6a1f131574",
+          "createdAt": "2026-06-05T15:05:23.000Z",
+          "updatedAt": "2026-06-05T15:05:23.000Z",
+          "uid": "35240-a039861f-ce9b-452a-89a4-bb6a1f131574"
+        },
+        {
+          "name": "ratio",
+          "item": [
+            {
+              "name": "{token}",
+              "item": [
+                {
+                  "name": "Ankr Get Trustless Ratio",
+                  "id": "f94a9b78-7f12-47c9-9112-40c188e73b71",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1.0/ratio/:token",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1.0",
+                        "ratio",
+                        ":token"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e0486965-9d36-4780-b5f9-b48015bad6fa",
+                          "key": "token",
+                          "value": "ankrFTM",
+                          "description": "(Required) Liquid staking token symbol."
+                        }
+                      ]
+                    },
+                    "description": "Returns the trustless exchange ratio between the native asset and its liquid staking token."
+                  },
+                  "response": [
+                    {
+                      "id": "75cecc4c-f3c5-49c7-a4e2-5b35db77fe79",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/ratio/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "ratio",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"token\": \"<string>\",\n  \"ratio\": \"<string>\",\n  \"updatedAt\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:05:23.000Z",
+                      "updatedAt": "2026-06-05T15:05:23.000Z",
+                      "uid": "35240-75cecc4c-f3c5-49c7-a4e2-5b35db77fe79"
+                    },
+                    {
+                      "id": "0aebff62-2117-4e9c-b3e0-fd40b469f911",
+                      "name": "Error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/ratio/:token",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "ratio",
+                            ":token"
+                          ],
+                          "variable": [
+                            {
+                              "key": "token"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:23.000Z",
+                      "updatedAt": "2026-06-05T15:05:23.000Z",
+                      "uid": "35240-0aebff62-2117-4e9c-b3e0-fd40b469f911"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:23.000Z",
+                  "updatedAt": "2026-06-05T15:05:23.000Z",
+                  "uid": "35240-f94a9b78-7f12-47c9-9112-40c188e73b71"
+                }
+              ],
+              "id": "a0373a01-e724-406a-88b4-a9bd5d1e0112",
+              "createdAt": "2026-06-05T15:05:23.000Z",
+              "updatedAt": "2026-06-05T15:05:23.000Z",
+              "uid": "35240-a0373a01-e724-406a-88b4-a9bd5d1e0112"
+            }
+          ],
+          "id": "96988291-eee1-4aa0-ad23-b3e559d335c5",
+          "createdAt": "2026-06-05T15:05:23.000Z",
+          "updatedAt": "2026-06-05T15:05:23.000Z",
+          "uid": "35240-96988291-eee1-4aa0-ad23-b3e559d335c5"
+        },
+        {
+          "name": "validators",
+          "item": [
+            {
+              "name": "{chain}",
+              "item": [
+                {
+                  "name": "Ankr Get Validators",
+                  "id": "171e4399-75a0-4304-886e-2cbebd287c0a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1.0/validators/:chain",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1.0",
+                        "validators",
+                        ":chain"
+                      ],
+                      "variable": [
+                        {
+                          "id": "8f069acc-3234-4816-962b-fa199b355069",
+                          "key": "chain",
+                          "value": "bsc",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns Ankr-operated validators on a given chain, including unbond windows and reward release schedules."
+                  },
+                  "response": [
+                    {
+                      "id": "8da348ff-79f6-4871-992e-370f5176c0a8",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/validators/:chain",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "validators",
+                            ":chain"
+                          ],
+                          "variable": [
+                            {
+                              "key": "chain"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"address\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"unbondPeriodSeconds\": \"<integer>\",\n    \"rewardReleaseSeconds\": \"<integer>\"\n  },\n  {\n    \"address\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"active\": \"<boolean>\",\n    \"unbondPeriodSeconds\": \"<integer>\",\n    \"rewardReleaseSeconds\": \"<integer>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:05:23.000Z",
+                      "updatedAt": "2026-06-05T15:05:23.000Z",
+                      "uid": "35240-8da348ff-79f6-4871-992e-370f5176c0a8"
+                    },
+                    {
+                      "id": "469cc707-6e4e-4d7e-b99a-e53e715492d9",
+                      "name": "Error response.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1.0/validators/:chain",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1.0",
+                            "validators",
+                            ":chain"
+                          ],
+                          "variable": [
+                            {
+                              "key": "chain"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:05:23.000Z",
+                      "updatedAt": "2026-06-05T15:05:23.000Z",
+                      "uid": "35240-469cc707-6e4e-4d7e-b99a-e53e715492d9"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:23.000Z",
+                  "updatedAt": "2026-06-05T15:05:23.000Z",
+                  "uid": "35240-171e4399-75a0-4304-886e-2cbebd287c0a"
+                }
+              ],
+              "id": "f7432d44-9e0d-4f26-882d-ed0d56397084",
+              "createdAt": "2026-06-05T15:05:23.000Z",
+              "updatedAt": "2026-06-05T15:05:23.000Z",
+              "uid": "35240-f7432d44-9e0d-4f26-882d-ed0d56397084"
+            }
+          ],
+          "id": "d7dac817-a5b0-4900-8454-83b024aac631",
+          "createdAt": "2026-06-05T15:05:23.000Z",
+          "updatedAt": "2026-06-05T15:05:23.000Z",
+          "uid": "35240-d7dac817-a5b0-4900-8454-83b024aac631"
+        }
+      ],
+      "id": "e3c643d2-3fd9-45af-9679-d0f475b7b635",
+      "createdAt": "2026-06-05T15:05:23.000Z",
+      "updatedAt": "2026-06-05T15:05:23.000Z",
+      "uid": "35240-e3c643d2-3fd9-45af-9679-d0f475b7b635"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.staking.ankr.com"
+    }
+  ]
+}

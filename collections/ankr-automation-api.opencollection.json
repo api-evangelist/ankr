@@ -1,0 +1,86 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Contract Automation API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tasks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr List Automation Tasks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.ankr.com/automation/api/v1/tasks"
+          },
+          "docs": "List automation tasks for the authenticated account."
+        },
+        {
+          "info": {
+            "name": "Ankr Create Automation Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://www.ankr.com/automation/api/v1/tasks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new time-based or event-triggered automation task targeting a deployed contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Automation Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.ankr.com/automation/api/v1/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a single automation task."
+        },
+        {
+          "info": {
+            "name": "Ankr Delete Automation Task",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://www.ankr.com/automation/api/v1/tasks/:taskId",
+            "params": [
+              {
+                "name": "taskId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Cancel and delete an automation task."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

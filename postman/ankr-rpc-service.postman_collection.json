@@ -1,0 +1,222 @@
+{
+  "info": {
+    "_postman_id": "982dd412-c6de-4016-9a2f-33762a38e3e4",
+    "name": "Ankr RPC Service (Node API)",
+    "description": "Ankr's RPC Service (Node API) provides HTTPS and WebSocket JSON-RPC endpoints for\n80+ blockchain networks (EVM and non-EVM). The public endpoint is open;\nPremium and Enterprise plans use an API-key-scoped endpoint with x50 the rate\nlimit of the public Node API. This specification documents the common\nEVM JSON-RPC envelope that ships behind every `https://rpc.ankr.com/{chain}` URL;\nnon-EVM chains (Solana, Aptos, Stellar, etc.) expose their native JSON-RPC or REST\nsurface at the same per-chain endpoint.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:20.000Z",
+    "updatedAt": "2026-06-05T15:05:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-982dd412-c6de-4016-9a2f-33762a38e3e4"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Ankr Execute JSON-RPC Call",
+          "id": "1bf48092-456e-42ed-963e-808010495e78",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Execute a JSON-RPC 2.0 call against the selected chain. The `method` field\ncarries the EVM method name (`eth_blockNumber`, `eth_getBalance`,\n`eth_chainId`, `eth_call`, `eth_getLogs`, `eth_getTransactionByHash`,\n`eth_getTransactionReceipt`, `eth_sendRawTransaction`, etc.).\n"
+          },
+          "response": [
+            {
+              "id": "88732e93-a00e-4604-ae2f-c3fded224907",
+              "name": "JSON-RPC response (single or batched).",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {},\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+              "createdAt": "2026-06-05T15:05:21.000Z",
+              "updatedAt": "2026-06-05T15:05:21.000Z",
+              "uid": "35240-88732e93-a00e-4604-ae2f-c3fded224907"
+            },
+            {
+              "id": "8bffb389-414c-4efb-8420-e6c01b94950a",
+              "name": "Rate limit exceeded. Premium API keys raise the limit x50.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:05:21.000Z",
+              "updatedAt": "2026-06-05T15:05:21.000Z",
+              "uid": "35240-8bffb389-414c-4efb-8420-e6c01b94950a"
+            },
+            {
+              "id": "7dc97314-daed-450c-85bf-a696a7b8b429",
+              "name": "JSON-RPC error envelope.",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {},\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+              "createdAt": "2026-06-05T15:05:21.000Z",
+              "updatedAt": "2026-06-05T15:05:21.000Z",
+              "uid": "35240-7dc97314-daed-450c-85bf-a696a7b8b429"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:21.000Z",
+          "updatedAt": "2026-06-05T15:05:21.000Z",
+          "uid": "35240-1bf48092-456e-42ed-963e-808010495e78"
+        }
+      ],
+      "id": "d632349c-7341-49ea-ba1f-9e62509bc340",
+      "createdAt": "2026-06-05T15:05:21.000Z",
+      "updatedAt": "2026-06-05T15:05:21.000Z",
+      "uid": "35240-d632349c-7341-49ea-ba1f-9e62509bc340"
+    }
+  ],
+  "variable": [
+    {
+      "key": "chain",
+      "value": "eth"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://rpc.ankr.com/{{chain}}"
+    }
+  ]
+}

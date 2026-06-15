@@ -1,0 +1,240 @@
+{
+  "item": [
+    {
+      "id": "0eaa3812-d856-478a-b42c-7694a3dd6479",
+      "name": "EVM",
+      "description": {
+        "content": "Standard Ethereum JSON-RPC envelope shared by every EVM chain.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf9a90ab-426b-4d55-a210-9f747fc31316",
+          "name": "Ankr Execute JSON-RPC Call",
+          "request": {
+            "name": "Ankr Execute JSON-RPC Call",
+            "description": {
+              "content": "Execute a JSON-RPC 2.0 call against the selected chain. The `method` field\ncarries the EVM method name (`eth_blockNumber`, `eth_getBalance`,\n`eth_chainId`, `eth_call`, `eth_getLogs`, `eth_getTransactionByHash`,\n`eth_getTransactionReceipt`, `eth_sendRawTransaction`, etc.).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Chain identifier in the URL path. (This can only be one of eth,bsc,polygon,arbitrum,optimism,base,avalanche,fantom,gnosis,linea,scroll,taiko,solana,aptos,stellar,tron)",
+                  "type": "any",
+                  "value": "{{chain}}",
+                  "key": "chain"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "083a511c-9113-459d-be8d-7af3cd5f00d8",
+              "name": "JSON-RPC response (single or batched).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Chain identifier in the URL path. (This can only be one of eth,bsc,polygon,arbitrum,optimism,base,avalanche,fantom,gnosis,linea,scroll,taiko,solana,aptos,stellar,tron)",
+                      "type": "any",
+                      "value": "{{chain}}",
+                      "key": "chain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"eth_blockNumber\",\n  \"id\": 597\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 1419,\n  \"result\": \"\",\n  \"error\": {\n    \"code\": 7469,\n    \"message\": \"string\",\n    \"data\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f7607cbc-56d6-4100-ac10-907c80a1c790",
+              "name": "Rate limit exceeded. Premium API keys raise the limit x50.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Chain identifier in the URL path. (This can only be one of eth,bsc,polygon,arbitrum,optimism,base,avalanche,fantom,gnosis,linea,scroll,taiko,solana,aptos,stellar,tron)",
+                      "type": "any",
+                      "value": "{{chain}}",
+                      "key": "chain"
+                    }
+                  ]
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"eth_blockNumber\",\n  \"id\": 597\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "340f3733-c599-492a-a17f-8da81d7fa18a",
+              "name": "JSON-RPC error envelope.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Chain identifier in the URL path. (This can only be one of eth,bsc,polygon,arbitrum,optimism,base,avalanche,fantom,gnosis,linea,scroll,taiko,solana,aptos,stellar,tron)",
+                      "type": "any",
+                      "value": "{{chain}}",
+                      "key": "chain"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"eth_blockNumber\",\n  \"id\": 597\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 1419,\n  \"result\": \"\",\n  \"error\": {\n    \"code\": 7469,\n    \"message\": \"string\",\n    \"data\": \"\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Chain identifier in the URL path. (This can only be one of eth,bsc,polygon,arbitrum,optimism,base,avalanche,fantom,gnosis,linea,scroll,taiko,solana,aptos,stellar,tron)",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "eth",
+      "key": "chain"
+    },
+    {
+      "type": "string",
+      "value": "https://rpc.ankr.com/{{chain}}",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2fdbed89-0d73-4fab-9c25-d7bf7d816e9a",
+    "name": "Ankr RPC Service (Node API)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ankr's RPC Service (Node API) provides HTTPS and WebSocket JSON-RPC endpoints for\n80+ blockchain networks (EVM and non-EVM). The public endpoint is open;\nPremium and Enterprise plans use an API-key-scoped endpoint with x50 the rate\nlimit of the public Node API. This specification documents the common\nEVM JSON-RPC envelope that ships behind every `https://rpc.ankr.com/{chain}` URL;\nnon-EVM chains (Solana, Aptos, Stellar, etc.) expose their native JSON-RPC or REST\nsurface at the same per-chain endpoint.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+      "type": "text/plain"
+    }
+  }
+}

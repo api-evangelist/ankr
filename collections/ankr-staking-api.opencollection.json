@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Liquid Staking API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Staking Metrics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staking.ankr.com/v1.0/metrics"
+          },
+          "docs": "Returns Ankr Liquid Staking metrics across all supported tokens."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Staking Metrics By Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staking.ankr.com/v1.0/metrics/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Liquid staking token symbol."
+              }
+            ]
+          },
+          "docs": "Returns staking metrics for a single liquid staking token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ratio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Trustless Ratio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staking.ankr.com/v1.0/ratio/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Liquid staking token symbol."
+              }
+            ]
+          },
+          "docs": "Returns the trustless exchange ratio between the native asset and its liquid staking token."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Validators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.staking.ankr.com/v1.0/validators/:chain",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns Ankr-operated validators on a given chain, including unbond windows and reward release schedules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

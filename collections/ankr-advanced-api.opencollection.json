@@ -1,0 +1,289 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Advanced API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NFT",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get NFTs By Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the full list of NFTs owned by a wallet address across supported chains."
+        },
+        {
+          "info": {
+            "name": "Ankr Get NFT Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/nft/metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns metadata for a specific NFT (token contract + token ID)."
+        },
+        {
+          "info": {
+            "name": "Ankr Get NFT Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/nft/holders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the holders of a specific NFT contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get NFT Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/nft/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the transfer history of a specific NFT contract or wallet."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Account Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/account-balance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the native and ERC-20 balances for a wallet address across supported chains."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Currencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/currencies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the catalog of currencies supported by a given blockchain."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/price",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the current USD price of a token (native or ERC-20) on a given chain."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Price History",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/price-history",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns historical pricing data for a token over a specified time window."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/holders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the list of holders for an ERC-20 token contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Holders Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/holders-count",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the total count of holders for an ERC-20 token contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns ERC-20 token transfer history for a wallet address or token contract."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Blockchain Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/query/blockchain-stats",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns aggregate statistics about supported blockchains."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Blocks",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/query/blocks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns full block information for a range of block heights."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/query/logs",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns event logs from a specified block range."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Transactions By Hash",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/query/transactions-by-hash",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the full transaction details for the supplied transaction hash."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Transactions By Address",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/query/transactions-by-address",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the full transaction history for a wallet address."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Interactions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/query/interactions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the chains a wallet has interacted with (cross-chain activity index)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

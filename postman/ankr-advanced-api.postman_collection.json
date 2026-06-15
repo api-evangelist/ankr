@@ -1,0 +1,2747 @@
+{
+  "info": {
+    "_postman_id": "7b8d95cc-e750-485c-be11-c76677958544",
+    "name": "Ankr Advanced API",
+    "description": "The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC\nmethods that optimize, index, cache, and store blockchain data across multiple\nEVM-compatible blockchains. The Advanced API exposes three logical groups:\nNFT, Token, and Query.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:21.000Z",
+    "updatedAt": "2026-06-05T15:05:21.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7b8d95cc-e750-485c-be11-c76677958544"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "Ankr Get NFTs By Owner",
+          "id": "be8b33e3-ad6f-4d30-ab35-9e0fe02b11dc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\",\n    \"blockchain\": \"stellar\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Returns the full list of NFTs owned by a wallet address across supported chains."
+          },
+          "response": [
+            {
+              "id": "474568cd-85b8-4a25-a25d-7224b814eccf",
+              "name": "Successful Response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\",\n    \"blockchain\": \"stellar\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"owner\": \"<string>\",\n    \"assets\": [\n      {\n        \"blockchain\": \"<string>\",\n        \"name\": \"<string>\",\n        \"tokenId\": \"<string>\",\n        \"tokenUrl\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"collectionName\": \"<string>\",\n        \"symbol\": \"<string>\",\n        \"contractType\": \"<string>\",\n        \"contractAddress\": \"<string>\"\n      },\n      {\n        \"blockchain\": \"<string>\",\n        \"name\": \"<string>\",\n        \"tokenId\": \"<string>\",\n        \"tokenUrl\": \"<string>\",\n        \"imageUrl\": \"<string>\",\n        \"collectionName\": \"<string>\",\n        \"symbol\": \"<string>\",\n        \"contractType\": \"<string>\",\n        \"contractAddress\": \"<string>\"\n      }\n    ],\n    \"nextPageToken\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-474568cd-85b8-4a25-a25d-7224b814eccf"
+            },
+            {
+              "id": "41afa3be-7db6-4ac1-aa1e-6158c9d716f7",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\",\n    \"blockchain\": \"stellar\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-41afa3be-7db6-4ac1-aa1e-6158c9d716f7"
+            }
+          ],
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-be8b33e3-ad6f-4d30-ab35-9e0fe02b11dc"
+        }
+      ],
+      "id": "ad46071d-fdad-4080-944d-387730ec7c5f",
+      "createdAt": "2026-06-05T15:05:22.000Z",
+      "updatedAt": "2026-06-05T15:05:22.000Z",
+      "uid": "35240-ad46071d-fdad-4080-944d-387730ec7c5f"
+    },
+    {
+      "name": "nft",
+      "item": [
+        {
+          "name": "metadata",
+          "item": [
+            {
+              "name": "Ankr Get NFT Metadata",
+              "id": "3f99fc3e-3df9-4438-b3b4-a571ef0481e6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"stellar\",\n    \"contractAddress\": \"<string>\",\n    \"tokenId\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/nft/metadata",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nft",
+                    "metadata"
+                  ]
+                },
+                "description": "Returns metadata for a specific NFT (token contract + token ID)."
+              },
+              "response": [
+                {
+                  "id": "f56f43e4-b25a-45b7-9be9-1645535c1fe5",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"stellar\",\n    \"contractAddress\": \"<string>\",\n    \"tokenId\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nft/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nft",
+                        "metadata"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-f56f43e4-b25a-45b7-9be9-1645535c1fe5"
+                },
+                {
+                  "id": "93718ccb-de9c-4a5b-b269-27a6dba7b1b4",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"stellar\",\n    \"contractAddress\": \"<string>\",\n    \"tokenId\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nft/metadata",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nft",
+                        "metadata"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-93718ccb-de9c-4a5b-b269-27a6dba7b1b4"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-3f99fc3e-3df9-4438-b3b4-a571ef0481e6"
+            }
+          ],
+          "id": "d979c85c-ed0d-42db-8071-74d594f28aac",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-d979c85c-ed0d-42db-8071-74d594f28aac"
+        },
+        {
+          "name": "holders",
+          "item": [
+            {
+              "name": "Ankr Get NFT Holders",
+              "id": "d32b56a8-4eb2-4ab3-b726-cc3b31f3f13f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/nft/holders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nft",
+                    "holders"
+                  ]
+                },
+                "description": "Returns the holders of a specific NFT contract."
+              },
+              "response": [
+                {
+                  "id": "d9b517b1-3569-4691-8807-e5d97a8fd206",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nft/holders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nft",
+                        "holders"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-d9b517b1-3569-4691-8807-e5d97a8fd206"
+                },
+                {
+                  "id": "008ecefa-b1a8-4552-aa5e-6516ef065187",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nft/holders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nft",
+                        "holders"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-008ecefa-b1a8-4552-aa5e-6516ef065187"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-d32b56a8-4eb2-4ab3-b726-cc3b31f3f13f"
+            }
+          ],
+          "id": "df52e45b-1a29-455c-af9b-8fb392237545",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-df52e45b-1a29-455c-af9b-8fb392237545"
+        },
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "Ankr Get NFT Transfers",
+              "id": "63d39bc7-bbfc-4ad7-8337-603c7ed7829e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"xai\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"walletAddress\": \"<string>\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/nft/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "nft",
+                    "transfers"
+                  ]
+                },
+                "description": "Returns the transfer history of a specific NFT contract or wallet."
+              },
+              "response": [
+                {
+                  "id": "bbb19c0d-0fcd-4233-ad34-24ebaa0b00d2",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"xai\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"walletAddress\": \"<string>\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nft/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nft",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-bbb19c0d-0fcd-4233-ad34-24ebaa0b00d2"
+                },
+                {
+                  "id": "54c249b8-4e52-4070-b419-8315d1b2763d",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"xai\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"walletAddress\": \"<string>\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/nft/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "nft",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-54c249b8-4e52-4070-b419-8315d1b2763d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-63d39bc7-bbfc-4ad7-8337-603c7ed7829e"
+            }
+          ],
+          "id": "c503aabd-aeff-49bf-a968-93dccd847d51",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-c503aabd-aeff-49bf-a968-93dccd847d51"
+        }
+      ],
+      "id": "4fe83f71-9967-4097-af01-e602665b52fe",
+      "createdAt": "2026-06-05T15:05:22.000Z",
+      "updatedAt": "2026-06-05T15:05:22.000Z",
+      "uid": "35240-4fe83f71-9967-4097-af01-e602665b52fe"
+    },
+    {
+      "name": "token",
+      "item": [
+        {
+          "name": "account-balance",
+          "item": [
+            {
+              "name": "Ankr Get Account Balance",
+              "id": "2305898d-792c-4535-8387-e422c08f3dfa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\",\n    \"blockchain\": \"taiko\",\n    \"onlyWhitelisted\": true,\n    \"nativeFirst\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/account-balance",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "account-balance"
+                  ]
+                },
+                "description": "Returns the native and ERC-20 balances for a wallet address across supported chains."
+              },
+              "response": [
+                {
+                  "id": "4dc9b587-4953-4a63-a10e-ee8b1e5cdc6f",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\",\n    \"blockchain\": \"taiko\",\n    \"onlyWhitelisted\": true,\n    \"nativeFirst\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/account-balance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "account-balance"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"totalBalanceUsd\": \"<string>\",\n    \"assets\": [\n      {\n        \"blockchain\": \"<string>\",\n        \"tokenName\": \"<string>\",\n        \"tokenSymbol\": \"<string>\",\n        \"tokenDecimals\": \"<integer>\",\n        \"tokenType\": \"<string>\",\n        \"contractAddress\": \"<string>\",\n        \"holderAddress\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balanceRawInteger\": \"<string>\",\n        \"balanceUsd\": \"<string>\",\n        \"tokenPrice\": \"<string>\",\n        \"thumbnail\": \"<string>\"\n      },\n      {\n        \"blockchain\": \"<string>\",\n        \"tokenName\": \"<string>\",\n        \"tokenSymbol\": \"<string>\",\n        \"tokenDecimals\": \"<integer>\",\n        \"tokenType\": \"<string>\",\n        \"contractAddress\": \"<string>\",\n        \"holderAddress\": \"<string>\",\n        \"balance\": \"<string>\",\n        \"balanceRawInteger\": \"<string>\",\n        \"balanceUsd\": \"<string>\",\n        \"tokenPrice\": \"<string>\",\n        \"thumbnail\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-4dc9b587-4953-4a63-a10e-ee8b1e5cdc6f"
+                },
+                {
+                  "id": "c6035c3d-ae2e-4f9f-bfb7-1f6249183278",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\",\n    \"blockchain\": \"taiko\",\n    \"onlyWhitelisted\": true,\n    \"nativeFirst\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/account-balance",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "account-balance"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-c6035c3d-ae2e-4f9f-bfb7-1f6249183278"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-2305898d-792c-4535-8387-e422c08f3dfa"
+            }
+          ],
+          "id": "97bf9ddd-9c40-4632-ab3f-f1490450a197",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-97bf9ddd-9c40-4632-ab3f-f1490450a197"
+        },
+        {
+          "name": "currencies",
+          "item": [
+            {
+              "name": "Ankr Get Currencies",
+              "id": "b2b51a89-c784-4f21-8aff-42ef57c75265",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/currencies",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "currencies"
+                  ]
+                },
+                "description": "Returns the catalog of currencies supported by a given blockchain."
+              },
+              "response": [
+                {
+                  "id": "e7298beb-4703-4206-ba0e-b28dc7339113",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/currencies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "currencies"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-e7298beb-4703-4206-ba0e-b28dc7339113"
+                },
+                {
+                  "id": "1435230b-ec1d-475d-872a-ba5adb95b1d6",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/currencies",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "currencies"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-1435230b-ec1d-475d-872a-ba5adb95b1d6"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-b2b51a89-c784-4f21-8aff-42ef57c75265"
+            }
+          ],
+          "id": "46a3bb09-c335-4e12-9ace-02b40c69d335",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-46a3bb09-c335-4e12-9ace-02b40c69d335"
+        },
+        {
+          "name": "price",
+          "item": [
+            {
+              "name": "Ankr Get Token Price",
+              "id": "9a992c1f-eeb0-4009-a4b7-c0c83b651ce8",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"flare\",\n    \"contractAddress\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/price",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "price"
+                  ]
+                },
+                "description": "Returns the current USD price of a token (native or ERC-20) on a given chain."
+              },
+              "response": [
+                {
+                  "id": "5f50aee3-cb33-4b1d-8a76-81211ce7fe56",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"flare\",\n    \"contractAddress\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/price",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "price"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-5f50aee3-cb33-4b1d-8a76-81211ce7fe56"
+                },
+                {
+                  "id": "d19551df-8aa3-4c97-ab5d-94f8425f8427",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"flare\",\n    \"contractAddress\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/price",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "price"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-d19551df-8aa3-4c97-ab5d-94f8425f8427"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-9a992c1f-eeb0-4009-a4b7-c0c83b651ce8"
+            }
+          ],
+          "id": "3283f6d9-557c-4f21-aca6-01c806609526",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-3283f6d9-557c-4f21-aca6-01c806609526"
+        },
+        {
+          "name": "price-history",
+          "item": [
+            {
+              "name": "Ankr Get Token Price History",
+              "id": "3d7f4270-7d20-455c-b490-f5561ed26604",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"arbitrum\",\n    \"contractAddress\": \"<string>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"interval\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/price-history",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "price-history"
+                  ]
+                },
+                "description": "Returns historical pricing data for a token over a specified time window."
+              },
+              "response": [
+                {
+                  "id": "dcef3320-a9d7-40a9-a0d8-9d445fbb44ae",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"arbitrum\",\n    \"contractAddress\": \"<string>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"interval\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/price-history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "price-history"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-dcef3320-a9d7-40a9-a0d8-9d445fbb44ae"
+                },
+                {
+                  "id": "183184f6-61fc-4da7-81ec-2e4210b66197",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"arbitrum\",\n    \"contractAddress\": \"<string>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"interval\": \"<integer>\",\n    \"limit\": \"<integer>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/price-history",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "price-history"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-183184f6-61fc-4da7-81ec-2e4210b66197"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-3d7f4270-7d20-455c-b490-f5561ed26604"
+            }
+          ],
+          "id": "6a242bd7-c168-4800-a992-4bb45585f17f",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-6a242bd7-c168-4800-a992-4bb45585f17f"
+        },
+        {
+          "name": "holders",
+          "item": [
+            {
+              "name": "Ankr Get Token Holders",
+              "id": "d8d24790-37ff-4d41-bfc3-eabc30df5353",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/holders",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "holders"
+                  ]
+                },
+                "description": "Returns the list of holders for an ERC-20 token contract."
+              },
+              "response": [
+                {
+                  "id": "7f63c15c-cd79-4cc4-8db3-7f1900ca783b",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/holders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "holders"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-7f63c15c-cd79-4cc4-8db3-7f1900ca783b"
+                },
+                {
+                  "id": "4b52bb95-fbdc-4035-9d40-f8b82c787555",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/holders",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "holders"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-4b52bb95-fbdc-4035-9d40-f8b82c787555"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-d8d24790-37ff-4d41-bfc3-eabc30df5353"
+            }
+          ],
+          "id": "5a08698a-b4f7-4347-b1e0-43ffce4a8b3e",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-5a08698a-b4f7-4347-b1e0-43ffce4a8b3e"
+        },
+        {
+          "name": "holders-count",
+          "item": [
+            {
+              "name": "Ankr Get Token Holders Count",
+              "id": "08561a99-06c5-486c-ac39-2147abc35651",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/holders-count",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "holders-count"
+                  ]
+                },
+                "description": "Returns the total count of holders for an ERC-20 token contract."
+              },
+              "response": [
+                {
+                  "id": "2956cdb1-3bcb-4c6d-b3c4-badd4bfcaab4",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/holders-count",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "holders-count"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-2956cdb1-3bcb-4c6d-b3c4-badd4bfcaab4"
+                },
+                {
+                  "id": "9cdfd461-68eb-4df7-a592-94f4f1b5f174",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"polygon\",\n    \"contractAddress\": \"<string>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/holders-count",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "holders-count"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-9cdfd461-68eb-4df7-a592-94f4f1b5f174"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-08561a99-06c5-486c-ac39-2147abc35651"
+            }
+          ],
+          "id": "23c1c90a-db16-492a-8753-fb66127e6630",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-23c1c90a-db16-492a-8753-fb66127e6630"
+        },
+        {
+          "name": "transfers",
+          "item": [
+            {
+              "name": "Ankr Get Token Transfers",
+              "id": "ac60b2a1-6798-4dcc-9f0f-c509d324b188",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/token/transfers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "token",
+                    "transfers"
+                  ]
+                },
+                "description": "Returns ERC-20 token transfer history for a wallet address or token contract."
+              },
+              "response": [
+                {
+                  "id": "feb3c6a5-3ee6-4b97-8842-cbf35728bced",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-feb3c6a5-3ee6-4b97-8842-cbf35728bced"
+                },
+                {
+                  "id": "8621a0c7-8d89-4e3e-93df-2be134b6964b",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/token/transfers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "token",
+                        "transfers"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-8621a0c7-8d89-4e3e-93df-2be134b6964b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-ac60b2a1-6798-4dcc-9f0f-c509d324b188"
+            }
+          ],
+          "id": "5553e381-eb95-421f-aa82-923718ad9a3c",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-5553e381-eb95-421f-aa82-923718ad9a3c"
+        }
+      ],
+      "id": "0eb9f956-6139-443c-9322-7e59a81b2b98",
+      "createdAt": "2026-06-05T15:05:22.000Z",
+      "updatedAt": "2026-06-05T15:05:22.000Z",
+      "uid": "35240-0eb9f956-6139-443c-9322-7e59a81b2b98"
+    },
+    {
+      "name": "query",
+      "item": [
+        {
+          "name": "blockchain-stats",
+          "item": [
+            {
+              "name": "Ankr Get Blockchain Stats",
+              "id": "c6a28522-ebbf-4b81-b2cb-3bff7f8867a4",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query/blockchain-stats",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query",
+                    "blockchain-stats"
+                  ]
+                },
+                "description": "Returns aggregate statistics about supported blockchains."
+              },
+              "response": [
+                {
+                  "id": "70b5a5f0-c13b-4058-97f4-02b3fc8874a7",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/blockchain-stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "blockchain-stats"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-70b5a5f0-c13b-4058-97f4-02b3fc8874a7"
+                },
+                {
+                  "id": "edf2966e-d8db-424b-ab54-df355fdf3d03",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/blockchain-stats",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "blockchain-stats"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-edf2966e-d8db-424b-ab54-df355fdf3d03"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-c6a28522-ebbf-4b81-b2cb-3bff7f8867a4"
+            }
+          ],
+          "id": "b4f76879-3fdb-4378-ba26-671bdc05e75f",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-b4f76879-3fdb-4378-ba26-671bdc05e75f"
+        },
+        {
+          "name": "blocks",
+          "item": [
+            {
+              "name": "Ankr Get Blocks",
+              "id": "8d941632-2e33-4f4a-940f-7d0025ca651e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"xlayer\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"descOrder\": \"<boolean>\",\n    \"includeLogs\": \"<boolean>\",\n    \"includeTxs\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query/blocks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query",
+                    "blocks"
+                  ]
+                },
+                "description": "Returns full block information for a range of block heights."
+              },
+              "response": [
+                {
+                  "id": "4c6bab1a-37f3-4455-a66c-10c169af024c",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"xlayer\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"descOrder\": \"<boolean>\",\n    \"includeLogs\": \"<boolean>\",\n    \"includeTxs\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "blocks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-4c6bab1a-37f3-4455-a66c-10c169af024c"
+                },
+                {
+                  "id": "8c838ac8-4d8a-4157-b478-96c550334fe7",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"xlayer\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"descOrder\": \"<boolean>\",\n    \"includeLogs\": \"<boolean>\",\n    \"includeTxs\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/blocks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "blocks"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-8c838ac8-4d8a-4157-b478-96c550334fe7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-8d941632-2e33-4f4a-940f-7d0025ca651e"
+            }
+          ],
+          "id": "7c42f001-510d-40ff-9fd5-f5a764f18333",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-7c42f001-510d-40ff-9fd5-f5a764f18333"
+        },
+        {
+          "name": "logs",
+          "item": [
+            {
+              "name": "Ankr Get Logs",
+              "id": "93169bf5-3bd7-48d2-90de-7c639b96692f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"optimism\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"topics\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query/logs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query",
+                    "logs"
+                  ]
+                },
+                "description": "Returns event logs from a specified block range."
+              },
+              "response": [
+                {
+                  "id": "9ee681df-546d-4e61-b42a-3b610508eb5e",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"optimism\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"topics\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/logs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "logs"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-9ee681df-546d-4e61-b42a-3b610508eb5e"
+                },
+                {
+                  "id": "4294106e-8ebd-4459-b310-9044ad3bcc37",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"blockchain\": \"optimism\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"topics\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/logs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "logs"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-4294106e-8ebd-4459-b310-9044ad3bcc37"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-93169bf5-3bd7-48d2-90de-7c639b96692f"
+            }
+          ],
+          "id": "126d87b6-57ce-4806-985d-53295dc5a37e",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-126d87b6-57ce-4806-985d-53295dc5a37e"
+        },
+        {
+          "name": "transactions-by-hash",
+          "item": [
+            {
+              "name": "Ankr Get Transactions By Hash",
+              "id": "0aafaa64-96e9-4a66-9956-bc492babd642",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"transactionHash\": \"<string>\",\n    \"blockchain\": \"fantom\",\n    \"includeLogs\": \"<boolean>\",\n    \"decodeLogs\": \"<boolean>\",\n    \"decodeTxData\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query/transactions-by-hash",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query",
+                    "transactions-by-hash"
+                  ]
+                },
+                "description": "Returns the full transaction details for the supplied transaction hash."
+              },
+              "response": [
+                {
+                  "id": "9b3e2346-6420-4a3d-9c07-9b46b3fe9a76",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"transactionHash\": \"<string>\",\n    \"blockchain\": \"fantom\",\n    \"includeLogs\": \"<boolean>\",\n    \"decodeLogs\": \"<boolean>\",\n    \"decodeTxData\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/transactions-by-hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "transactions-by-hash"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-9b3e2346-6420-4a3d-9c07-9b46b3fe9a76"
+                },
+                {
+                  "id": "d4257209-16d3-4d58-9312-ede03d49d1ba",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"transactionHash\": \"<string>\",\n    \"blockchain\": \"fantom\",\n    \"includeLogs\": \"<boolean>\",\n    \"decodeLogs\": \"<boolean>\",\n    \"decodeTxData\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/transactions-by-hash",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "transactions-by-hash"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-d4257209-16d3-4d58-9312-ede03d49d1ba"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-0aafaa64-96e9-4a66-9956-bc492babd642"
+            }
+          ],
+          "id": "d11b8600-2dfc-40b6-a9f7-446988c487f7",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-d11b8600-2dfc-40b6-a9f7-446988c487f7"
+        },
+        {
+          "name": "transactions-by-address",
+          "item": [
+            {
+              "name": "Ankr Get Transactions By Address",
+              "id": "e09d8a76-0b6b-4257-b29f-8e435a1f39d2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blockchain\": \"gnosis\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"includeLogs\": \"<boolean>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query/transactions-by-address",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query",
+                    "transactions-by-address"
+                  ]
+                },
+                "description": "Returns the full transaction history for a wallet address."
+              },
+              "response": [
+                {
+                  "id": "e8dbb521-b31e-4d5b-a069-546a57294e88",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blockchain\": \"gnosis\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"includeLogs\": \"<boolean>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/transactions-by-address",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "transactions-by-address"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-e8dbb521-b31e-4d5b-a069-546a57294e88"
+                },
+                {
+                  "id": "980b07e7-96be-4820-9bfb-c530cfecb3ed",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blockchain\": \"gnosis\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"includeLogs\": \"<boolean>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/transactions-by-address",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "transactions-by-address"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-980b07e7-96be-4820-9bfb-c530cfecb3ed"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-e09d8a76-0b6b-4257-b29f-8e435a1f39d2"
+            }
+          ],
+          "id": "dd375d18-62a7-4fde-863d-1da4e4fc1eee",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-dd375d18-62a7-4fde-863d-1da4e4fc1eee"
+        },
+        {
+          "name": "interactions",
+          "item": [
+            {
+              "name": "Ankr Get Interactions",
+              "id": "7b2c8fd3-7ab2-4744-92e5-fb8e307c6760",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/query/interactions",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query",
+                    "interactions"
+                  ]
+                },
+                "description": "Returns the chains a wallet has interacted with (cross-chain activity index)."
+              },
+              "response": [
+                {
+                  "id": "636fa86d-22e6-48af-88f3-a6bf01418a7c",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/interactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "interactions"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"result\": {\n    \"velit_6\": false,\n    \"reprehenderit38d\": 21049811.75914152\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-636fa86d-22e6-48af-88f3-a6bf01418a7c"
+                },
+                {
+                  "id": "8ffb8d63-6855-4555-b6b0-0074986c267b",
+                  "name": "Error response (JSON-RPC error envelope).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": {\n    \"walletAddress\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/query/interactions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "query",
+                        "interactions"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"jsonrpc\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"error\": {\n    \"code\": \"<integer>\",\n    \"message\": \"<string>\",\n    \"data\": {}\n  }\n}",
+                  "createdAt": "2026-06-05T15:05:22.000Z",
+                  "updatedAt": "2026-06-05T15:05:22.000Z",
+                  "uid": "35240-8ffb8d63-6855-4555-b6b0-0074986c267b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:22.000Z",
+              "updatedAt": "2026-06-05T15:05:22.000Z",
+              "uid": "35240-7b2c8fd3-7ab2-4744-92e5-fb8e307c6760"
+            }
+          ],
+          "id": "05d489b2-3a9b-4d66-8bbc-afb1a13c8e1c",
+          "createdAt": "2026-06-05T15:05:22.000Z",
+          "updatedAt": "2026-06-05T15:05:22.000Z",
+          "uid": "35240-05d489b2-3a9b-4d66-8bbc-afb1a13c8e1c"
+        }
+      ],
+      "id": "8d83012d-320d-4793-9983-5d664fa7999d",
+      "createdAt": "2026-06-05T15:05:22.000Z",
+      "updatedAt": "2026-06-05T15:05:22.000Z",
+      "uid": "35240-8d83012d-320d-4793-9983-5d664fa7999d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://rpc.ankr.com/multichain"
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "info": {
+    "_postman_id": "29907242-cfa2-4993-be75-dfdfc560b455",
+    "name": "Ankr Contract Automation API",
+    "description": "Ankr Contract Automation lets developers execute on-chain contract functions based\non time-based (CRON) and event-driven (custom-logic) triggers. The capability is\noperated through the Ankr Automation Dashboard and runs against Ankr's\ndecentralized node infrastructure. As of May 2026, BNB Smart Chain is the only\nsupported network \u2014 additional chains are on the roadmap.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:05:23.000Z",
+    "updatedAt": "2026-06-05T15:05:24.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-29907242-cfa2-4993-be75-dfdfc560b455"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "tasks",
+          "item": [
+            {
+              "name": "{taskId}",
+              "item": [
+                {
+                  "name": "Ankr Get Automation Task",
+                  "id": "26a66f88-a064-4fc5-b406-4a6d85229c85",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3c088fd0-dbec-4c3d-a6f7-a638739fc65c",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a single automation task."
+                  },
+                  "response": [
+                    {
+                      "id": "cf95b535-dd7c-4b67-bbfc-2d7e0b06541c",
+                      "name": "Successful Response",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/tasks/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "tasks",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"chain\": \"<string>\",\n  \"contractAddress\": \"<string>\",\n  \"functionSignature\": \"<string>\",\n  \"trigger\": {},\n  \"status\": \"active\",\n  \"balance\": \"<string>\",\n  \"created\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-06-05T15:05:24.000Z",
+                      "updatedAt": "2026-06-05T15:05:24.000Z",
+                      "uid": "35240-cf95b535-dd7c-4b67-bbfc-2d7e0b06541c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:24.000Z",
+                  "updatedAt": "2026-06-05T15:05:24.000Z",
+                  "uid": "35240-26a66f88-a064-4fc5-b406-4a6d85229c85"
+                },
+                {
+                  "name": "Ankr Delete Automation Task",
+                  "id": "975a9abb-2166-4575-b273-d72ae6c0367b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/tasks/:taskId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "tasks",
+                        ":taskId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3c02e779-bcc5-41f6-bcaa-acc49acbd719",
+                          "key": "taskId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Cancel and delete an automation task."
+                  },
+                  "response": [
+                    {
+                      "id": "648316e6-7d9d-4aca-a03c-4df721a8e9af",
+                      "name": "Task deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/tasks/:taskId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "tasks",
+                            ":taskId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "taskId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:05:24.000Z",
+                      "updatedAt": "2026-06-05T15:05:24.000Z",
+                      "uid": "35240-648316e6-7d9d-4aca-a03c-4df721a8e9af"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:05:24.000Z",
+                  "updatedAt": "2026-06-05T15:05:24.000Z",
+                  "uid": "35240-975a9abb-2166-4575-b273-d72ae6c0367b"
+                }
+              ],
+              "id": "86fdbf8f-8da3-481d-a40d-34e4da40ff61",
+              "createdAt": "2026-06-05T15:05:24.000Z",
+              "updatedAt": "2026-06-05T15:05:24.000Z",
+              "uid": "35240-86fdbf8f-8da3-481d-a40d-34e4da40ff61"
+            },
+            {
+              "name": "Ankr List Automation Tasks",
+              "id": "11bb8039-77f7-4373-937a-9e801e7033d6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/tasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks"
+                  ]
+                },
+                "description": "List automation tasks for the authenticated account."
+              },
+              "response": [
+                {
+                  "id": "9e9f7dad-d654-477c-baa3-829925596f68",
+                  "name": "Successful Response",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "tasks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"contractAddress\": \"<string>\",\n    \"functionSignature\": \"<string>\",\n    \"trigger\": {},\n    \"status\": \"paused\",\n    \"balance\": \"<string>\",\n    \"created\": \"<dateTime>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"chain\": \"<string>\",\n    \"contractAddress\": \"<string>\",\n    \"functionSignature\": \"<string>\",\n    \"trigger\": {},\n    \"status\": \"pending\",\n    \"balance\": \"<string>\",\n    \"created\": \"<dateTime>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:05:24.000Z",
+                  "updatedAt": "2026-06-05T15:05:24.000Z",
+                  "uid": "35240-9e9f7dad-d654-477c-baa3-829925596f68"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:24.000Z",
+              "updatedAt": "2026-06-05T15:05:24.000Z",
+              "uid": "35240-11bb8039-77f7-4373-937a-9e801e7033d6"
+            },
+            {
+              "name": "Ankr Create Automation Task",
+              "id": "419af93f-45bb-4793-a3f1-55917fabae21",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"chain\": \"bsc\",\n  \"contractAddress\": \"<string>\",\n  \"functionSignature\": \"<string>\",\n  \"trigger\": {\n    \"type\": \"time\",\n    \"schedule\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/tasks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "tasks"
+                  ]
+                },
+                "description": "Create a new time-based or event-triggered automation task targeting a deployed contract."
+              },
+              "response": [
+                {
+                  "id": "5bf749e0-3b6b-4656-9db9-64e60cca2d61",
+                  "name": "Task created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"chain\": \"bsc\",\n  \"contractAddress\": \"<string>\",\n  \"functionSignature\": \"<string>\",\n  \"trigger\": {\n    \"type\": \"time\",\n    \"schedule\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/tasks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "tasks"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"chain\": \"<string>\",\n  \"contractAddress\": \"<string>\",\n  \"functionSignature\": \"<string>\",\n  \"trigger\": {},\n  \"status\": \"active\",\n  \"balance\": \"<string>\",\n  \"created\": \"<dateTime>\"\n}",
+                  "createdAt": "2026-06-05T15:05:24.000Z",
+                  "updatedAt": "2026-06-05T15:05:24.000Z",
+                  "uid": "35240-5bf749e0-3b6b-4656-9db9-64e60cca2d61"
+                }
+              ],
+              "createdAt": "2026-06-05T15:05:24.000Z",
+              "updatedAt": "2026-06-05T15:05:24.000Z",
+              "uid": "35240-419af93f-45bb-4793-a3f1-55917fabae21"
+            }
+          ],
+          "id": "d7085140-7b0f-4542-857b-cbce2ffa61d4",
+          "createdAt": "2026-06-05T15:05:24.000Z",
+          "updatedAt": "2026-06-05T15:05:24.000Z",
+          "uid": "35240-d7085140-7b0f-4542-857b-cbce2ffa61d4"
+        }
+      ],
+      "id": "71ac41f5-900e-4dc0-9d44-03e4074588a1",
+      "createdAt": "2026-06-05T15:05:24.000Z",
+      "updatedAt": "2026-06-05T15:05:24.000Z",
+      "uid": "35240-71ac41f5-900e-4dc0-9d44-03e4074588a1"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://www.ankr.com/automation/api"
+    }
+  ]
+}
