@@ -1,0 +1,22 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ankr-advanced-api-openapi.yml, openapi/ankr-automation-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - query
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: query
+  parameter: API_KEY
+  description: Premium Plan API key passed as the trailing path segment.
+  sources:
+  - openapi/ankr-advanced-api-openapi.yml
+- name: BearerAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/ankr-automation-api-openapi.yml

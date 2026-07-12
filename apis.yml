@@ -120,6 +120,10 @@ apis:
       AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
       UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
 common:
+  - type: DomainSecurity
+    url: security/ankr-domain-security.yml
+  - type: Authentication
+    url: authentication/ankr-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/ankr/overview
   - type: Arazzo
