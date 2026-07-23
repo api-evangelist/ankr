@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Ankr Advanced EVM Ratio API
+  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+
+    methods that optimize, index, cache, and store blockchain data across multiple
+
+    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+
+    NFT, Token, and Query.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+- url: https://rpc.ankr.com/multichain
+  description: Public multichain endpoint
+- url: https://rpc.ankr.com/multichain/{API_KEY}
+  description: Premium multichain endpoint
+  variables:
+    API_KEY:
+      default: API_KEY
+      description: Premium Plan project API key
+security:
+- {}
+- ApiKeyAuth: []
+tags:
+- name: Ratio
+  description: Trustless exchange ratio between native and liquid staking tokens.
+paths:
+  /v1.0/ratio/{token}:
+    get:
+      summary: Ankr Get Trustless Ratio
+      description: Returns the trustless exchange ratio between the native asset and its liquid staking token.
+      operationId: getTrustlessRatio
+      tags:
+      - Ratio
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrustlessRatio'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    TrustlessRatio:
+      type: object
+      properties:
+        token:
+          type: string
+        ratio:
+          type: string
+        updatedAt:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  parameters:
+    Token:
+      name: token
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - ankrETH
+        - ankrBNB
+        - ankrPOL
+        - ankrAVAX
+        - ankrFTM
+        - ankrDOT
+        - ankrFLOW
+      description: Liquid staking token symbol.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: API_KEY
+      description: Premium Plan API key passed as the trailing path segment.

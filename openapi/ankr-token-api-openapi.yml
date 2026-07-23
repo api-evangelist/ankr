@@ -1,0 +1,439 @@
+openapi: 3.1.0
+info:
+  title: Ankr Advanced EVM Token API
+  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+
+    methods that optimize, index, cache, and store blockchain data across multiple
+
+    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+
+    NFT, Token, and Query.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+- url: https://rpc.ankr.com/multichain
+  description: Public multichain endpoint
+- url: https://rpc.ankr.com/multichain/{API_KEY}
+  description: Premium multichain endpoint
+  variables:
+    API_KEY:
+      default: API_KEY
+      description: Premium Plan project API key
+security:
+- {}
+- ApiKeyAuth: []
+tags:
+- name: Token
+  description: Token methods — balances, prices, holders, currencies, and transfers.
+paths:
+  /token/account-balance:
+    post:
+      summary: Ankr Get Account Balance
+      description: Returns the native and ERC-20 balances for a wallet address across supported chains.
+      operationId: ankrGetAccountBalance
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetAccountBalanceRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnkrGetAccountBalanceResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /token/currencies:
+    post:
+      summary: Ankr Get Currencies
+      description: Returns the catalog of currencies supported by a given blockchain.
+      operationId: ankrGetCurrencies
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrChainScopedRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /token/price:
+    post:
+      summary: Ankr Get Token Price
+      description: Returns the current USD price of a token (native or ERC-20) on a given chain.
+      operationId: ankrGetTokenPrice
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetTokenPriceRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /token/price-history:
+    post:
+      summary: Ankr Get Token Price History
+      description: Returns historical pricing data for a token over a specified time window.
+      operationId: ankrGetTokenPriceHistory
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetTokenPriceHistoryRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /token/holders:
+    post:
+      summary: Ankr Get Token Holders
+      description: Returns the list of holders for an ERC-20 token contract.
+      operationId: ankrGetTokenHolders
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetTokenHoldersRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /token/holders-count:
+    post:
+      summary: Ankr Get Token Holders Count
+      description: Returns the total count of holders for an ERC-20 token contract.
+      operationId: ankrGetTokenHoldersCount
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetTokenHoldersRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /token/transfers:
+    post:
+      summary: Ankr Get Token Transfers
+      description: Returns ERC-20 token transfer history for a wallet address or token contract.
+      operationId: ankrGetTokenTransfers
+      tags:
+      - Token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetTokenTransfersRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
+    AnkrGetAccountBalanceRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getAccountBalance
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              onlyWhitelisted:
+                type: boolean
+                default: true
+              nativeFirst:
+                type: boolean
+    AnkrGetTokenHoldersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenHolders
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    AnkrGetTokenPriceHistoryRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenPriceHistory
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              fromTimestamp:
+                type: integer
+              toTimestamp:
+                type: integer
+              interval:
+                type: integer
+              limit:
+                type: integer
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    AnkrGetTokenPriceRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenPrice
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+    AnkrGetAccountBalanceResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          properties:
+            totalBalanceUsd:
+              type: string
+            assets:
+              type: array
+              items:
+                type: object
+                properties:
+                  blockchain:
+                    type: string
+                  tokenName:
+                    type: string
+                  tokenSymbol:
+                    type: string
+                  tokenDecimals:
+                    type: integer
+                  tokenType:
+                    type: string
+                  contractAddress:
+                    type: string
+                  holderAddress:
+                    type: string
+                  balance:
+                    type: string
+                  balanceRawInteger:
+                    type: string
+                  balanceUsd:
+                    type: string
+                  tokenPrice:
+                    type: string
+                  thumbnail:
+                    type: string
+    AnkrGetTokenTransfersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenTransfers
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              address:
+                type: array
+                items:
+                  type: string
+              fromBlock:
+                type: integer
+              toBlock:
+                type: integer
+              fromTimestamp:
+                type: integer
+              toTimestamp:
+                type: integer
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    AnkrChainScopedRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+  responses:
+    ErrorResponse:
+      description: Error response (JSON-RPC error envelope).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: API_KEY
+      description: Premium Plan API key passed as the trailing path segment.

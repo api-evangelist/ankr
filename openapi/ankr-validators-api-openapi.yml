@@ -1,0 +1,107 @@
+openapi: 3.1.0
+info:
+  title: Ankr Advanced EVM Validators API
+  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+
+    methods that optimize, index, cache, and store blockchain data across multiple
+
+    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+
+    NFT, Token, and Query.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+- url: https://rpc.ankr.com/multichain
+  description: Public multichain endpoint
+- url: https://rpc.ankr.com/multichain/{API_KEY}
+  description: Premium multichain endpoint
+  variables:
+    API_KEY:
+      default: API_KEY
+      description: Premium Plan project API key
+security:
+- {}
+- ApiKeyAuth: []
+tags:
+- name: Validators
+  description: Validator metadata, unbond times, reward release windows.
+paths:
+  /v1.0/validators/{chain}:
+    get:
+      summary: Ankr Get Validators
+      description: Returns Ankr-operated validators on a given chain, including unbond windows and reward release schedules.
+      operationId: getValidators
+      tags:
+      - Validators
+      parameters:
+      - $ref: '#/components/parameters/Chain'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidatorList'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    ValidatorList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Validator'
+    Validator:
+      type: object
+      properties:
+        address:
+          type: string
+        chain:
+          type: string
+        active:
+          type: boolean
+        unbondPeriodSeconds:
+          type: integer
+        rewardReleaseSeconds:
+          type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  parameters:
+    Chain:
+      name: chain
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - ethereum
+        - bsc
+        - polygon
+        - avalanche
+        - fantom
+        - polkadot
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: API_KEY
+      description: Premium Plan API key passed as the trailing path segment.

@@ -1,0 +1,127 @@
+openapi: 3.1.0
+info:
+  title: Ankr Advanced EVM Metrics API
+  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+
+    methods that optimize, index, cache, and store blockchain data across multiple
+
+    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+
+    NFT, Token, and Query.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+- url: https://rpc.ankr.com/multichain
+  description: Public multichain endpoint
+- url: https://rpc.ankr.com/multichain/{API_KEY}
+  description: Premium multichain endpoint
+  variables:
+    API_KEY:
+      default: API_KEY
+      description: Premium Plan project API key
+security:
+- {}
+- ApiKeyAuth: []
+tags:
+- name: Metrics
+  description: Liquid staking pool statistics (TVL, APR, holders, supply).
+paths:
+  /v1.0/metrics:
+    get:
+      summary: Ankr Get Staking Metrics
+      description: Returns Ankr Liquid Staking metrics across all supported tokens.
+      operationId: getStakingMetrics
+      tags:
+      - Metrics
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StakingMetricsList'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /v1.0/metrics/{token}:
+    get:
+      summary: Ankr Get Staking Metrics By Token
+      description: Returns staking metrics for a single liquid staking token.
+      operationId: getStakingMetricsByToken
+      tags:
+      - Metrics
+      parameters:
+      - $ref: '#/components/parameters/Token'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StakingMetrics'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    StakingMetrics:
+      type: object
+      properties:
+        token:
+          type: string
+        tvlUsd:
+          type: string
+        apr:
+          type: string
+        supply:
+          type: string
+        holders:
+          type: integer
+        exchangeRatio:
+          type: string
+    StakingMetricsList:
+      type: array
+      items:
+        $ref: '#/components/schemas/StakingMetrics'
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  parameters:
+    Token:
+      name: token
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - ankrETH
+        - ankrBNB
+        - ankrPOL
+        - ankrAVAX
+        - ankrFTM
+        - ankrDOT
+        - ankrFLOW
+      description: Liquid staking token symbol.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: API_KEY
+      description: Premium Plan API key passed as the trailing path segment.

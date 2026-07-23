@@ -1,0 +1,333 @@
+openapi: 3.1.0
+info:
+  title: Ankr Advanced EVM NFT API
+  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+
+    methods that optimize, index, cache, and store blockchain data across multiple
+
+    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+
+    NFT, Token, and Query.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+- url: https://rpc.ankr.com/multichain
+  description: Public multichain endpoint
+- url: https://rpc.ankr.com/multichain/{API_KEY}
+  description: Premium multichain endpoint
+  variables:
+    API_KEY:
+      default: API_KEY
+      description: Premium Plan project API key
+security:
+- {}
+- ApiKeyAuth: []
+tags:
+- name: NFT
+  description: NFT methods — ownership, metadata, holders, and transfer history.
+paths:
+  /:
+    post:
+      summary: Ankr Get NFTs By Owner
+      description: Returns the full list of NFTs owned by a wallet address across supported chains.
+      operationId: ankrGetNFTsByOwner
+      tags:
+      - NFT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetNFTsByOwnerRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnkrGetNFTsByOwnerResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /nft/metadata:
+    post:
+      summary: Ankr Get NFT Metadata
+      description: Returns metadata for a specific NFT (token contract + token ID).
+      operationId: ankrGetNFTMetadata
+      tags:
+      - NFT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetNFTMetadataRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /nft/holders:
+    post:
+      summary: Ankr Get NFT Holders
+      description: Returns the holders of a specific NFT contract.
+      operationId: ankrGetNFTHolders
+      tags:
+      - NFT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetNFTHoldersRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+  /nft/transfers:
+    post:
+      summary: Ankr Get NFT Transfers
+      description: Returns the transfer history of a specific NFT contract or wallet.
+      operationId: ankrGetNftTransfers
+      tags:
+      - NFT
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnkrGetNftTransfersRequest'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JsonRpcResponse'
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
+    AnkrGetNftTransfersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNftTransfers
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              fromBlock:
+                type: integer
+              toBlock:
+                type: integer
+              walletAddress:
+                type: string
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    AnkrGetNFTsByOwnerResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          properties:
+            owner:
+              type: string
+            assets:
+              type: array
+              items:
+                type: object
+                properties:
+                  blockchain:
+                    type: string
+                  name:
+                    type: string
+                  tokenId:
+                    type: string
+                  tokenUrl:
+                    type: string
+                  imageUrl:
+                    type: string
+                  collectionName:
+                    type: string
+                  symbol:
+                    type: string
+                  contractType:
+                    type: string
+                  contractAddress:
+                    type: string
+                  traits:
+                    type: array
+                    items:
+                      type: object
+            nextPageToken:
+              type: string
+    AnkrGetNFTMetadataRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTMetadata
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              tokenId:
+                type: string
+    AnkrGetNFTHoldersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTHolders
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+    AnkrGetNFTsByOwnerRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTsByOwner
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+  responses:
+    ErrorResponse:
+      description: Error response (JSON-RPC error envelope).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: API_KEY
+      description: Premium Plan API key passed as the trailing path segment.

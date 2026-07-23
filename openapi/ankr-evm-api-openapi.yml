@@ -1,0 +1,131 @@
+openapi: 3.1.0
+info:
+  title: Ankr Advanced EVM API
+  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+
+    methods that optimize, index, cache, and store blockchain data across multiple
+
+    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+
+    NFT, Token, and Query.
+
+    '
+  version: 1.0.0
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+- url: https://rpc.ankr.com/multichain
+  description: Public multichain endpoint
+- url: https://rpc.ankr.com/multichain/{API_KEY}
+  description: Premium multichain endpoint
+  variables:
+    API_KEY:
+      default: API_KEY
+      description: Premium Plan project API key
+security:
+- {}
+- ApiKeyAuth: []
+tags:
+- name: EVM
+  description: Standard Ethereum JSON-RPC envelope shared by every EVM chain.
+paths:
+  /:
+    post:
+      summary: Ankr Execute JSON-RPC Call
+      description: 'Execute a JSON-RPC 2.0 call against the selected chain. The `method` field
+
+        carries the EVM method name (`eth_blockNumber`, `eth_getBalance`,
+
+        `eth_chainId`, `eth_call`, `eth_getLogs`, `eth_getTransactionByHash`,
+
+        `eth_getTransactionReceipt`, `eth_sendRawTransaction`, etc.).
+
+        '
+      operationId: callRpc
+      tags:
+      - EVM
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - $ref: '#/components/schemas/JsonRpcRequest'
+              - type: array
+                items:
+                  $ref: '#/components/schemas/JsonRpcRequest'
+      responses:
+        '200':
+          description: JSON-RPC response (single or batched).
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/JsonRpcResponse'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/JsonRpcResponse'
+        '429':
+          description: Rate limit exceeded. Premium API keys raise the limit x50.
+        4XX:
+          $ref: '#/components/responses/ErrorResponse'
+components:
+  schemas:
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          oneOf:
+          - type: integer
+          - type: string
+        result: {}
+        error:
+          $ref: '#/components/schemas/JsonRpcError'
+    JsonRpcError:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        data: {}
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          oneOf:
+          - type: integer
+          - type: string
+        method:
+          type: string
+          example: eth_blockNumber
+        params:
+          type: array
+          items: {}
+  responses:
+    ErrorResponse:
+      description: JSON-RPC error envelope.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/JsonRpcResponse'
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: API_KEY
+      description: Premium Plan API key passed as the trailing path segment.
