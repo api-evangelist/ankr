@@ -1,124 +1,354 @@
 aid: ankr
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ankr.png
 url: https://raw.githubusercontent.com/api-evangelist/ankr/refs/heads/main/apis.yml
 apis:
-  - aid: ankr:ankr-rpc-service
-    name: Ankr RPC Service (Node API)
-    tags:
-      - RPC
-      - Web3
-      - Multichain
-      - EVM
-      - Blockchain
-    humanURL: https://www.ankr.com/rpc/
-    baseURL: https://rpc.ankr.com
-    properties:
-      - url: https://www.ankr.com/docs/rpc-service/overview/
-        type: Documentation
-      - url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
-        type: Documentation
-      - url: openapi/ankr-rpc-service-openapi.yml
-        type: OpenAPI
-      - url: asyncapi/ankr-asyncapi.yml
-        type: AsyncAPI
-      - url: json-ld/ankr-context.jsonld
-        type: JSONLD
-    description: |
-      Ankr's Node API exposes standard JSON-RPC endpoints (HTTPS and WebSocket) for 80+
-      public blockchains at rpc.ankr.com/{chain}. EVM chains share the Ethereum JSON-RPC envelope;
-      non-EVM chains (Solana, Aptos, TRON, Stellar, TON, Cosmos networks) expose their native
-      RPC surface at the same per-chain endpoint. Public Plan is open and anonymous;
-      Premium Plan multiplies throughput x50 and unlocks WebSocket subscriptions, archive nodes,
-      and IP whitelisting via project-scoped API keys.
-  - aid: ankr:ankr-advanced-api
-    name: Ankr Advanced API
-    tags:
-      - Web3
-      - NFT
-      - Token
-      - Indexer
-      - Multichain
-    humanURL: https://www.ankr.com/docs/advanced-api/overview/
-    baseURL: https://rpc.ankr.com/multichain
-    properties:
-      - url: https://www.ankr.com/docs/advanced-api/overview/
-        type: Documentation
-      - url: https://api-docs.ankr.com/reference/
-        type: Documentation
-      - url: openapi/ankr-advanced-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/ankr-nft-asset-schema.json
-        type: JSONSchema
-      - url: json-schema/ankr-account-balance-schema.json
-        type: JSONSchema
-      - url: json-structure/ankr-account-balance-structure.json
-        type: JSONStructure
-      - url: examples/ankr-get-account-balance-example.json
-        type: Examples
-      - url: examples/ankr-get-nfts-by-owner-example.json
-        type: Examples
-    description: |
-      The Advanced API (AAPI) is Ankr's indexed JSON-RPC surface that optimizes, caches, and
-      aggregates data across 19 EVM mainnets and 7 testnets. Methods are grouped into NFT
-      (ankr_getNFTsByOwner, ankr_getNFTMetadata, ankr_getNFTHolders, ankr_getNftTransfers),
-      Token (ankr_getAccountBalance, ankr_getCurrencies, ankr_getTokenPrice, ankr_getTokenHolders,
-      ankr_getTokenHoldersCount, ankr_getTokenTransfers, ankr_getTokenPriceHistory), and Query
-      (ankr_getBlockchainStats, ankr_getBlocks, ankr_getLogs, ankr_getTransactionsByHash,
-      ankr_getTransactionsByAddress, ankr_getInteractions).
-  - aid: ankr:ankr-staking-api
-    name: Ankr Liquid Staking API
-    tags:
-      - Staking
-      - LiquidStaking
-      - DeFi
-      - Validators
-    humanURL: https://www.ankr.com/docs/staking-for-developers/overview/
-    baseURL: https://api.staking.ankr.com
-    properties:
-      - url: https://www.ankr.com/docs/staking-for-developers/overview/
-        type: Documentation
-      - url: openapi/ankr-staking-api-openapi.yml
-        type: OpenAPI
-      - url: json-schema/ankr-staking-metrics-schema.json
-        type: JSONSchema
-      - url: https://www.ankr.com/staking/dashboard/
-        type: Dashboard
-    description: |
-      Ankr's Liquid Staking developer surface — a RESTful metrics API plus on-chain Smart Contract
-      APIs across Avalanche, Binance Smart Chain, Ethereum, Fantom, and Polygon. Supported
-      liquid staking tokens include ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, and
-      ankrFLOW. The RESTful surface exposes staking metrics (TVL, APR, holders, supply),
-      the trustless exchange ratio, and validator metadata (unbond windows, reward release).
-  - aid: ankr:ankr-automation-api
-    name: Ankr Contract Automation API
-    tags:
-      - Automation
-      - SmartContracts
-      - BNB
-    humanURL: https://www.ankr.com/docs/automation/overview/
-    baseURL: https://www.ankr.com/automation
-    properties:
-      - url: https://www.ankr.com/docs/automation/overview/
-        type: Documentation
-      - url: openapi/ankr-automation-api-openapi.yml
-        type: OpenAPI
-    description: |
-      Ankr Contract Automation executes deployed smart-contract functions based on time-based (CRON)
-      or event-driven (IAutomateCompatible) triggers. As of May 2026 the service supports BNB Smart Chain
-      only — additional networks are on the roadmap. Tasks are created, funded, paused, and deleted via
-      the Ankr Automation Dashboard.
-  - aid: ankr:ankr-block-explorer
-    name: AnkrScan Block Explorer
-    tags:
-      - BlockExplorer
-      - Web3
-    humanURL: https://ankrscan.io
-    baseURL: https://ankrscan.io
-    properties:
-      - url: https://ankrscan.io
-        type: Portal
-    description: |
-      AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
-      UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
+- aid: ankr:ankr-block-explorer
+  name: AnkrScan Block Explorer
+  tags:
+  - BlockExplorer
+  - Web3
+  humanURL: https://ankrscan.io
+  baseURL: https://ankrscan.io
+  properties:
+  - url: https://ankrscan.io
+    type: Portal
+  description: >
+    AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
+
+    UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
+- aid: ankr:ankr-evm-api
+  name: ankr EVM API
+  description: Standard Ethereum JSON-RPC envelope shared by every EVM chain.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - EVM
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-evm-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-metrics-api
+  name: ankr Metrics API
+  description: Liquid staking pool statistics (TVL, APR, holders, supply).
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-nft-api
+  name: ankr NFT API
+  description: NFT methods — ownership, metadata, holders, and transfer history.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - NFT
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-nft-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-query-api
+  name: ankr Query API
+  description: Query methods — blockchain statistics, blocks, logs, transactions, interactions.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - Query
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-query-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-ratio-api
+  name: ankr Ratio API
+  description: Trustless exchange ratio between native and liquid staking tokens.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - Ratio
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-ratio-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-tasks-api
+  name: ankr Tasks API
+  description: Time-based and event-triggered automation tasks.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - Tasks
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-tasks-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-token-api
+  name: ankr Token API
+  description: Token methods — balances, prices, holders, currencies, and transfers.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - Token
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-token-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
+- aid: ankr:ankr-validators-api
+  name: ankr Validators API
+  description: Validator metadata, unbond times, reward release windows.
+  humanURL: https://www.ankr.com/rpc/
+  baseURL: https://rpc.ankr.com
+  tags:
+  - Validators
+  properties:
+  - type: OpenAPI
+    url: openapi/ankr-validators-api-openapi.yml
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/overview/
+  - type: Documentation
+    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
+  - type: AsyncAPI
+    url: asyncapi/ankr-asyncapi.yml
+  - type: JSONLD
+    url: json-ld/ankr-context.jsonld
+  - type: Documentation
+    url: https://www.ankr.com/docs/advanced-api/overview/
+  - type: Documentation
+    url: https://api-docs.ankr.com/reference/
+  - type: JSONSchema
+    url: json-schema/ankr-nft-asset-schema.json
+  - type: JSONSchema
+    url: json-schema/ankr-account-balance-schema.json
+  - type: JSONStructure
+    url: json-structure/ankr-account-balance-structure.json
+  - type: Examples
+    url: examples/ankr-get-account-balance-example.json
+  - type: Examples
+    url: examples/ankr-get-nfts-by-owner-example.json
+  - type: Documentation
+    url: https://www.ankr.com/docs/staking-for-developers/overview/
+  - type: JSONSchema
+    url: json-schema/ankr-staking-metrics-schema.json
+  - type: Dashboard
+    url: https://www.ankr.com/staking/dashboard/
+  - type: Documentation
+    url: https://www.ankr.com/docs/automation/overview/
 common:
   - type: AgenticAccess
     url: agentic-access/ankr-agentic-access.yml
