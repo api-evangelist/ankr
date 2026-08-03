@@ -1,0 +1,28 @@
+{
+  "provider": "ankr",
+  "sources": [
+    "ankr-evm-api-openapi.yml",
+    "ankr-metrics-api-openapi.yml",
+    "ankr-nft-api-openapi.yml",
+    "ankr-query-api-openapi.yml",
+    "ankr-ratio-api-openapi.yml",
+    "ankr-tasks-api-openapi.yml",
+    "ankr-token-api-openapi.yml",
+    "ankr-validators-api-openapi.yml"
+  ],
+  "outputs": [
+    "ankr-evm-api-openapi.yml",
+    "ankr-metrics-api-openapi.yml",
+    "ankr-nft-api-openapi.yml",
+    "ankr-query-api-openapi.yml",
+    "ankr-ratio-api-openapi.yml",
+    "ankr-tasks-api-openapi.yml",
+    "ankr-token-api-openapi.yml",
+    "ankr-validators-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

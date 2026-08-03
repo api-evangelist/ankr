@@ -1,0 +1,169 @@
+openapi: 3.1.0
+info:
+  title: Ankr Contract Automation API
+  description: |
+    Ankr Contract Automation lets developers execute on-chain contract functions based
+    on time-based (CRON) and event-driven (custom-logic) triggers. The capability is
+    operated through the Ankr Automation Dashboard and runs against Ankr's
+    decentralized node infrastructure. As of May 2026, BNB Smart Chain is the only
+    supported network — additional chains are on the roadmap.
+  version: "1.0.0"
+  contact:
+    name: Ankr
+    url: https://www.ankr.com
+    email: support@ankr.com
+  license:
+    name: Ankr Terms of Service
+    url: https://www.ankr.com/terms/
+servers:
+  - url: https://www.ankr.com/automation/api
+    description: Ankr Automation control plane (dashboard-managed).
+security:
+  - BearerAuth: []
+tags:
+  - name: Tasks
+    description: Time-based and event-triggered automation tasks.
+paths:
+  /v1/tasks:
+    get:
+      summary: Ankr List Automation Tasks
+      description: List automation tasks for the authenticated account.
+      operationId: listTasks
+      tags:
+        - Tasks
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Task'
+    post:
+      summary: Ankr Create Automation Task
+      description: Create a new time-based or event-triggered automation task targeting a deployed contract.
+      operationId: createTask
+      tags:
+        - Tasks
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTaskRequest'
+      responses:
+        '201':
+          description: Task created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+  /v1/tasks/{taskId}:
+    get:
+      summary: Ankr Get Automation Task
+      description: Retrieve a single automation task.
+      operationId: getTask
+      tags:
+        - Tasks
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Task'
+    delete:
+      summary: Ankr Delete Automation Task
+      description: Cancel and delete an automation task.
+      operationId: deleteTask
+      tags:
+        - Tasks
+      parameters:
+        - $ref: '#/components/parameters/TaskId'
+      responses:
+        '204':
+          description: Task deleted.
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    CreateTaskRequest:
+      type: object
+      required:
+        - chain
+        - contractAddress
+        - functionSignature
+        - trigger
+      properties:
+        chain:
+          type: string
+          enum:
+            - bsc
+        contractAddress:
+          type: string
+        functionSignature:
+          type: string
+        abi:
+          type: array
+          items: {}
+        trigger:
+          oneOf:
+            - $ref: '#/components/schemas/TimeTrigger'
+            - $ref: '#/components/schemas/EventTrigger'
+    TimeTrigger:
+      type: object
+      required:
+        - type
+        - schedule
+      properties:
+        type:
+          type: string
+          enum: [time]
+        schedule:
+          type: string
+          description: CRON expression.
+    EventTrigger:
+      type: object
+      required:
+        - type
+        - condition
+      properties:
+        type:
+          type: string
+          enum: [event]
+        condition:
+          type: string
+          description: Solidity condition exposed via IAutomateCompatible.
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+        chain:
+          type: string
+        contractAddress:
+          type: string
+        functionSignature:
+          type: string
+        trigger:
+          type: object
+        status:
+          type: string
+          enum: [pending, active, paused, completed, failed]
+        balance:
+          type: string
+        created:
+          type: string
+          format: date-time
