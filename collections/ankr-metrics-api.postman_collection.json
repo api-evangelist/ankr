@@ -1,0 +1,278 @@
+{
+  "item": [
+    {
+      "id": "5b2add98-ea8c-4078-941c-40c75969f6b2",
+      "name": "Metrics",
+      "description": {
+        "content": "Liquid staking pool statistics (TVL, APR, holders, supply).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d77fc16-3e8b-404c-a0ac-8e03f25c0f8e",
+          "name": "Ankr Get Staking Metrics",
+          "request": {
+            "name": "Ankr Get Staking Metrics",
+            "description": {
+              "content": "Returns Ankr Liquid Staking metrics across all supported tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.0",
+                "metrics"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed7da2ba-5399-4b3a-a2b0-635e63fcde20",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"token\": \"string\",\n    \"tvlUsd\": \"string\",\n    \"apr\": \"string\",\n    \"supply\": \"string\",\n    \"holders\": 3597,\n    \"exchangeRatio\": \"string\"\n  },\n  {\n    \"token\": \"string\",\n    \"tvlUsd\": \"string\",\n    \"apr\": \"string\",\n    \"supply\": \"string\",\n    \"holders\": 1461,\n    \"exchangeRatio\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "933719e8-13b6-4f4a-b47b-7f6ee985bf77",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "metrics"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6938,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03bea1a6-3257-4744-83e3-2555a7dc1f43",
+          "name": "Ankr Get Staking Metrics By Token",
+          "request": {
+            "name": "Ankr Get Staking Metrics By Token",
+            "description": {
+              "content": "Returns staking metrics for a single liquid staking token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.0",
+                "metrics",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Liquid staking token symbol."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23dd2773-8610-4146-9d03-57a047b8a56a",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "metrics",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) Liquid staking token symbol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"tvlUsd\": \"string\",\n  \"apr\": \"string\",\n  \"supply\": \"string\",\n  \"holders\": 5361,\n  \"exchangeRatio\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98e7527f-71ba-43d3-84a2-af0ed354675d",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "metrics",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) Liquid staking token symbol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6938,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rpc.ankr.com/multichain",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "8141d96f-fede-45d0-a1d8-a440ffa9db5f",
+    "name": "Ankr Advanced EVM Metrics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC\nmethods that optimize, index, cache, and store blockchain data across multiple\nEVM-compatible blockchains. The Advanced API exposes three logical groups:\nNFT, Token, and Query.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+      "type": "text/plain"
+    }
+  }
+}

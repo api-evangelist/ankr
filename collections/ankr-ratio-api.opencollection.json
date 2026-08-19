@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Advanced EVM Ratio API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ratio",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Trustless Ratio",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rpc.ankr.com/multichain/v1.0/ratio/:token",
+            "params": [
+              {
+                "name": "token",
+                "value": "",
+                "type": "path",
+                "description": "Liquid staking token symbol."
+              }
+            ]
+          },
+          "docs": "Returns the trustless exchange ratio between the native asset and its liquid staking token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

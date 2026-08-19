@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "451504fb-81c8-4026-8e8b-ebf22f982993",
+      "name": "Ratio",
+      "description": {
+        "content": "Trustless exchange ratio between native and liquid staking tokens.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75a2bcd2-edac-4d60-8ad7-ea417423a90b",
+          "name": "Ankr Get Trustless Ratio",
+          "request": {
+            "name": "Ankr Get Trustless Ratio",
+            "description": {
+              "content": "Returns the trustless exchange ratio between the native asset and its liquid staking token.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.0",
+                "ratio",
+                ":token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "token",
+                  "description": "(Required) Liquid staking token symbol."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f41be98-0917-482f-9d92-2ec3d5efc7bc",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "ratio",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) Liquid staking token symbol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"token\": \"string\",\n  \"ratio\": \"string\",\n  \"updatedAt\": \"1991-06-21T05:31:59.263Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eba5d71d-be1b-4a20-9931-34f1229f9db4",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "ratio",
+                    ":token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "token",
+                      "description": "(Required) Liquid staking token symbol."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7693,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rpc.ankr.com/multichain",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "a1f62693-4877-41fd-a8fe-5e3bce644526",
+    "name": "Ankr Advanced EVM Ratio API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC\nmethods that optimize, index, cache, and store blockchain data across multiple\nEVM-compatible blockchains. The Advanced API exposes three logical groups:\nNFT, Token, and Query.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+      "type": "text/plain"
+    }
+  }
+}

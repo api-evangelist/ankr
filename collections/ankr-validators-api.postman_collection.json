@@ -1,0 +1,170 @@
+{
+  "item": [
+    {
+      "id": "a9a762e2-5ed0-49a6-843f-adb3b9eb3497",
+      "name": "Validators",
+      "description": {
+        "content": "Validator metadata, unbond times, reward release windows.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13e50408-d192-4800-8c6a-fbbff79bf542",
+          "name": "Ankr Get Validators",
+          "request": {
+            "name": "Ankr Get Validators",
+            "description": {
+              "content": "Returns Ankr-operated validators on a given chain, including unbond windows and reward release schedules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1.0",
+                "validators",
+                ":chain"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "chain",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e67f6453-8111-459d-9bc6-f7f09bee5dc4",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "validators",
+                    ":chain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chain",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"address\": \"string\",\n    \"chain\": \"string\",\n    \"active\": true,\n    \"unbondPeriodSeconds\": 3246,\n    \"rewardReleaseSeconds\": 2819\n  },\n  {\n    \"address\": \"string\",\n    \"chain\": \"string\",\n    \"active\": true,\n    \"unbondPeriodSeconds\": 7494,\n    \"rewardReleaseSeconds\": 8331\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4cbabef4-cbda-4426-a3fe-4e1201d9ac70",
+              "name": "Error response.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1.0",
+                    "validators",
+                    ":chain"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "chain",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 7261,\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rpc.ankr.com/multichain",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "239f31d9-2e94-40ca-b292-9c3607d49c7c",
+    "name": "Ankr Advanced EVM Validators API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC\nmethods that optimize, index, cache, and store blockchain data across multiple\nEVM-compatible blockchains. The Advanced API exposes three logical groups:\nNFT, Token, and Query.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+      "type": "text/plain"
+    }
+  }
+}

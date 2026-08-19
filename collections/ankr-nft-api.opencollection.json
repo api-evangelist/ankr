@@ -1,0 +1,78 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Advanced EVM NFT API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "NFT",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get NFTs By Owner",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the full list of NFTs owned by a wallet address across supported chains."
+        },
+        {
+          "info": {
+            "name": "Ankr Get NFT Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/nft/metadata",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns metadata for a specific NFT (token contract + token ID)."
+        },
+        {
+          "info": {
+            "name": "Ankr Get NFT Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/nft/holders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the holders of a specific NFT contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get NFT Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/nft/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the transfer history of a specific NFT contract or wallet."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

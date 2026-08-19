@@ -1,0 +1,857 @@
+{
+  "item": [
+    {
+      "id": "fd07e2d4-c426-4a63-b55d-ea7b6262dd53",
+      "name": "Query",
+      "description": {
+        "content": "Query methods — blockchain statistics, blocks, logs, transactions, interactions.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "75c98be2-08c8-49c5-acee-769f047ad305",
+          "name": "Ankr Get Blockchain Stats",
+          "request": {
+            "name": "Ankr Get Blockchain Stats",
+            "description": {
+              "content": "Returns aggregate statistics about supported blockchains.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                "blockchain-stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c54275b-6e21-43ef-9150-adb8a2ec7754",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "blockchain-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"string\",\n  \"id\": 1,\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 5829,\n  \"result\": {\n    \"key_0\": 3157.0851424495895,\n    \"key_1\": 162.82580195318585,\n    \"key_2\": 2366,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8643919f-eca1-4664-9002-2ab82ad1307d",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "blockchain-stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"string\",\n  \"id\": 1,\n  \"params\": {\n    \"blockchain\": \"eth\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 984,\n  \"error\": {\n    \"code\": 9755,\n    \"message\": \"string\",\n    \"data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82e5ecb6-0d75-48ee-bcb6-441fc495968f",
+          "name": "Ankr Get Blocks",
+          "request": {
+            "name": "Ankr Get Blocks",
+            "description": {
+              "content": "Returns full block information for a range of block heights.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                "blocks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d4c61b48-65c9-4665-8ba9-ff8df5586ead",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "blocks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getBlocks\",\n  \"id\": 1,\n  \"params\": {\n    \"blockchain\": \"optimism\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"descOrder\": \"<boolean>\",\n    \"includeLogs\": \"<boolean>\",\n    \"includeTxs\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 5829,\n  \"result\": {\n    \"key_0\": 3157.0851424495895,\n    \"key_1\": 162.82580195318585,\n    \"key_2\": 2366,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91219314-07b4-4e3f-a0c8-a20d66ad4afe",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "blocks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getBlocks\",\n  \"id\": 1,\n  \"params\": {\n    \"blockchain\": \"optimism\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"descOrder\": \"<boolean>\",\n    \"includeLogs\": \"<boolean>\",\n    \"includeTxs\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 984,\n  \"error\": {\n    \"code\": 9755,\n    \"message\": \"string\",\n    \"data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22c9082b-f170-4aee-9b90-29ceaff9f50a",
+          "name": "Ankr Get Logs",
+          "request": {
+            "name": "Ankr Get Logs",
+            "description": {
+              "content": "Returns event logs from a specified block range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                "logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "aedc72a7-d6f5-4e02-8334-be8ee8ce6770",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getLogs\",\n  \"id\": 1,\n  \"params\": {\n    \"blockchain\": \"story\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"topics\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 5829,\n  \"result\": {\n    \"key_0\": 3157.0851424495895,\n    \"key_1\": 162.82580195318585,\n    \"key_2\": 2366,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "932ae7a2-ef38-4c42-8967-fb9c3e7a8b5b",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getLogs\",\n  \"id\": 1,\n  \"params\": {\n    \"blockchain\": \"story\",\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"topics\": [\n      [\n        \"<string>\",\n        \"<string>\"\n      ],\n      [\n        \"<string>\",\n        \"<string>\"\n      ]\n    ],\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 984,\n  \"error\": {\n    \"code\": 9755,\n    \"message\": \"string\",\n    \"data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1ee3aced-3fed-43a1-86a0-f515faf755ee",
+          "name": "Ankr Get Transactions By Hash",
+          "request": {
+            "name": "Ankr Get Transactions By Hash",
+            "description": {
+              "content": "Returns the full transaction details for the supplied transaction hash.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                "transactions-by-hash"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d1084f5-1f15-4878-8ecb-160eaf80b9ad",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "transactions-by-hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getTransactionsByHash\",\n  \"id\": 1,\n  \"params\": {\n    \"transactionHash\": \"<string>\",\n    \"blockchain\": \"flare\",\n    \"includeLogs\": \"<boolean>\",\n    \"decodeLogs\": \"<boolean>\",\n    \"decodeTxData\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 5829,\n  \"result\": {\n    \"key_0\": 3157.0851424495895,\n    \"key_1\": 162.82580195318585,\n    \"key_2\": 2366,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd5fac2f-d752-461d-8657-c53d1963616c",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "transactions-by-hash"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getTransactionsByHash\",\n  \"id\": 1,\n  \"params\": {\n    \"transactionHash\": \"<string>\",\n    \"blockchain\": \"flare\",\n    \"includeLogs\": \"<boolean>\",\n    \"decodeLogs\": \"<boolean>\",\n    \"decodeTxData\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 984,\n  \"error\": {\n    \"code\": 9755,\n    \"message\": \"string\",\n    \"data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c0125d0-9fca-4928-8d36-f9de8281819f",
+          "name": "Ankr Get Transactions By Address",
+          "request": {
+            "name": "Ankr Get Transactions By Address",
+            "description": {
+              "content": "Returns the full transaction history for a wallet address.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                "transactions-by-address"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "87ff4a86-04ad-4df2-890b-656b72cd2221",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "transactions-by-address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getTransactionsByAddress\",\n  \"id\": 1,\n  \"params\": {\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blockchain\": \"optimism\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"includeLogs\": \"<boolean>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 5829,\n  \"result\": {\n    \"key_0\": 3157.0851424495895,\n    \"key_1\": 162.82580195318585,\n    \"key_2\": 2366,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68d5e648-079e-448e-9354-1ab21c5b5f31",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "transactions-by-address"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getTransactionsByAddress\",\n  \"id\": 1,\n  \"params\": {\n    \"address\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"blockchain\": \"optimism\",\n    \"fromBlock\": \"<integer>\",\n    \"toBlock\": \"<integer>\",\n    \"fromTimestamp\": \"<integer>\",\n    \"toTimestamp\": \"<integer>\",\n    \"pageSize\": \"<integer>\",\n    \"pageToken\": \"<string>\",\n    \"includeLogs\": \"<boolean>\",\n    \"descOrder\": \"<boolean>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 984,\n  \"error\": {\n    \"code\": 9755,\n    \"message\": \"string\",\n    \"data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "48e3b2b1-1766-49fe-8ab3-995045d671d1",
+          "name": "Ankr Get Interactions",
+          "request": {
+            "name": "Ankr Get Interactions",
+            "description": {
+              "content": "Returns the chains a wallet has interacted with (cross-chain activity index).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                "interactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"<string>\",\n  \"id\": \"<integer>\",\n  \"params\": \"<object>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d862dbaa-7ca7-4252-8c37-b658170f12cc",
+              "name": "Successful Response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getInteractions\",\n  \"id\": 1,\n  \"params\": {\n    \"walletAddress\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 5829,\n  \"result\": {\n    \"key_0\": 3157.0851424495895,\n    \"key_1\": 162.82580195318585,\n    \"key_2\": 2366,\n    \"key_3\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5149962-6e9e-43d4-b53a-7dbd4a2c0786",
+              "name": "Error response (JSON-RPC error envelope).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "query",
+                    "interactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"jsonrpc\": \"2.0\",\n  \"method\": \"ankr_getInteractions\",\n  \"id\": 1,\n  \"params\": {\n    \"walletAddress\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"jsonrpc\": \"string\",\n  \"id\": 984,\n  \"error\": {\n    \"code\": 9755,\n    \"message\": \"string\",\n    \"data\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://rpc.ankr.com/multichain",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "noauth"
+  },
+  "info": {
+    "_postman_id": "5b8f86e1-a0b3-48b7-b1d2-3e9f492ae80f",
+    "name": "Ankr Advanced EVM Query API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC\nmethods that optimize, index, cache, and store blockchain data across multiple\nEVM-compatible blockchains. The Advanced API exposes three logical groups:\nNFT, Token, and Query.\n\n\nContact Support:\n Name: Ankr\n Email: support@ankr.com",
+      "type": "text/plain"
+    }
+  }
+}

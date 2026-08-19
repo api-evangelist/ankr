@@ -1,0 +1,123 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Advanced EVM Token API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Token",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Account Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/account-balance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the native and ERC-20 balances for a wallet address across supported chains."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Currencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/currencies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the catalog of currencies supported by a given blockchain."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Price",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/price",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the current USD price of a token (native or ERC-20) on a given chain."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Price History",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/price-history",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns historical pricing data for a token over a specified time window."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Holders",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/holders",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the list of holders for an ERC-20 token contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Holders Count",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/holders-count",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns the total count of holders for an ERC-20 token contract."
+        },
+        {
+          "info": {
+            "name": "Ankr Get Token Transfers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://rpc.ankr.com/multichain/token/transfers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns ERC-20 token transfer history for a wallet address or token contract."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

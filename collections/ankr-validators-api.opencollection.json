@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ankr Advanced EVM Validators API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Validators",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Ankr Get Validators",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://rpc.ankr.com/multichain/v1.0/validators/:chain",
+            "params": [
+              {
+                "name": "chain",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns Ankr-operated validators on a given chain, including unbond windows and reward release schedules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
