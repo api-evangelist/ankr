@@ -18,6 +18,9 @@ apis:
 - aid: ankr:ankr-block-explorer
   name: AnkrScan Block Explorer
   tags:
+  - Block Explorer
+  - Web3
+  tags_raw:
   - BlockExplorer
   - Web3
   humanURL: https://ankrscan.io
@@ -235,6 +238,8 @@ apis:
   humanURL: https://www.ankr.com/rpc/
   baseURL: https://rpc.ankr.com
   tags:
+  - Task
+  tags_raw:
   - Tasks
   properties:
   - type: OpenAPI
