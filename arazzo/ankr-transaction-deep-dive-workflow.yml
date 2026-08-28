@@ -12,8 +12,8 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: advancedApi
-  url: ../openapi/ankr-advanced-api-openapi.yml
+- name: queryApi
+  url: ../openapi/ankr-query-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: transaction-deep-dive
