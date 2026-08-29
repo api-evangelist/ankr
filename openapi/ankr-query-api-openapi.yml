@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ankr Advanced EVM Query API
+  title: Ankr Advanced Query API
   description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
 
     methods that optimize, index, cache, and store blockchain data across multiple
@@ -167,29 +167,92 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: Error response (JSON-RPC error envelope).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    AnkrBlockchain:
-      type: string
-      enum:
-      - arbitrum
-      - avalanche
-      - base
-      - bsc
-      - eth
-      - fantom
-      - flare
-      - gnosis
-      - linea
-      - optimism
-      - polygon
-      - scroll
-      - stellar
-      - story
-      - syscoin
-      - taiko
-      - telos
-      - xai
-      - xlayer
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+    AnkrChainScopedRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+    AnkrGetTxnByHashRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTransactionsByHash
+          params:
+            type: object
+            properties:
+              transactionHash:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              includeLogs:
+                type: boolean
+              decodeLogs:
+                type: boolean
+              decodeTxData:
+                type: boolean
+    AnkrGetInteractionsRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getInteractions
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
     JsonRpcRequest:
       type: object
       required:
@@ -207,42 +270,6 @@ components:
           type: string
         params:
           type: object
-    AnkrGetInteractionsRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getInteractions
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-    AnkrGetBlocksRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getBlocks
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              fromBlock:
-                type: integer
-              toBlock:
-                type: integer
-              descOrder:
-                type: boolean
-              includeLogs:
-                type: boolean
-              includeTxs:
-                type: boolean
     AnkrGetTxnByAddressRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -284,55 +311,6 @@ components:
                 type: boolean
               descOrder:
                 type: boolean
-    AnkrGetTxnByHashRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getTransactionsByHash
-          params:
-            type: object
-            properties:
-              transactionHash:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              includeLogs:
-                type: boolean
-              decodeLogs:
-                type: boolean
-              decodeTxData:
-                type: boolean
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
-    AnkrChainScopedRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          params:
-            type: object
-            properties:
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
     AnkrGetLogsRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -374,29 +352,51 @@ components:
                 type: string
               descOrder:
                 type: boolean
-    Error:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-            data:
-              type: object
-  responses:
-    ErrorResponse:
-      description: Error response (JSON-RPC error envelope).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
+    AnkrGetBlocksRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getBlocks
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              fromBlock:
+                type: integer
+              toBlock:
+                type: integer
+              descOrder:
+                type: boolean
+              includeLogs:
+                type: boolean
+              includeTxs:
+                type: boolean
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

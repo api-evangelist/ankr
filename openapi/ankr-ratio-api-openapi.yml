@@ -1,13 +1,15 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ankr Advanced EVM Ratio API
-  description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
+  title: Ankr Liquid Staking Ratio API
+  description: 'The Ankr Liquid Staking RESTful API surfaces staking metrics, the trustless
 
-    methods that optimize, index, cache, and store blockchain data across multiple
+    exchange ratio, and validator metadata across Ankr''s liquid staking tokens
 
-    EVM-compatible blockchains. The Advanced API exposes three logical groups:
+    (ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, etc.). It complements
 
-    NFT, Token, and Query.
+    the on-chain Smart Contract API exposed on Avalanche, Binance Smart Chain,
+
+    Ethereum, Fantom, and Polygon.
 
     '
   version: 1.0.0
@@ -19,17 +21,8 @@ info:
     name: Ankr Terms of Service
     url: https://www.ankr.com/terms/
 servers:
-- url: https://rpc.ankr.com/multichain
-  description: Public multichain endpoint
-- url: https://rpc.ankr.com/multichain/{API_KEY}
-  description: Premium multichain endpoint
-  variables:
-    API_KEY:
-      default: API_KEY
-      description: Premium Plan project API key
-security:
-- {}
-- ApiKeyAuth: []
+- url: https://api.staking.ankr.com
+  description: Ankr Staking RESTful API.
 tags:
 - name: Ratio
   description: Trustless exchange ratio between native and liquid staking tokens.
@@ -53,7 +46,21 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     TrustlessRatio:
       type: object
       properties:
@@ -64,20 +71,6 @@ components:
         updatedAt:
           type: string
           format: date-time
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Token:
       name: token
@@ -94,9 +87,3 @@ components:
         - ankrDOT
         - ankrFLOW
       description: Liquid staking token symbol.
-  securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: query
-      name: API_KEY
-      description: Premium Plan API key passed as the trailing path segment.

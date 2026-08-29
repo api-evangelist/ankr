@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Ankr Advanced EVM NFT API
+  title: Ankr Advanced NFT API
   description: 'The Ankr Advanced API (AAPI) provides a specifically-tailored collection of JSON-RPC
 
     methods that optimize, index, cache, and store blockchain data across multiple
@@ -123,46 +123,14 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: Error response (JSON-RPC error envelope).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    AnkrBlockchain:
-      type: string
-      enum:
-      - arbitrum
-      - avalanche
-      - base
-      - bsc
-      - eth
-      - fantom
-      - flare
-      - gnosis
-      - linea
-      - optimism
-      - polygon
-      - scroll
-      - stellar
-      - story
-      - syscoin
-      - taiko
-      - telos
-      - xai
-      - xlayer
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          default: '2.0'
-        id:
-          type: integer
-          example: 1
-        method:
-          type: string
-        params:
-          type: object
     AnkrGetNftTransfersRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -188,6 +156,89 @@ components:
                 type: string
               contractAddress:
                 type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+    AnkrGetNFTMetadataRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTMetadata
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              tokenId:
+                type: string
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
+    AnkrGetNFTsByOwnerRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTsByOwner
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
               pageSize:
                 type: integer
               pageToken:
@@ -233,23 +284,6 @@ components:
                       type: object
             nextPageToken:
               type: string
-    AnkrGetNFTMetadataRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNFTMetadata
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              contractAddress:
-                type: string
-              tokenId:
-                type: string
     AnkrGetNFTHoldersRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -269,62 +303,28 @@ components:
                 type: integer
               pageToken:
                 type: string
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
-    Error:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-            data:
-              type: object
-    AnkrGetNFTsByOwnerRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNFTsByOwner
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              pageSize:
-                type: integer
-              pageToken:
-                type: string
-  responses:
-    ErrorResponse:
-      description: Error response (JSON-RPC error envelope).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

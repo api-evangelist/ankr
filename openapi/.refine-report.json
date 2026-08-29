@@ -1,28 +1,39 @@
 {
   "provider": "ankr",
   "sources": [
-    "ankr-evm-api-openapi.yml",
-    "ankr-metrics-api-openapi.yml",
-    "ankr-nft-api-openapi.yml",
-    "ankr-query-api-openapi.yml",
-    "ankr-ratio-api-openapi.yml",
-    "ankr-tasks-api-openapi.yml",
-    "ankr-token-api-openapi.yml",
-    "ankr-validators-api-openapi.yml"
+    "_original/ankr-advanced-api-openapi.yml",
+    "_original/ankr-automation-api-openapi.yml",
+    "_original/ankr-rpc-service-openapi.yml",
+    "_original/ankr-staking-api-openapi.yml"
   ],
   "outputs": [
-    "ankr-evm-api-openapi.yml",
-    "ankr-metrics-api-openapi.yml",
     "ankr-nft-api-openapi.yml",
     "ankr-query-api-openapi.yml",
-    "ankr-ratio-api-openapi.yml",
-    "ankr-tasks-api-openapi.yml",
     "ankr-token-api-openapi.yml",
+    "ankr-tasks-api-openapi.yml",
+    "ankr-evm-api-openapi.yml",
+    "ankr-metrics-api-openapi.yml",
+    "ankr-ratio-api-openapi.yml",
     "ankr-validators-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ankr-advanced-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ankr-automation-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ankr-rpc-service-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "ankr-staking-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "ankr-evm-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-nft-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-ratio-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-tasks-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-token-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ankr-validators-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
