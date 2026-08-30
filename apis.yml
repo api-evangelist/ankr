@@ -31,7 +31,7 @@ apis:
 - aid: ankr:ankr-block-explorer
   name: AnkrScan Block Explorer
   tags:
-  - Block Explorer
+  - BlockExplorer
   - Web3
   tags_raw:
   - BlockExplorer
