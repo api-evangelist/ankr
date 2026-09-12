@@ -370,6 +370,8 @@ apis:
   - type: Documentation
     url: https://www.ankr.com/docs/automation/overview/
 common:
+  - type: Website
+    url: https://www.ankr.com/
   - type: AgenticAccess
     url: agentic-access/ankr-agentic-access.yml
   - type: DomainSecurity
