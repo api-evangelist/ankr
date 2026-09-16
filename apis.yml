@@ -43,10 +43,12 @@ apis:
   properties:
   - url: https://ankrscan.io
     type: Portal
-  description: >
-    AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
+  description: 'AnkrScan is Ankr''s multi-chain block explorer covering EVM and non-EVM networks. It is
+    a hosted
 
-    UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
+    UI consuming Ankr''s Node API and Advanced API and does not currently publish a public REST surface.
+
+    '
 - aid: ankr:ankr-evm-api
   name: ankr EVM API
   description: Standard Ethereum JSON-RPC envelope shared by every EVM chain.
@@ -370,174 +372,187 @@ apis:
   - type: Documentation
     url: https://www.ankr.com/docs/automation/overview/
 common:
-  - type: Website
-    url: https://www.ankr.com/
-  - type: AgenticAccess
-    url: agentic-access/ankr-agentic-access.yml
-  - type: DomainSecurity
-    url: security/ankr-domain-security.yml
-  - type: Authentication
-    url: authentication/ankr-authentication.yml
-  - type: PostmanWorkspace
-    url: https://www.postman.com/kinlaneapi/ankr/overview
-  - type: Arazzo
-    url: arazzo/ankr-block-log-inspection-workflow.yml
-    name: Ankr Block And Log Inspection
-  - type: Arazzo
-    url: arazzo/ankr-chain-overview-workflow.yml
-    name: Ankr Chain Overview
-  - type: Arazzo
-    url: arazzo/ankr-nft-collection-audit-workflow.yml
-    name: Ankr NFT Collection Audit
-  - type: Arazzo
-    url: arazzo/ankr-nft-inventory-workflow.yml
-    name: Ankr Wallet NFT Inventory
-  - type: Arazzo
-    url: arazzo/ankr-token-holder-distribution-workflow.yml
-    name: Ankr Token Holder Distribution
-  - type: Arazzo
-    url: arazzo/ankr-token-price-and-history-workflow.yml
-    name: Ankr Token Price And History
-  - type: Arazzo
-    url: arazzo/ankr-transaction-deep-dive-workflow.yml
-    name: Ankr Transaction Deep Dive
-  - type: Arazzo
-    url: arazzo/ankr-wallet-cross-chain-activity-workflow.yml
-    name: Ankr Wallet Cross-Chain Activity
-  - type: Arazzo
-    url: arazzo/ankr-wallet-portfolio-workflow.yml
-    name: Ankr Wallet Portfolio Snapshot
-  - url: https://www.ankr.com
-    type: Portal
-  - url: https://www.ankr.com/docs/
-    type: Documentation
-  - url: https://www.ankr.com/rpc/
-    type: Signup
-  - url: https://www.ankr.com/rpc/projects/
-    type: Dashboard
-  - url: https://www.ankr.com/rpc/pricing/
-    type: Pricing
-  - url: https://www.ankr.com/blog/
-    type: Blog
-  - url: https://www.ankr.com/about/
-    type: Company
-  - url: https://x.com/ankr
-    type: Twitter
-  - url: https://discord.com/invite/ankrnetwork
-    type: Forums
-  - url: https://t.me/ankrnetwork
-    type: Forums
-  - url: https://github.com/Ankr-network
-    type: GitHubOrganization
-  - url: https://github.com/Ankr-network/ankr.js
-    name: ankr.js (TypeScript SDK)
-    type: SDKs
-  - url: https://github.com/Ankr-network/ankr-python-sdk
-    name: ankr-python-sdk
-    type: SDKs
-  - url: https://github.com/Ankr-network/ankr-sdk-nodejs
-    name: ankr-sdk-nodejs
-    type: SDKs
-  - url: https://github.com/Ankr-network/game-unity-sdk
-    name: Ankr Mirage Unity SDK
-    type: SDKs
-  - url: https://github.com/Ankr-network/game-unreal-sdk
-    name: Ankr Mirage Unreal SDK
-    type: SDKs
-  - url: https://github.com/Ankr-network/game-unreal-aptos-sdk
-    name: Ankr Mirage Unreal Aptos SDK
-    type: SDKs
-  - url: https://github.com/Ankr-network/ankr-compound-sdk
-    name: Ankr Compound SDK
-    type: SDKs
-  - url: https://github.com/Ankr-network/ankrscan-sdk
-    name: AnkrScan Go SDK
-    type: SDKs
-  - url: https://github.com/Ankr-network/ankr-cli
-    name: Ankr CLI
-    type: CLI
-  - url: https://github.com/Ankr-network/ankr-docs
-    name: Ankr Docs source
-    type: SourceCode
-  - url: https://github.com/Ankr-network/erigon
-    name: Ankr Erigon fork
-    type: SourceCode
-  - url: https://ankrscan.io
-    name: AnkrScan
-    type: BlockExplorer
-  - url: https://api-docs.ankr.com/reference/
-    name: API Reference
-    type: Documentation
-  - url: https://api-docs.ankr.com/llms.txt
-    name: API Reference llms.txt
-    type: Documentation
-  - url: https://status.ankr.com
-    type: Status
-  - url: https://www.ankr.com/terms/
-    type: TermsOfService
-  - url: https://www.ankr.com/privacy/
-    type: PrivacyPolicy
-  - url: plans/ankr-plans-pricing.yml
-    type: Plans
-  - url: rate-limits/ankr-rate-limits.yml
-    type: RateLimits
-  - url: finops/ankr-finops.yml
-    type: FinOps
-  - url: vocabulary/ankr-vocabulary.yml
-    type: Vocabulary
-  - url: rules/ankr-rules.yml
-    type: SpectralRules
-  - type: Features
-    data:
-      - 80+ blockchain networks behind a single multichain RPC surface (rpc.ankr.com/{chain})
-      - Average response time of 56ms with claimed 99.99% uptime across a 30+ region DePIN
-      - 8 billion daily RPC requests served as of May 2026
-      - Public Plan free with anonymous IP-scoped throttling — production should use Premium
-      - Premium Plan multiplies Node API throughput x50 and Advanced API x30
-      - WebSocket (WSS) endpoints, archive access, IP whitelisting, and multi-project statistics
-      - Advanced API — indexed JSON-RPC over 19 EVM mainnets exposing NFT, Token, and Query methods
-      - ankr_getAccountBalance returns native + ERC-20 balances across multiple chains in one call
-      - ankr_getNFTsByOwner / ankr_getNFTMetadata / ankr_getNFTHolders / ankr_getNftTransfers
-      - ankr_getTokenPrice and ankr_getTokenPriceHistory for on-chain pricing without third-party
-      - ankr_getLogs and ankr_getTransactionsByAddress for indexer-grade history reads
-      - Liquid staking on 7+ chains via ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, ankrFLOW
-      - Liquid Staking RESTful metrics API (https://api.staking.ankr.com/v1.0/metrics)
-      - Trustless ratio oracles and PancakeSwap price oracle for ankr* tokens
-      - Smart Contract Automation on BNB Smart Chain with CRON + event triggers
-      - Rollup-as-a-Service (RaaS) — OP Stack, Polygon CDK, Arbitrum Orbit and custom appchains
-      - Bitcoin Secured Infrastructure for chains anchoring security to Bitcoin
-      - Enterprise DVN infrastructure on LayerZero for cross-chain messaging
-      - Recent RPC launches — HyperEVM, Unichain, AB Chain, Kite (AI Payment Blockchain)
-      - Powers AI / blockchain integrations including ChainGPT AI Hub V2 (March 2026)
-      - SDKs — ankr.js (TypeScript), ankr-python-sdk, Mirage Unity SDK, Mirage Unreal SDK
-      - AnkrScan multi-chain block explorer at ankrscan.io
-      - Open-source Erigon and BSC-Erigon forks operated for archive workloads
-    sources:
-      - https://www.ankr.com
-      - https://www.ankr.com/docs/
-      - https://www.ankr.com/docs/rpc-service/overview/
-      - https://www.ankr.com/docs/advanced-api/overview/
-      - https://www.ankr.com/docs/staking-for-developers/overview/
-      - https://www.ankr.com/docs/automation/overview/
-      - https://www.ankr.com/blog/
-      - https://github.com/Ankr-network
-    updated: '2026-05-25'
+- type: Website
+  url: https://www.ankr.com/
+- type: AgenticAccess
+  url: agentic-access/ankr-agentic-access.yml
+- type: DomainSecurity
+  url: security/ankr-domain-security.yml
+- type: Authentication
+  url: authentication/ankr-authentication.yml
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/ankr/overview
+- type: Arazzo
+  url: arazzo/ankr-block-log-inspection-workflow.yml
+  name: Ankr Block And Log Inspection
+- type: Arazzo
+  url: arazzo/ankr-chain-overview-workflow.yml
+  name: Ankr Chain Overview
+- type: Arazzo
+  url: arazzo/ankr-nft-collection-audit-workflow.yml
+  name: Ankr NFT Collection Audit
+- type: Arazzo
+  url: arazzo/ankr-nft-inventory-workflow.yml
+  name: Ankr Wallet NFT Inventory
+- type: Arazzo
+  url: arazzo/ankr-token-holder-distribution-workflow.yml
+  name: Ankr Token Holder Distribution
+- type: Arazzo
+  url: arazzo/ankr-token-price-and-history-workflow.yml
+  name: Ankr Token Price And History
+- type: Arazzo
+  url: arazzo/ankr-transaction-deep-dive-workflow.yml
+  name: Ankr Transaction Deep Dive
+- type: Arazzo
+  url: arazzo/ankr-wallet-cross-chain-activity-workflow.yml
+  name: Ankr Wallet Cross-Chain Activity
+- type: Arazzo
+  url: arazzo/ankr-wallet-portfolio-workflow.yml
+  name: Ankr Wallet Portfolio Snapshot
+- url: https://www.ankr.com
+  type: Portal
+- url: https://www.ankr.com/docs/
+  type: Documentation
+- url: https://www.ankr.com/rpc/
+  type: Signup
+- url: https://www.ankr.com/rpc/projects/
+  type: Dashboard
+- url: https://www.ankr.com/rpc/pricing/
+  type: Pricing
+- url: https://www.ankr.com/blog/
+  type: Blog
+- url: https://www.ankr.com/about/
+  type: Company
+- url: https://x.com/ankr
+  type: Twitter
+- url: https://discord.com/invite/ankrnetwork
+  type: Forums
+- url: https://t.me/ankrnetwork
+  type: Forums
+- url: https://github.com/Ankr-network
+  type: GitHubOrganization
+- url: https://github.com/Ankr-network/ankr.js
+  name: ankr.js (TypeScript SDK)
+  type: SDKs
+- url: https://github.com/Ankr-network/ankr-python-sdk
+  name: ankr-python-sdk
+  type: SDKs
+- url: https://github.com/Ankr-network/ankr-sdk-nodejs
+  name: ankr-sdk-nodejs
+  type: SDKs
+- url: https://github.com/Ankr-network/game-unity-sdk
+  name: Ankr Mirage Unity SDK
+  type: SDKs
+- url: https://github.com/Ankr-network/game-unreal-sdk
+  name: Ankr Mirage Unreal SDK
+  type: SDKs
+- url: https://github.com/Ankr-network/game-unreal-aptos-sdk
+  name: Ankr Mirage Unreal Aptos SDK
+  type: SDKs
+- url: https://github.com/Ankr-network/ankr-compound-sdk
+  name: Ankr Compound SDK
+  type: SDKs
+- url: https://github.com/Ankr-network/ankrscan-sdk
+  name: AnkrScan Go SDK
+  type: SDKs
+- url: https://github.com/Ankr-network/ankr-cli
+  name: Ankr CLI
+  type: CLI
+- url: https://github.com/Ankr-network/ankr-docs
+  name: Ankr Docs source
+  type: SourceCode
+- url: https://github.com/Ankr-network/erigon
+  name: Ankr Erigon fork
+  type: SourceCode
+- url: https://ankrscan.io
+  name: AnkrScan
+  type: BlockExplorer
+- url: https://api-docs.ankr.com/reference/
+  name: API Reference
+  type: Documentation
+- url: https://api-docs.ankr.com/llms.txt
+  name: API Reference llms.txt
+  type: Documentation
+- url: https://status.ankr.com
+  type: Status
+- url: https://www.ankr.com/terms/
+  type: TermsOfService
+- url: https://www.ankr.com/privacy/
+  type: PrivacyPolicy
+- url: plans/ankr-plans-pricing.yml
+  type: Plans
+- url: rate-limits/ankr-rate-limits.yml
+  type: RateLimits
+- url: finops/ankr-finops.yml
+  type: FinOps
+- url: vocabulary/ankr-vocabulary.yml
+  type: Vocabulary
+- url: rules/ankr-rules.yml
+  type: SpectralRules
+- type: Features
+  data:
+  - 80+ blockchain networks behind a single multichain RPC surface (rpc.ankr.com/{chain})
+  - Average response time of 56ms with claimed 99.99% uptime across a 30+ region DePIN
+  - 8 billion daily RPC requests served as of May 2026
+  - Public Plan free with anonymous IP-scoped throttling — production should use Premium
+  - Premium Plan multiplies Node API throughput x50 and Advanced API x30
+  - WebSocket (WSS) endpoints, archive access, IP whitelisting, and multi-project statistics
+  - Advanced API — indexed JSON-RPC over 19 EVM mainnets exposing NFT, Token, and Query methods
+  - ankr_getAccountBalance returns native + ERC-20 balances across multiple chains in one call
+  - ankr_getNFTsByOwner / ankr_getNFTMetadata / ankr_getNFTHolders / ankr_getNftTransfers
+  - ankr_getTokenPrice and ankr_getTokenPriceHistory for on-chain pricing without third-party
+  - ankr_getLogs and ankr_getTransactionsByAddress for indexer-grade history reads
+  - Liquid staking on 7+ chains via ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, ankrFLOW
+  - Liquid Staking RESTful metrics API (https://api.staking.ankr.com/v1.0/metrics)
+  - Trustless ratio oracles and PancakeSwap price oracle for ankr* tokens
+  - Smart Contract Automation on BNB Smart Chain with CRON + event triggers
+  - Rollup-as-a-Service (RaaS) — OP Stack, Polygon CDK, Arbitrum Orbit and custom appchains
+  - Bitcoin Secured Infrastructure for chains anchoring security to Bitcoin
+  - Enterprise DVN infrastructure on LayerZero for cross-chain messaging
+  - Recent RPC launches — HyperEVM, Unichain, AB Chain, Kite (AI Payment Blockchain)
+  - Powers AI / blockchain integrations including ChainGPT AI Hub V2 (March 2026)
+  - SDKs — ankr.js (TypeScript), ankr-python-sdk, Mirage Unity SDK, Mirage Unreal SDK
+  - AnkrScan multi-chain block explorer at ankrscan.io
+  - Open-source Erigon and BSC-Erigon forks operated for archive workloads
+  sources:
+  - https://www.ankr.com
+  - https://www.ankr.com/docs/
+  - https://www.ankr.com/docs/rpc-service/overview/
+  - https://www.ankr.com/docs/advanced-api/overview/
+  - https://www.ankr.com/docs/staking-for-developers/overview/
+  - https://www.ankr.com/docs/automation/overview/
+  - https://www.ankr.com/blog/
+  - https://github.com/Ankr-network
+  updated: '2026-05-25'
 created: '2026-05-25'
-modified: '2026-05-29'
+modified: '2026-09-16'
 position: Consuming
-description: |
-  Ankr is a Web3 infrastructure provider whose multichain RPC, Advanced API, liquid staking,
+description: 'Ankr is a Web3 infrastructure provider whose multichain RPC, Advanced API, liquid staking,
+
   contract automation, and Rollup-as-a-Service products serve developers, exchanges, and
+
   enterprises across 80+ blockchains. The Node API exposes JSON-RPC and WebSocket endpoints at
+
   rpc.ankr.com/{chain}; the Advanced API (AAPI) layers an indexed query surface across 19 EVM
+
   mainnets for NFT, token, and historical-data reads. Ankr also operates liquid staking pools
+
   (ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, ankrFLOW), a contract automation
+
   service on BNB Smart Chain, and an enterprise Rollup-as-a-Service practice that supports OP
+
   Stack, Polygon CDK, and Arbitrum Orbit variants. Infrastructure runs as a global DePIN of
+
   bare-metal nodes in 30+ regions serving roughly 8 billion daily RPC requests.
+
+  '
 maintainers:
-  - FN: Kin Lane
-    email: info@apievangelist.com
-    X: apievangelist
-    url: https://apievangelist.com
+- FN: Kin Lane
+  email: info@apievangelist.com
+  X: apievangelist
+  url: https://apievangelist.com
 specificationVersion: '0.23'
+tags:
+- Web3
+- EVM
+- NFT
