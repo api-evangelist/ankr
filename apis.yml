@@ -43,52 +43,10 @@ apis:
   properties:
   - url: https://ankrscan.io
     type: Portal
-  description: 'AnkrScan is Ankr''s multi-chain block explorer covering EVM and non-EVM networks. It is
-    a hosted
+  description: >
+    AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
 
-    UI consuming Ankr''s Node API and Advanced API and does not currently publish a public REST surface.
-
-    '
-- aid: ankr:ankr-evm-api
-  name: ankr EVM API
-  description: Standard Ethereum JSON-RPC envelope shared by every EVM chain.
-  humanURL: https://www.ankr.com/rpc/
-  baseURL: https://rpc.ankr.com
-  tags:
-  - EVM
-  properties:
-  - type: OpenAPI
-    url: openapi/ankr-evm-api-openapi.yml
-  - type: Documentation
-    url: https://www.ankr.com/docs/rpc-service/overview/
-  - type: Documentation
-    url: https://www.ankr.com/docs/rpc-service/chains/chains-list/
-  - type: AsyncAPI
-    url: asyncapi/ankr-asyncapi.yml
-  - type: JSONLD
-    url: json-ld/ankr-context.jsonld
-  - type: Documentation
-    url: https://www.ankr.com/docs/advanced-api/overview/
-  - type: Documentation
-    url: https://api-docs.ankr.com/reference/
-  - type: JSONSchema
-    url: json-schema/ankr-nft-asset-schema.json
-  - type: JSONSchema
-    url: json-schema/ankr-account-balance-schema.json
-  - type: JSONStructure
-    url: json-structure/ankr-account-balance-structure.json
-  - type: Examples
-    url: examples/ankr-get-account-balance-example.json
-  - type: Examples
-    url: examples/ankr-get-nfts-by-owner-example.json
-  - type: Documentation
-    url: https://www.ankr.com/docs/staking-for-developers/overview/
-  - type: JSONSchema
-    url: json-schema/ankr-staking-metrics-schema.json
-  - type: Dashboard
-    url: https://www.ankr.com/staking/dashboard/
-  - type: Documentation
-    url: https://www.ankr.com/docs/automation/overview/
+    UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
 - aid: ankr:ankr-metrics-api
   name: ankr Metrics API
   description: Liquid staking pool statistics (TVL, APR, holders, supply).
