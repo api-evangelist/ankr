@@ -255,6 +255,8 @@ apis:
   humanURL: https://www.ankr.com/rpc/
   baseURL: https://rpc.ankr.com
   tags:
+  - Tokens
+  tags_raw:
   - Token
   properties:
   - type: OpenAPI
@@ -295,6 +297,8 @@ apis:
   humanURL: https://www.ankr.com/rpc/
   baseURL: https://rpc.ankr.com
   tags:
+  - Validator
+  tags_raw:
   - Validators
   properties:
   - type: OpenAPI
