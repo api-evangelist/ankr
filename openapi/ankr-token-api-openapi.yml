@@ -7,9 +7,7 @@ info:
 
     EVM-compatible blockchains. The Advanced API exposes three logical groups:
 
-    NFT, Token, and Query.
-
-    '
+    NFT, Token, and Query.'
   version: 1.0.0
   contact:
     name: Ankr
@@ -190,40 +188,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    AnkrGetAccountBalanceRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getAccountBalance
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              onlyWhitelisted:
-                type: boolean
-                default: true
-              nativeFirst:
-                type: boolean
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
     AnkrGetTokenTransfersRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -257,20 +221,6 @@ components:
                 type: integer
               pageToken:
                 type: string
-    AnkrChainScopedRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          params:
-            type: object
-            properties:
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
     Error:
       type: object
       properties:
@@ -287,21 +237,23 @@ components:
               type: string
             data:
               type: object
-    AnkrGetTokenPriceRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getTokenPrice
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              contractAddress:
-                type: string
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
     AnkrGetTokenHoldersRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -321,23 +273,31 @@ components:
                 type: integer
               pageToken:
                 type: string
-    JsonRpcRequest:
+    JsonRpcResponse:
       type: object
-      required:
-      - jsonrpc
-      - method
-      - id
       properties:
         jsonrpc:
           type: string
-          default: '2.0'
         id:
           type: integer
-          example: 1
-        method:
-          type: string
-        params:
+        result:
           type: object
+          additionalProperties: true
+    AnkrGetTokenPriceRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenPrice
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
     AnkrGetAccountBalanceResponse:
       type: object
       properties:
@@ -379,6 +339,28 @@ components:
                     type: string
                   thumbnail:
                     type: string
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
     AnkrGetTokenPriceHistoryRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -402,28 +384,44 @@ components:
                 type: integer
               limit:
                 type: integer
-    AnkrBlockchain:
-      type: string
-      enum:
-      - arbitrum
-      - avalanche
-      - base
-      - bsc
-      - eth
-      - fantom
-      - flare
-      - gnosis
-      - linea
-      - optimism
-      - polygon
-      - scroll
-      - stellar
-      - story
-      - syscoin
-      - taiko
-      - telos
-      - xai
-      - xlayer
+    AnkrGetAccountBalanceRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getAccountBalance
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              onlyWhitelisted:
+                type: boolean
+                default: true
+              nativeFirst:
+                type: boolean
+    AnkrChainScopedRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
   responses:
     ErrorResponse:
       description: Error response (JSON-RPC error envelope).

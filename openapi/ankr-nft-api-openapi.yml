@@ -7,9 +7,7 @@ info:
 
     EVM-compatible blockchains. The Advanced API exposes three logical groups:
 
-    NFT, Token, and Query.
-
-    '
+    NFT, Token, and Query.'
   version: 1.0.0
   contact:
     name: Ankr
@@ -123,53 +121,7 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: Error response (JSON-RPC error envelope).
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    AnkrGetNftTransfersRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNftTransfers
-          params:
-            type: object
-            properties:
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              fromBlock:
-                type: integer
-              toBlock:
-                type: integer
-              walletAddress:
-                type: string
-              contractAddress:
-                type: string
-              pageSize:
-                type: integer
-              pageToken:
-                type: string
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
     Error:
       type: object
       properties:
@@ -186,23 +138,6 @@ components:
               type: string
             data:
               type: object
-    AnkrGetNFTMetadataRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNFTMetadata
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              contractAddress:
-                type: string
-              tokenId:
-                type: string
     JsonRpcRequest:
       type: object
       required:
@@ -220,29 +155,16 @@ components:
           type: string
         params:
           type: object
-    AnkrGetNFTsByOwnerRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNFTsByOwner
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              pageSize:
-                type: integer
-              pageToken:
-                type: string
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
     AnkrGetNFTsByOwnerResponse:
       type: object
       properties:
@@ -284,14 +206,14 @@ components:
                       type: object
             nextPageToken:
               type: string
-    AnkrGetNFTHoldersRequest:
+    AnkrGetNFTMetadataRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
       - type: object
         properties:
           method:
             type: string
-            default: ankr_getNFTHolders
+            default: ankr_getNFTMetadata
           params:
             type: object
             properties:
@@ -299,6 +221,27 @@ components:
                 $ref: '#/components/schemas/AnkrBlockchain'
               contractAddress:
                 type: string
+              tokenId:
+                type: string
+    AnkrGetNFTsByOwnerRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTsByOwner
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
               pageSize:
                 type: integer
               pageToken:
@@ -325,6 +268,61 @@ components:
       - telos
       - xai
       - xlayer
+    AnkrGetNFTHoldersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTHolders
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    AnkrGetNftTransfersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNftTransfers
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              fromBlock:
+                type: integer
+              toBlock:
+                type: integer
+              walletAddress:
+                type: string
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+  responses:
+    ErrorResponse:
+      description: Error response (JSON-RPC error envelope).
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

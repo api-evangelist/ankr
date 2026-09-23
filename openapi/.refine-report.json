@@ -3,7 +3,6 @@
   "sources": [
     "_original/ankr-advanced-api-openapi.yml",
     "_original/ankr-automation-api-openapi.yml",
-    "_original/ankr-rpc-service-openapi.yml",
     "_original/ankr-staking-api-openapi.yml"
   ],
   "outputs": [
@@ -11,7 +10,6 @@
     "ankr-query-api-openapi.yml",
     "ankr-token-api-openapi.yml",
     "ankr-tasks-api-openapi.yml",
-    "ankr-evm-api-openapi.yml",
     "ankr-metrics-api-openapi.yml",
     "ankr-ratio-api-openapi.yml",
     "ankr-validators-api-openapi.yml"
@@ -20,14 +18,15 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (4 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "1 archived document(s) dropped as subsets of other archived documents",
+    "sourced from openapi/_original/ (3 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "ankr-advanced-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "ankr-automation-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ankr-rpc-service-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
-    "ankr-staking-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0"
+    "ankr-staking-api-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
-    "ankr-evm-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "_original/ankr-rpc-service-openapi.yml: archived document superseded by a larger archived document",
     "ankr-metrics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ankr-nft-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "ankr-query-api-openapi.yml: previously refined output, superseded by openapi/_original/",

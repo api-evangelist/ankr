@@ -9,9 +9,7 @@ info:
 
     the on-chain Smart Contract API exposed on Avalanche, Binance Smart Chain,
 
-    Ethereum, Fantom, and Polygon.
-
-    '
+    Ethereum, Fantom, and Polygon.'
   version: 1.0.0
   contact:
     name: Ankr
@@ -46,21 +44,7 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     TrustlessRatio:
       type: object
       properties:
@@ -71,6 +55,13 @@ components:
         updatedAt:
           type: string
           format: date-time
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
   parameters:
     Token:
       name: token
@@ -87,3 +78,10 @@ components:
         - ankrDOT
         - ankrFLOW
       description: Liquid staking token symbol.
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

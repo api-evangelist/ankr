@@ -9,9 +9,7 @@ info:
 
     the on-chain Smart Contract API exposed on Avalanche, Binance Smart Chain,
 
-    Ethereum, Fantom, and Polygon.
-
-    '
+    Ethereum, Fantom, and Polygon.'
   version: 1.0.0
   contact:
     name: Ankr
@@ -46,14 +44,18 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ValidatorList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Validator'
     Validator:
       type: object
       properties:
@@ -67,17 +69,6 @@ components:
           type: integer
         rewardReleaseSeconds:
           type: integer
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    ValidatorList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Validator'
   parameters:
     Chain:
       name: chain
@@ -92,3 +83,10 @@ components:
         - avalanche
         - fantom
         - polkadot
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

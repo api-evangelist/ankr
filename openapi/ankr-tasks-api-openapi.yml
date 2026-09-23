@@ -9,9 +9,7 @@ info:
 
     decentralized node infrastructure. As of May 2026, BNB Smart Chain is the only
 
-    supported network — additional chains are on the roadmap.
-
-    '
+    supported network — additional chains are on the roadmap.'
   version: 1.0.0
   contact:
     name: Ankr
@@ -92,63 +90,7 @@ paths:
         '204':
           description: Task deleted.
 components:
-  parameters:
-    TaskId:
-      name: taskId
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    CreateTaskRequest:
-      type: object
-      required:
-      - chain
-      - contractAddress
-      - functionSignature
-      - trigger
-      properties:
-        chain:
-          type: string
-          enum:
-          - bsc
-        contractAddress:
-          type: string
-        functionSignature:
-          type: string
-        abi:
-          type: array
-          items: {}
-        trigger:
-          oneOf:
-          - $ref: '#/components/schemas/TimeTrigger'
-          - $ref: '#/components/schemas/EventTrigger'
-    Task:
-      type: object
-      properties:
-        id:
-          type: string
-        chain:
-          type: string
-        contractAddress:
-          type: string
-        functionSignature:
-          type: string
-        trigger:
-          type: object
-        status:
-          type: string
-          enum:
-          - pending
-          - active
-          - paused
-          - completed
-          - failed
-        balance:
-          type: string
-        created:
-          type: string
-          format: date-time
     EventTrigger:
       type: object
       required:
@@ -175,6 +117,62 @@ components:
         schedule:
           type: string
           description: CRON expression.
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+        chain:
+          type: string
+        contractAddress:
+          type: string
+        functionSignature:
+          type: string
+        trigger:
+          type: object
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - paused
+          - completed
+          - failed
+        balance:
+          type: string
+        created:
+          type: string
+          format: date-time
+    CreateTaskRequest:
+      type: object
+      required:
+      - chain
+      - contractAddress
+      - functionSignature
+      - trigger
+      properties:
+        chain:
+          type: string
+          enum:
+          - bsc
+        contractAddress:
+          type: string
+        functionSignature:
+          type: string
+        abi:
+          type: array
+          items: {}
+        trigger:
+          oneOf:
+          - $ref: '#/components/schemas/TimeTrigger'
+          - $ref: '#/components/schemas/EventTrigger'
+  parameters:
+    TaskId:
+      name: taskId
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     BearerAuth:
       type: http
