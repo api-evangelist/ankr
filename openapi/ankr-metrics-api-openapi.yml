@@ -60,6 +60,33 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  schemas:
+    StakingMetrics:
+      type: object
+      properties:
+        token:
+          type: string
+        tvlUsd:
+          type: string
+        apr:
+          type: string
+        supply:
+          type: string
+        holders:
+          type: integer
+        exchangeRatio:
+          type: string
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    StakingMetricsList:
+      type: array
+      items:
+        $ref: '#/components/schemas/StakingMetrics'
   parameters:
     Token:
       name: token
@@ -76,33 +103,6 @@ components:
         - ankrDOT
         - ankrFLOW
       description: Liquid staking token symbol.
-  schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    StakingMetricsList:
-      type: array
-      items:
-        $ref: '#/components/schemas/StakingMetrics'
-    StakingMetrics:
-      type: object
-      properties:
-        token:
-          type: string
-        tvlUsd:
-          type: string
-        apr:
-          type: string
-        supply:
-          type: string
-        holders:
-          type: integer
-        exchangeRatio:
-          type: string
   responses:
     ErrorResponse:
       description: Error response.

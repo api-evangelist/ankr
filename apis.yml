@@ -1,17 +1,21 @@
 name: Ankr
 aid: ankr
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - ankr-network/ankr-docs
+    - ankr-network/erigon
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -518,3 +522,5 @@ tags:
 - Web3
 - EVM
 - NFT
+- Real-Time
+- Ethereum

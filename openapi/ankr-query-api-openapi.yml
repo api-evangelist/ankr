@@ -166,87 +166,47 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    AnkrGetTxnByHashRequest:
+    AnkrGetTxnByAddressRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
       - type: object
         properties:
           method:
             type: string
-            default: ankr_getTransactionsByHash
+            default: ankr_getTransactionsByAddress
           params:
             type: object
             properties:
-              transactionHash:
-                type: string
+              address:
+                type: array
+                items:
+                  type: string
               blockchain:
                 oneOf:
                 - $ref: '#/components/schemas/AnkrBlockchain'
                 - type: array
                   items:
                     $ref: '#/components/schemas/AnkrBlockchain'
+              fromBlock:
+                oneOf:
+                - type: integer
+                - type: string
+              toBlock:
+                oneOf:
+                - type: integer
+                - type: string
+              fromTimestamp:
+                type: integer
+              toTimestamp:
+                type: integer
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
               includeLogs:
                 type: boolean
-              decodeLogs:
+              descOrder:
                 type: boolean
-              decodeTxData:
-                type: boolean
-    Error:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-            data:
-              type: object
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          default: '2.0'
-        id:
-          type: integer
-          example: 1
-        method:
-          type: string
-        params:
-          type: object
-    AnkrGetInteractionsRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getInteractions
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
     AnkrGetLogsRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -311,20 +271,6 @@ components:
                 type: boolean
               includeTxs:
                 type: boolean
-    AnkrChainScopedRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          params:
-            type: object
-            properties:
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
     AnkrBlockchain:
       type: string
       enum:
@@ -347,46 +293,100 @@ components:
       - telos
       - xai
       - xlayer
-    AnkrGetTxnByAddressRequest:
+    AnkrGetInteractionsRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
       - type: object
         properties:
           method:
             type: string
-            default: ankr_getTransactionsByAddress
+            default: ankr_getInteractions
           params:
             type: object
             properties:
-              address:
-                type: array
-                items:
-                  type: string
+              walletAddress:
+                type: string
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+    AnkrChainScopedRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          params:
+            type: object
+            properties:
               blockchain:
                 oneOf:
                 - $ref: '#/components/schemas/AnkrBlockchain'
                 - type: array
                   items:
                     $ref: '#/components/schemas/AnkrBlockchain'
-              fromBlock:
-                oneOf:
-                - type: integer
-                - type: string
-              toBlock:
-                oneOf:
-                - type: integer
-                - type: string
-              fromTimestamp:
-                type: integer
-              toTimestamp:
-                type: integer
-              pageSize:
-                type: integer
-              pageToken:
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    AnkrGetTxnByHashRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTransactionsByHash
+          params:
+            type: object
+            properties:
+              transactionHash:
                 type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
               includeLogs:
                 type: boolean
-              descOrder:
+              decodeLogs:
+                type: boolean
+              decodeTxData:
                 type: boolean
   responses:
     ErrorResponse:

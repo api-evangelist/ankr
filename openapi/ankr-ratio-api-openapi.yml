@@ -44,6 +44,13 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     TrustlessRatio:
       type: object
@@ -78,10 +85,3 @@ components:
         - ankrDOT
         - ankrFLOW
       description: Liquid staking token symbol.
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'

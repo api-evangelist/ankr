@@ -91,19 +91,29 @@ paths:
           description: Task deleted.
 components:
   schemas:
-    EventTrigger:
+    CreateTaskRequest:
       type: object
       required:
-      - type
-      - condition
+      - chain
+      - contractAddress
+      - functionSignature
+      - trigger
       properties:
-        type:
+        chain:
           type: string
           enum:
-          - event
-        condition:
+          - bsc
+        contractAddress:
           type: string
-          description: Solidity condition exposed via IAutomateCompatible.
+        functionSignature:
+          type: string
+        abi:
+          type: array
+          items: {}
+        trigger:
+          oneOf:
+          - $ref: '#/components/schemas/TimeTrigger'
+          - $ref: '#/components/schemas/EventTrigger'
     TimeTrigger:
       type: object
       required:
@@ -143,29 +153,19 @@ components:
         created:
           type: string
           format: date-time
-    CreateTaskRequest:
+    EventTrigger:
       type: object
       required:
-      - chain
-      - contractAddress
-      - functionSignature
-      - trigger
+      - type
+      - condition
       properties:
-        chain:
+        type:
           type: string
           enum:
-          - bsc
-        contractAddress:
+          - event
+        condition:
           type: string
-        functionSignature:
-          type: string
-        abi:
-          type: array
-          items: {}
-        trigger:
-          oneOf:
-          - $ref: '#/components/schemas/TimeTrigger'
-          - $ref: '#/components/schemas/EventTrigger'
+          description: Solidity condition exposed via IAutomateCompatible.
   parameters:
     TaskId:
       name: taskId
