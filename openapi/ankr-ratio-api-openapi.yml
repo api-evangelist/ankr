@@ -44,13 +44,22 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
+  parameters:
+    Token:
+      name: token
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - ankrETH
+        - ankrBNB
+        - ankrPOL
+        - ankrAVAX
+        - ankrFTM
+        - ankrDOT
+        - ankrFLOW
+      description: Liquid staking token symbol.
   schemas:
     TrustlessRatio:
       type: object
@@ -69,19 +78,10 @@ components:
           type: integer
         message:
           type: string
-  parameters:
-    Token:
-      name: token
-      in: path
-      required: true
-      schema:
-        type: string
-        enum:
-        - ankrETH
-        - ankrBNB
-        - ankrPOL
-        - ankrAVAX
-        - ankrFTM
-        - ankrDOT
-        - ankrFLOW
-      description: Liquid staking token symbol.
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

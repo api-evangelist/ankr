@@ -91,6 +91,45 @@ paths:
           description: Task deleted.
 components:
   schemas:
+    EventTrigger:
+      type: object
+      required:
+      - type
+      - condition
+      properties:
+        type:
+          type: string
+          enum:
+          - event
+        condition:
+          type: string
+          description: Solidity condition exposed via IAutomateCompatible.
+    Task:
+      type: object
+      properties:
+        id:
+          type: string
+        chain:
+          type: string
+        contractAddress:
+          type: string
+        functionSignature:
+          type: string
+        trigger:
+          type: object
+        status:
+          type: string
+          enum:
+          - pending
+          - active
+          - paused
+          - completed
+          - failed
+        balance:
+          type: string
+        created:
+          type: string
+          format: date-time
     CreateTaskRequest:
       type: object
       required:
@@ -127,45 +166,6 @@ components:
         schedule:
           type: string
           description: CRON expression.
-    Task:
-      type: object
-      properties:
-        id:
-          type: string
-        chain:
-          type: string
-        contractAddress:
-          type: string
-        functionSignature:
-          type: string
-        trigger:
-          type: object
-        status:
-          type: string
-          enum:
-          - pending
-          - active
-          - paused
-          - completed
-          - failed
-        balance:
-          type: string
-        created:
-          type: string
-          format: date-time
-    EventTrigger:
-      type: object
-      required:
-      - type
-      - condition
-      properties:
-        type:
-          type: string
-          enum:
-          - event
-        condition:
-          type: string
-          description: Solidity condition exposed via IAutomateCompatible.
   parameters:
     TaskId:
       name: taskId

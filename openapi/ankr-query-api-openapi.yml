@@ -166,6 +166,79 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+    AnkrGetTxnByHashRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTransactionsByHash
+          params:
+            type: object
+            properties:
+              transactionHash:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              includeLogs:
+                type: boolean
+              decodeLogs:
+                type: boolean
+              decodeTxData:
+                type: boolean
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
     AnkrGetTxnByAddressRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -207,6 +280,73 @@ components:
                 type: boolean
               descOrder:
                 type: boolean
+    AnkrGetInteractionsRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getInteractions
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
+    AnkrGetBlocksRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getBlocks
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              fromBlock:
+                type: integer
+              toBlock:
+                type: integer
+              descOrder:
+                type: boolean
+              includeLogs:
+                type: boolean
+              includeTxs:
+                type: boolean
+    AnkrChainScopedRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
     AnkrGetLogsRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -247,146 +387,6 @@ components:
               pageToken:
                 type: string
               descOrder:
-                type: boolean
-    AnkrGetBlocksRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getBlocks
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              fromBlock:
-                type: integer
-              toBlock:
-                type: integer
-              descOrder:
-                type: boolean
-              includeLogs:
-                type: boolean
-              includeTxs:
-                type: boolean
-    AnkrBlockchain:
-      type: string
-      enum:
-      - arbitrum
-      - avalanche
-      - base
-      - bsc
-      - eth
-      - fantom
-      - flare
-      - gnosis
-      - linea
-      - optimism
-      - polygon
-      - scroll
-      - stellar
-      - story
-      - syscoin
-      - taiko
-      - telos
-      - xai
-      - xlayer
-    AnkrGetInteractionsRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getInteractions
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          default: '2.0'
-        id:
-          type: integer
-          example: 1
-        method:
-          type: string
-        params:
-          type: object
-    Error:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-            data:
-              type: object
-    AnkrChainScopedRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          params:
-            type: object
-            properties:
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
-    AnkrGetTxnByHashRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getTransactionsByHash
-          params:
-            type: object
-            properties:
-              transactionHash:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              includeLogs:
-                type: boolean
-              decodeLogs:
-                type: boolean
-              decodeTxData:
                 type: boolean
   responses:
     ErrorResponse:

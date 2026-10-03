@@ -61,6 +61,13 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
     StakingMetrics:
       type: object
       properties:
@@ -76,17 +83,17 @@ components:
           type: integer
         exchangeRatio:
           type: string
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
     StakingMetricsList:
       type: array
       items:
         $ref: '#/components/schemas/StakingMetrics'
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   parameters:
     Token:
       name: token
@@ -103,10 +110,3 @@ components:
         - ankrDOT
         - ankrFLOW
       description: Liquid staking token symbol.
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
