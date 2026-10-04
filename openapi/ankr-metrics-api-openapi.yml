@@ -60,6 +60,13 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
     Error:
       type: object
@@ -87,13 +94,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/StakingMetrics'
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   parameters:
     Token:
       name: token
