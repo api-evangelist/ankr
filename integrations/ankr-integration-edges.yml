@@ -2,6 +2,7 @@ generated: '2026-10-13'
 method: searched
 checked:
 - https://azuremarketplace.microsoft.com/
+- https://registry.modelcontextprotocol.io/v0/servers
 marketplace_apps: []
 edges:
 - partner_name: Microsoft Azure Marketplace
@@ -20,3 +21,36 @@ edges:
   seller_name: Ankr Pbc
   detected_by: sweep-cloud-marketplaces.py
   detected: '2026-10-13'
+- partner_name: MCP Registry
+  partner: mcp
+  partner_match: register
+  type: register
+  channel: standard-directory
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://registry.modelcontextprotocol.io/v0/servers?search=io.github.w3tech
+  contract_reference:
+    register: registry.modelcontextprotocol.io
+    spec_file: null
+    role: mcp-server-listing
+    registered_name: io.github.w3tech/agent-rpc-mcp
+    register_id: io.github.w3tech/agent-rpc-mcp
+    detected_by: sweep-agent-tools.py
+    detected: '2026-10-14'
+  mcp_registry:
+    servers:
+    - io.github.w3tech/agent-rpc-mcp
+    - io.github.w3tech/agent-rpc-mcp-management
+    hosted_remote: 2
+    local_package: 1
+    transports:
+      stdio: 1
+      streamable-http: 2
+    auth_declared: 1
+    catalog_declared: true
+    namespace_domains:
+    - ankr.com
+  matched_by:
+  - remote-domain
+  detected_by: sweep-agent-tools.py
+  first_seen: '2026-10-14'
