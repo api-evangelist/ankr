@@ -44,25 +44,7 @@ paths:
         4XX:
           $ref: '#/components/responses/ErrorResponse'
 components:
-  responses:
-    ErrorResponse:
-      description: Error response.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
   schemas:
-    Error:
-      type: object
-      properties:
-        code:
-          type: integer
-        message:
-          type: string
-    ValidatorList:
-      type: array
-      items:
-        $ref: '#/components/schemas/Validator'
     Validator:
       type: object
       properties:
@@ -76,6 +58,17 @@ components:
           type: integer
         rewardReleaseSeconds:
           type: integer
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+    ValidatorList:
+      type: array
+      items:
+        $ref: '#/components/schemas/Validator'
   parameters:
     Chain:
       name: chain
@@ -90,3 +83,10 @@ components:
         - avalanche
         - fantom
         - polkadot
+  responses:
+    ErrorResponse:
+      description: Error response.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'

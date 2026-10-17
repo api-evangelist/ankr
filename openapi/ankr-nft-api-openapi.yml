@@ -122,28 +122,106 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    AnkrBlockchain:
-      type: string
-      enum:
-      - arbitrum
-      - avalanche
-      - base
-      - bsc
-      - eth
-      - fantom
-      - flare
-      - gnosis
-      - linea
-      - optimism
-      - polygon
-      - scroll
-      - stellar
-      - story
-      - syscoin
-      - taiko
-      - telos
-      - xai
-      - xlayer
+    AnkrGetNFTsByOwnerRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTsByOwner
+          params:
+            type: object
+            properties:
+              walletAddress:
+                type: string
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    AnkrGetNFTHoldersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getNFTHolders
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
+    AnkrGetNFTsByOwnerResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          properties:
+            owner:
+              type: string
+            assets:
+              type: array
+              items:
+                type: object
+                properties:
+                  blockchain:
+                    type: string
+                  name:
+                    type: string
+                  tokenId:
+                    type: string
+                  tokenUrl:
+                    type: string
+                  imageUrl:
+                    type: string
+                  collectionName:
+                    type: string
+                  symbol:
+                    type: string
+                  contractType:
+                    type: string
+                  contractAddress:
+                    type: string
+                  traits:
+                    type: array
+                    items:
+                      type: object
+            nextPageToken:
+              type: string
     AnkrGetNftTransfersRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -190,6 +268,38 @@ components:
                 type: string
               tokenId:
                 type: string
+    JsonRpcResponse:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        result:
+          type: object
+          additionalProperties: true
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
     Error:
       type: object
       properties:
@@ -206,116 +316,6 @@ components:
               type: string
             data:
               type: object
-    AnkrGetNFTsByOwnerRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNFTsByOwner
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              pageSize:
-                type: integer
-              pageToken:
-                type: string
-    AnkrGetNFTsByOwnerResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          properties:
-            owner:
-              type: string
-            assets:
-              type: array
-              items:
-                type: object
-                properties:
-                  blockchain:
-                    type: string
-                  name:
-                    type: string
-                  tokenId:
-                    type: string
-                  tokenUrl:
-                    type: string
-                  imageUrl:
-                    type: string
-                  collectionName:
-                    type: string
-                  symbol:
-                    type: string
-                  contractType:
-                    type: string
-                  contractAddress:
-                    type: string
-                  traits:
-                    type: array
-                    items:
-                      type: object
-            nextPageToken:
-              type: string
-    AnkrGetNFTHoldersRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getNFTHolders
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              contractAddress:
-                type: string
-              pageSize:
-                type: integer
-              pageToken:
-                type: string
-    JsonRpcResponse:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        result:
-          type: object
-          additionalProperties: true
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          default: '2.0'
-        id:
-          type: integer
-          example: 1
-        method:
-          type: string
-        params:
-          type: object
   responses:
     ErrorResponse:
       description: Error response (JSON-RPC error envelope).

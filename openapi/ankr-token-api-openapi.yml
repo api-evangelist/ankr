@@ -188,110 +188,6 @@ paths:
           $ref: '#/components/responses/ErrorResponse'
 components:
   schemas:
-    AnkrBlockchain:
-      type: string
-      enum:
-      - arbitrum
-      - avalanche
-      - base
-      - bsc
-      - eth
-      - fantom
-      - flare
-      - gnosis
-      - linea
-      - optimism
-      - polygon
-      - scroll
-      - stellar
-      - story
-      - syscoin
-      - taiko
-      - telos
-      - xai
-      - xlayer
-    AnkrGetTokenPriceHistoryRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getTokenPriceHistory
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              contractAddress:
-                type: string
-              fromTimestamp:
-                type: integer
-              toTimestamp:
-                type: integer
-              interval:
-                type: integer
-              limit:
-                type: integer
-    Error:
-      type: object
-      properties:
-        jsonrpc:
-          type: string
-        id:
-          type: integer
-        error:
-          type: object
-          properties:
-            code:
-              type: integer
-            message:
-              type: string
-            data:
-              type: object
-    AnkrGetAccountBalanceRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getAccountBalance
-          params:
-            type: object
-            properties:
-              walletAddress:
-                type: string
-              blockchain:
-                oneOf:
-                - $ref: '#/components/schemas/AnkrBlockchain'
-                - type: array
-                  items:
-                    $ref: '#/components/schemas/AnkrBlockchain'
-              onlyWhitelisted:
-                type: boolean
-                default: true
-              nativeFirst:
-                type: boolean
-    AnkrGetTokenHoldersRequest:
-      allOf:
-      - $ref: '#/components/schemas/JsonRpcRequest'
-      - type: object
-        properties:
-          method:
-            type: string
-            default: ankr_getTokenHolders
-          params:
-            type: object
-            properties:
-              blockchain:
-                $ref: '#/components/schemas/AnkrBlockchain'
-              contractAddress:
-                type: string
-              pageSize:
-                type: integer
-              pageToken:
-                type: string
     AnkrGetAccountBalanceResponse:
       type: object
       properties:
@@ -333,6 +229,23 @@ components:
                     type: string
                   thumbnail:
                     type: string
+    JsonRpcRequest:
+      type: object
+      required:
+      - jsonrpc
+      - method
+      - id
+      properties:
+        jsonrpc:
+          type: string
+          default: '2.0'
+        id:
+          type: integer
+          example: 1
+        method:
+          type: string
+        params:
+          type: object
     AnkrGetTokenPriceRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
@@ -348,6 +261,84 @@ components:
                 $ref: '#/components/schemas/AnkrBlockchain'
               contractAddress:
                 type: string
+    AnkrGetTokenHoldersRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenHolders
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              pageSize:
+                type: integer
+              pageToken:
+                type: string
+    AnkrChainScopedRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          params:
+            type: object
+            properties:
+              blockchain:
+                oneOf:
+                - $ref: '#/components/schemas/AnkrBlockchain'
+                - type: array
+                  items:
+                    $ref: '#/components/schemas/AnkrBlockchain'
+    AnkrGetTokenPriceHistoryRequest:
+      allOf:
+      - $ref: '#/components/schemas/JsonRpcRequest'
+      - type: object
+        properties:
+          method:
+            type: string
+            default: ankr_getTokenPriceHistory
+          params:
+            type: object
+            properties:
+              blockchain:
+                $ref: '#/components/schemas/AnkrBlockchain'
+              contractAddress:
+                type: string
+              fromTimestamp:
+                type: integer
+              toTimestamp:
+                type: integer
+              interval:
+                type: integer
+              limit:
+                type: integer
+    AnkrBlockchain:
+      type: string
+      enum:
+      - arbitrum
+      - avalanche
+      - base
+      - bsc
+      - eth
+      - fantom
+      - flare
+      - gnosis
+      - linea
+      - optimism
+      - polygon
+      - scroll
+      - stellar
+      - story
+      - syscoin
+      - taiko
+      - telos
+      - xai
+      - xlayer
     JsonRpcResponse:
       type: object
       properties:
@@ -391,37 +382,46 @@ components:
                 type: integer
               pageToken:
                 type: string
-    AnkrChainScopedRequest:
+    Error:
+      type: object
+      properties:
+        jsonrpc:
+          type: string
+        id:
+          type: integer
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            message:
+              type: string
+            data:
+              type: object
+    AnkrGetAccountBalanceRequest:
       allOf:
       - $ref: '#/components/schemas/JsonRpcRequest'
       - type: object
         properties:
+          method:
+            type: string
+            default: ankr_getAccountBalance
           params:
             type: object
             properties:
+              walletAddress:
+                type: string
               blockchain:
                 oneOf:
                 - $ref: '#/components/schemas/AnkrBlockchain'
                 - type: array
                   items:
                     $ref: '#/components/schemas/AnkrBlockchain'
-    JsonRpcRequest:
-      type: object
-      required:
-      - jsonrpc
-      - method
-      - id
-      properties:
-        jsonrpc:
-          type: string
-          default: '2.0'
-        id:
-          type: integer
-          example: 1
-        method:
-          type: string
-        params:
-          type: object
+              onlyWhitelisted:
+                type: boolean
+                default: true
+              nativeFirst:
+                type: boolean
   responses:
     ErrorResponse:
       description: Error response (JSON-RPC error envelope).
