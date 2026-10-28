@@ -1,4 +1,4 @@
-# ankr (ankr)
+# Ankr
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -74,198 +74,220 @@ service on BNB Smart Chain, and an enterprise Rollup-as-a-Service practice that 
 Stack, Polygon CDK, and Arbitrum Orbit variants. Infrastructure runs as a global DePIN of
 bare-metal nodes in 30+ regions serving roughly 8 billion daily RPC requests.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ankr/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ankr/refs/heads/main/apis.yml)
+**Areas:** Web3 · EVM · NFT · Real-Time · Ethereum
 
-## Scope
+## Ankr on APIs.io
 
-- **Position:** Consuming
+Everything profiled for Ankr is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ankr/](https://apis.io/providers/ankr/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (8)
 
-- **Created:** 2026-05-25
-- **Modified:** 2026-05-29
+- [AnkrScan Block Explorer](https://apis.io/apis/ankr/ankr-block-explorer/) — AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted UI consuming Ankr's Node API and Advanced API and does not…
+- [ankr Metrics API](https://apis.io/apis/ankr/ankr-metrics-api/) — Liquid staking pool statistics (TVL, APR, holders, supply).
+- [ankr NFT API](https://apis.io/apis/ankr/ankr-nft-api/) — NFT methods — ownership, metadata, holders, and transfer history.
+- [ankr Query API](https://apis.io/apis/ankr/ankr-query-api/) — Query methods — blockchain statistics, blocks, logs, transactions, interactions.
+- [ankr Ratio API](https://apis.io/apis/ankr/ankr-ratio-api/) — Trustless exchange ratio between native and liquid staking tokens.
+- [ankr Tasks API](https://apis.io/apis/ankr/ankr-tasks-api/) — Time-based and event-triggered automation tasks.
+- [ankr Token API](https://apis.io/apis/ankr/ankr-token-api/) — Token methods — balances, prices, holders, currencies, and transfers.
+- [ankr Validators API](https://apis.io/apis/ankr/ankr-validators-api/) — Validator metadata, unbond times, reward release windows.
 
-## APIs
+### Published properties
 
-### Ankr RPC Service (Node API)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Ankr's Node API exposes standard JSON-RPC endpoints (HTTPS and WebSocket) for 80+
-public blockchains at rpc.ankr.com/{chain}. EVM chains share the Ethereum JSON-RPC envelope;
-non-EVM chains (Solana, Aptos, TRON, Stellar, TON, Cosmos networks) expose their native
-RPC surface at the same per-chain endpoint. Public Plan is open and anonymous;
-Premium Plan multiplies throughput x50 and unlocks WebSocket subscriptions, archive nodes,
-and IP whitelisting via project-scoped API keys.
+#### Arazzo workflows (9)
 
-- **Human URL:** [https://www.ankr.com/rpc/](https://www.ankr.com/rpc/)
-- **Base URL:** `https://rpc.ankr.com`
+Multi-step workflows that chain operations into a business task.
 
-#### Tags
+- [Ankr Block And Log Inspection](https://apis.io/arazzos/ankr/ankr-block-log-inspection-workflow/)
+- [Ankr Chain Overview](https://apis.io/arazzos/ankr/ankr-chain-overview-workflow/)
+- [Ankr NFT Collection Audit](https://apis.io/arazzos/ankr/ankr-nft-collection-audit-workflow/)
+- [Ankr Wallet NFT Inventory](https://apis.io/arazzos/ankr/ankr-nft-inventory-workflow/)
+- [Ankr Token Holder Distribution](https://apis.io/arazzos/ankr/ankr-token-holder-distribution-workflow/)
+- [Ankr Token Price And History](https://apis.io/arazzos/ankr/ankr-token-price-and-history-workflow/)
+- [Ankr Transaction Deep Dive](https://apis.io/arazzos/ankr/ankr-transaction-deep-dive-workflow/)
+- [Ankr Wallet Cross-Chain Activity](https://apis.io/arazzos/ankr/ankr-wallet-cross-chain-activity-workflow/)
+- [Ankr Wallet Portfolio Snapshot](https://apis.io/arazzos/ankr/ankr-wallet-portfolio-workflow/)
 
-- RPC
-- Web3
-- Multichain
-- EVM
-- Blockchain
+#### AsyncAPI (2)
 
-#### Properties
+Event-driven and webhook contracts.
 
-- [Documentation](https://www.ankr.com/docs/rpc-service/overview/)
-- [Documentation](https://www.ankr.com/docs/rpc-service/chains/chains-list/)
-- [OpenAPI](openapi/ankr-rpc-service-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ankr-rpc-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-rpc-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [AsyncAPI](asyncapi/ankr-asyncapi.yml) — [AsyncAPI Specification](https://www.asyncapi.com/docs/reference/specification/latest)
-- [JSON-LD](json-ld/ankr-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
+- [Ankr RPC Service — WebSocket Subscriptions](https://apis.io/asyncapis/ankr/ankr-asyncapi/)
+- [Review](https://apis.io/asyncapis/ankr/review/)
 
-### Ankr Advanced API
+#### Event channels (4)
 
-The Advanced API (AAPI) is Ankr's indexed JSON-RPC surface that optimizes, caches, and
-aggregates data across 19 EVM mainnets and 7 testnets. Methods are grouped into NFT
-(ankr_getNFTsByOwner, ankr_getNFTMetadata, ankr_getNFTHolders, ankr_getNftTransfers),
-Token (ankr_getAccountBalance, ankr_getCurrencies, ankr_getTokenPrice, ankr_getTokenHolders,
-ankr_getTokenHoldersCount, ankr_getTokenTransfers, ankr_getTokenPriceHistory), and Query
-(ankr_getBlockchainStats, ankr_getBlocks, ankr_getLogs, ankr_getTransactionsByHash,
-ankr_getTransactionsByAddress, ankr_getInteractions).
+Individual events and webhooks the provider emits.
 
-- **Human URL:** [https://www.ankr.com/docs/advanced-api/overview/](https://www.ankr.com/docs/advanced-api/overview/)
-- **Base URL:** `https://rpc.ankr.com/multichain`
+- [/evm/eth_subscribe](https://apis.io/channels/ankr/evm-eth-subscribe/)
+- [/evm/eth_unsubscribe](https://apis.io/channels/ankr/evm-eth-unsubscribe/)
+- [/solana/subscribe](https://apis.io/channels/ankr/solana-subscribe/)
+- [/solana/unsubscribe](https://apis.io/channels/ankr/solana-unsubscribe/)
 
-#### Tags
+#### MCP servers (1)
 
-- Web3
-- NFT
-- Token
-- Indexer
-- Multichain
+Model Context Protocol servers that expose the API to agents.
 
-#### Properties
+- [ankr](https://apis.io/servers/ankr/ankr/)
 
-- [Documentation](https://www.ankr.com/docs/advanced-api/overview/)
-- [Documentation](https://api-docs.ankr.com/reference/)
-- [OpenAPI](openapi/ankr-advanced-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ankr-advanced-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-advanced-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/ankr-nft-asset-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Schema](json-schema/ankr-account-balance-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](json-structure/ankr-account-balance-structure.json)
-- [Example](examples/ankr-get-account-balance-example.json)
-- [Example](examples/ankr-get-nfts-by-owner-example.json)
+#### Agentic access (1)
 
-### Ankr Liquid Staking API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-Ankr's Liquid Staking developer surface — a RESTful metrics API plus on-chain Smart Contract
-APIs across Avalanche, Binance Smart Chain, Ethereum, Fantom, and Polygon. Supported
-liquid staking tokens include ankrETH, ankrBNB, ankrPOL, ankrAVAX, ankrFTM, ankrDOT, and
-ankrFLOW. The RESTful surface exposes staking metrics (TVL, APR, holders, supply),
-the trustless exchange ratio, and validator metadata (unbond windows, reward release).
+- [Ankr Agentic Access](https://apis.io/agentic-access/ankr/ankr-agentic-access/)
 
-- **Human URL:** [https://www.ankr.com/docs/staking-for-developers/overview/](https://www.ankr.com/docs/staking-for-developers/overview/)
-- **Base URL:** `https://api.staking.ankr.com`
+#### JSON Schema (3)
 
-#### Tags
+The data models the API reads and writes.
 
-- Staking
-- LiquidStaking
-- DeFi
-- Validators
+- [Ankr Account Balance](https://apis.io/schemas/ankr/ankr-account-balance/)
+- [Ankr NFT Asset](https://apis.io/schemas/ankr/ankr-nft-asset/)
+- [Ankr Liquid Staking Metrics](https://apis.io/schemas/ankr/ankr-staking-metrics/)
 
-#### Properties
+#### JSON Structure (1)
 
-- [Documentation](https://www.ankr.com/docs/staking-for-developers/overview/)
-- [OpenAPI](openapi/ankr-staking-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ankr-staking-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-staking-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Schema](json-schema/ankr-staking-metrics-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [Dashboard](https://www.ankr.com/staking/dashboard/)
+Data models expressed in JSON Structure.
 
-### Ankr Contract Automation API
+- [Ankr Account Balance Structure](https://apis.io/json-structure/ankr/ankr-account-balance-structure/)
 
-Ankr Contract Automation executes deployed smart-contract functions based on time-based (CRON)
-or event-driven (IAutomateCompatible) triggers. As of May 2026 the service supports BNB Smart Chain
-only — additional networks are on the roadmap. Tasks are created, funded, paused, and deleted via
-the Ankr Automation Dashboard.
+#### JSON-LD (1)
 
-- **Human URL:** [https://www.ankr.com/docs/automation/overview/](https://www.ankr.com/docs/automation/overview/)
-- **Base URL:** `https://www.ankr.com/automation`
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags
+- [Ankr Context](https://apis.io/jsonld/ankr/ankr-context/)
 
-- Automation
-- SmartContracts
-- BNB
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://www.ankr.com/docs/automation/overview/)
-- [OpenAPI](openapi/ankr-automation-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/ankr-automation-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-automation-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Ankr Vocabulary](https://apis.io/vocabularies/ankr/ankr-vocabulary/)
 
-### AnkrScan Block Explorer
+#### Examples (3)
 
-AnkrScan is Ankr's multi-chain block explorer covering EVM and non-EVM networks. It is a hosted
-UI consuming Ankr's Node API and Advanced API and does not currently publish a public REST surface.
+Example requests and responses.
 
-- **Human URL:** [https://ankrscan.io](https://ankrscan.io)
-- **Base URL:** `https://ankrscan.io`
+- [Ankr Eth Rpc Call Example](https://apis.io/examples/ankr/ankr-eth-rpc-call-example/)
+- [Ankr Get Account Balance Example](https://apis.io/examples/ankr/ankr-get-account-balance-example/)
+- [Ankr Get Nfts By Owner Example](https://apis.io/examples/ankr/ankr-get-nfts-by-owner-example/)
 
-#### Tags
+#### Collections (16)
 
-- BlockExplorer
-- Web3
+Postman and Open Collection request collections.
 
-#### Properties
+- [Ankr Advanced API](https://apis.io/collections/ankr/open-ankr-advanced-api/)
+- [Ankr Contract Automation API](https://apis.io/collections/ankr/open-ankr-automation-api/)
+- [Ankr Advanced EVM API](https://apis.io/collections/ankr/open-ankr-evm-api/)
+- [Ankr Advanced EVM Metrics API](https://apis.io/collections/ankr/open-ankr-metrics-api/)
+- [Ankr Advanced EVM NFT API](https://apis.io/collections/ankr/open-ankr-nft-api/)
+- [Ankr Advanced EVM Query API](https://apis.io/collections/ankr/open-ankr-query-api/)
+- [Ankr Advanced EVM Ratio API](https://apis.io/collections/ankr/open-ankr-ratio-api/)
+- [Ankr RPC Service (Node API)](https://apis.io/collections/ankr/open-ankr-rpc-service/)
+- [Ankr Liquid Staking API](https://apis.io/collections/ankr/open-ankr-staking-api/)
+- [Ankr Advanced EVM Tasks API](https://apis.io/collections/ankr/open-ankr-tasks-api/)
+- [Ankr Advanced EVM Token API](https://apis.io/collections/ankr/open-ankr-token-api/)
+- [Ankr Advanced EVM Validators API](https://apis.io/collections/ankr/open-ankr-validators-api/)
+- [Ankr Advanced API](https://apis.io/collections/ankr/postman-ankr-advanced-api/)
+- [Ankr Contract Automation API](https://apis.io/collections/ankr/postman-ankr-automation-api/)
+- [Ankr RPC Service (Node API)](https://apis.io/collections/ankr/postman-ankr-rpc-service/)
+- [Ankr Liquid Staking API](https://apis.io/collections/ankr/postman-ankr-staking-api/)
 
-- [Portal](https://ankrscan.io)
-- [Postman Collection](collections/ankr-advanced-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-advanced-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/ankr-automation-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-automation-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/ankr-rpc-service.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-rpc-service.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/ankr-staking-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/ankr-staking-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Governance rules (3)
 
-## Common Properties
+Spectral rulesets for the provider's contracts.
 
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [Portal](https://www.ankr.com)
+- [Ankr — asyncapi rules](https://apis.io/rules/ankr/ankr-asyncapi-spectral-rules/)
+- [Ankr — jsonschema rules](https://apis.io/rules/ankr/ankr-jsonschema-spectral-rules/)
+- [Ankr API Rules](https://apis.io/rules/ankr/ankr-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Ankr Authentication](https://apis.io/security/ankr/ankr-authentication/)
+- [Ankr Domain Security](https://apis.io/security/ankr/ankr-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Ankr Plans Pricing](https://apis.io/plans/ankr/ankr-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Ankr Rate Limits](https://apis.io/rate-limits/ankr/ankr-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Ankr Finops](https://apis.io/finops/ankr/ankr-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.ankr.com/)
 - [Documentation](https://www.ankr.com/docs/)
-- [Sign Up](https://www.ankr.com/rpc/)
-- [Dashboard](https://www.ankr.com/rpc/projects/)
 - [Pricing](https://www.ankr.com/rpc/pricing/)
 - [Blog](https://www.ankr.com/blog/)
-- [Company](https://www.ankr.com/about/)
-- [Twitter](https://x.com/ankr)
-- [Forum](https://discord.com/invite/ankrnetwork)
-- [Forum](https://t.me/ankrnetwork)
-- [GitHub Organization](https://github.com/Ankr-network)
-- [SDK](https://github.com/Ankr-network/ankr.js)
-- [SDK](https://github.com/Ankr-network/ankr-python-sdk)
-- [SDK](https://github.com/Ankr-network/ankr-sdk-nodejs)
-- [SDK](https://github.com/Ankr-network/game-unity-sdk)
-- [SDK](https://github.com/Ankr-network/game-unreal-sdk)
-- [SDK](https://github.com/Ankr-network/game-unreal-aptos-sdk)
-- [SDK](https://github.com/Ankr-network/ankr-compound-sdk)
-- [SDK](https://github.com/Ankr-network/ankrscan-sdk)
-- [C L I](https://github.com/Ankr-network/ankr-cli)
-- [Source Code](https://github.com/Ankr-network/ankr-docs)
-- [Source Code](https://github.com/Ankr-network/erigon)
-- [Block Explorer](https://ankrscan.io)
-- [Documentation](https://api-docs.ankr.com/reference/)
-- [Documentation](https://api-docs.ankr.com/llms.txt)
-- [Status](https://status.ankr.com)
-- [Terms of Service](https://www.ankr.com/terms/)
-- [Privacy Policy](https://www.ankr.com/privacy/)
-- [Plans](plans/ankr-plans-pricing.yml)
-- [Rate Limits](rate-limits/ankr-rate-limits.yml)
-- [Fin Ops](finops/ankr-finops.yml)
-- [Vocabulary](vocabulary/ankr-vocabulary.yml)
-- [Spectral Rules](rules/ankr-rules.yml)
-- [Features](undefined)
+- [Terms of service](https://www.ankr.com/terms/)
+- [Privacy policy](https://www.ankr.com/privacy/)
+- [GitHub](https://github.com/Ankr-network)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
-**URL:** https://apievangelist.com
+**Kin Score 55.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.3 |
+| Contract quality | 71.3 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 63.1 |
+| Access clarity | 60.5 |
+
+**Agent readiness 44.6** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | derived (partial credit) |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 24.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ankr/](https://apis.io/providers/ankr/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Ankr: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ankr/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
